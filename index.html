@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIP 4K VAULT - Premium Access</title>
+  <title>VIP 4K VAULT - Web Admin & Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -33,18 +33,18 @@
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.07);
     }
-    /* POM BOT Dark Admin Theme */
-    .pombot-bg {
+    /* Web Admin Theme */
+    .webadmin-bg {
       background-color: #0b0c10;
     }
-    .pombot-card {
+    .webadmin-card {
       background-color: #12141a;
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .pombot-card:hover {
+    .webadmin-card:hover {
       background-color: #161820;
     }
-    .pombot-active-item {
+    .webadmin-active-item {
       background: #171a24;
       border: 1px solid rgba(59, 130, 246, 0.25);
     }
@@ -375,20 +375,20 @@
   </div>
 
 
-  <!-- ================= 4. REDESIGNED ADMIN LOGIN VIEW (USERNAME & PASSWORD) ================= -->
+  <!-- ================= 4. CLEAN WEB ADMIN LOGIN VIEW (USERNAME & PASSWORD) ================= -->
   <div id="adminLoginView" class="hidden min-h-screen flex items-center justify-center p-4">
     <div class="glass-card rounded-3xl p-7 sm:p-9 max-w-sm w-full space-y-6 shadow-2xl border border-purple-500/30">
       
       <!-- Brand Header -->
       <div class="text-center space-y-2">
         <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/30">
-          <i class="fas fa-robot text-white"></i>
+          <i class="fas fa-shield-alt text-white"></i>
         </div>
         <div class="flex items-center justify-center gap-2 pt-1">
-          <h2 class="text-xl font-black text-white tracking-wide">POM BOT</h2>
-          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-extrabold rounded-md text-white tracking-wide">ADMIN</span>
+          <h2 class="text-xl font-black text-white tracking-wide">WEB ADMIN</h2>
+          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-extrabold rounded-md text-white tracking-wide">CONSOLE</span>
         </div>
-        <p class="text-xs text-gray-400">Sign in with your master administrator credentials</p>
+        <p class="text-xs text-gray-400">Sign in to manage your online store & payments</p>
       </div>
 
       <!-- Login Form -->
@@ -432,30 +432,29 @@
   </div>
 
 
-  <!-- ================= 5. FULL POM BOT ADMIN CONSOLE (MATCHING IMAGES [23] & [24]) ================= -->
-  <div id="adminDashboardView" class="hidden min-h-screen flex flex-col pombot-bg text-gray-200">
+  <!-- ================= 5. STREAMLINED WEB STORE ADMIN CONSOLE ================= -->
+  <div id="adminDashboardView" class="hidden min-h-screen flex flex-col webadmin-bg text-gray-200">
     
-    <!-- Top Navigation Header (Matching Images [23] & [24]) -->
+    <!-- Top Navigation Header -->
     <header class="border-b border-white/[0.06] bg-[#0c0d12] px-4 py-3 flex justify-between items-center sticky top-0 z-40">
       <div class="flex items-center gap-3">
         <!-- Sidebar Toggle Icon (☰) -->
         <button onclick="toggleAdminDrawer()" class="w-9 h-9 rounded-lg hover:bg-white/[0.05] flex items-center justify-center text-gray-300 text-lg transition">
           <i class="fas fa-bars"></i>
         </button>
-        <!-- POM BOT Branding + ADMIN Badge -->
+        <!-- Rebranded Header (Store/Web, No Bot) -->
         <div class="flex items-center gap-2">
           <div class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-sm">
-            <i class="fas fa-robot"></i>
+            <i class="fas fa-store"></i>
           </div>
-          <span class="font-black text-sm tracking-wider text-white">POM BOT</span>
-          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-black rounded text-white tracking-wider">ADMIN</span>
+          <span class="font-black text-sm tracking-wider text-white">WEB ADMIN</span>
+          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-black rounded text-white tracking-wider">CONSOLE</span>
         </div>
       </div>
 
-      <!-- Top Right: Night Icon, Bell Icon, User Avatar "R" -->
+      <!-- Top Right: Notification Bell with count & User Avatar -->
       <div class="flex items-center gap-3.5">
-        <button class="text-gray-400 hover:text-white text-sm"><i class="fas fa-moon"></i></button>
-        <button onclick="navigateTo('/panel/?tab=utr')" class="text-gray-400 hover:text-white text-sm relative">
+        <button onclick="switchAdminTab('utr')" class="text-gray-400 hover:text-white text-sm relative" title="Pending Orders">
           <i class="fas fa-bell"></i>
           <span id="topNotificationDot" class="hidden absolute -top-1 -right-1 w-2 h-2 bg-amber-400 rounded-full"></span>
         </button>
@@ -467,7 +466,7 @@
 
     <div class="flex-1 flex relative overflow-hidden">
       
-      <!-- Slide-Out Sidebar Drawer (Matching Image [23]) -->
+      <!-- Slide-Out Sidebar Drawer (Useless links removed) -->
       <aside id="adminDrawer" class="fixed md:static inset-y-0 left-0 z-30 w-64 bg-[#0a0b0f] md:bg-transparent border-r border-white/[0.06] transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col p-3 space-y-1 overflow-y-auto">
         
         <button onclick="switchAdminTab('dashboard')" id="sideBtn-dashboard" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
@@ -477,28 +476,23 @@
 
         <button onclick="switchAdminTab('plans')" id="sideBtn-plans" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
           <i class="fas fa-layer-group text-gray-400 text-sm"></i>
-          <span>Subscriptions</span>
+          <span>Subscriptions (7 Plans)</span>
         </button>
 
         <button onclick="switchAdminTab('utr')" id="sideBtn-utr" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
           <i class="fas fa-credit-card text-gray-400 text-sm"></i>
-          <span>Payments</span>
+          <span>Payment Approvals</span>
           <span id="pendingBadge" class="ml-auto bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-bold">0</span>
         </button>
 
         <button onclick="switchAdminTab('users')" id="sideBtn-users" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
           <i class="fas fa-users text-gray-400 text-sm"></i>
-          <span>Users</span>
-        </button>
-
-        <button onclick="switchAdminTab('channels')" id="sideBtn-channels" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
-          <i class="fas fa-bullhorn text-gray-400 text-sm"></i>
-          <span>Channels</span>
+          <span>Registered Users</span>
         </button>
 
         <button onclick="switchAdminTab('settings')" id="sideBtn-settings" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
           <i class="fas fa-cog text-gray-400 text-sm"></i>
-          <span>Bot Settings</span>
+          <span>Store Settings</span>
         </button>
 
         <div class="pt-4 mt-auto border-t border-white/[0.06] space-y-1">
@@ -519,18 +513,18 @@
       <!-- Main Admin Content Area -->
       <main class="flex-1 p-4 sm:p-6 overflow-y-auto max-w-4xl w-full mx-auto">
 
-        <!-- ================= TAB 1: INSIGHTS OVERVIEW (MATCHING IMAGE [24]) ================= -->
+        <!-- ================= TAB 1: CLEAN INSIGHTS OVERVIEW (NO TIMER, NO REPORTS) ================= -->
         <div id="tabContent-dashboard" class="space-y-4">
           <div class="border-b border-white/[0.06] pb-3">
             <h1 class="text-xl font-black text-white">Insights Overview</h1>
-            <p class="text-xs text-gray-400 mt-0.5">Welcome back. Here's what's happening with your bots today.</p>
+            <p class="text-xs text-gray-400 mt-0.5">Welcome back. Here's what's happening with your website today.</p>
           </div>
 
-          <!-- Vertical Stacked Cards (Matching Image [24] Exactly) -->
+          <!-- Clean 4-Card Stack: Only Real & Useful Web Metrics -->
           <div class="space-y-3 pt-2">
             
             <!-- 1. Total Users -->
-            <div class="pombot-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
+            <div class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
               <div class="w-12 h-12 rounded-full bg-[#181a24] flex items-center justify-center text-gray-300 text-lg">
                 <i class="fas fa-user-friends"></i>
               </div>
@@ -541,7 +535,7 @@
             </div>
 
             <!-- 2. Active Subs -->
-            <div class="pombot-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
+            <div class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
               <div class="w-12 h-12 rounded-full bg-[#132320] flex items-center justify-center text-emerald-400 text-lg">
                 <i class="fas fa-award"></i>
               </div>
@@ -551,8 +545,8 @@
               </div>
             </div>
 
-            <!-- 3. Pending Payments -->
-            <div onclick="switchAdminTab('utr')" class="pombot-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition cursor-pointer hover:border-amber-500/30">
+            <!-- 3. Pending Payments (Clickable Review) -->
+            <div onclick="switchAdminTab('utr')" class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition cursor-pointer hover:border-amber-500/30">
               <div class="w-12 h-12 rounded-full bg-[#262016] flex items-center justify-center text-amber-400 text-lg">
                 <i class="far fa-clock"></i>
               </div>
@@ -560,39 +554,17 @@
                 <div id="statPendingOrders" class="text-xl font-black text-amber-400">0</div>
                 <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">PENDING PAYMENTS</div>
               </div>
-              <span class="ml-auto text-xs text-gray-500 hover:text-white">Review &rarr;</span>
+              <span class="ml-auto text-xs text-amber-400 hover:underline font-semibold">Review &rarr;</span>
             </div>
 
-            <!-- 4. Open Reports -->
-            <div class="pombot-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
-              <div class="w-12 h-12 rounded-full bg-[#27171d] flex items-center justify-center text-rose-400 text-lg">
-                <i class="fas fa-flag"></i>
-              </div>
-              <div>
-                <div id="statOpenReports" class="text-xl font-black text-rose-400">0</div>
-                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">OPEN REPORTS</div>
-              </div>
-            </div>
-
-            <!-- 5. Total Revenue -->
-            <div class="pombot-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
+            <!-- 4. Total Revenue -->
+            <div class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
               <div class="w-12 h-12 rounded-full bg-[#162035] flex items-center justify-center text-sky-400 text-lg">
                 <i class="fas fa-rupee-sign"></i>
               </div>
               <div>
                 <div id="statTotalRevenue" class="text-xl font-black text-sky-400">&#8377;0</div>
                 <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">TOTAL REVENUE</div>
-              </div>
-            </div>
-
-            <!-- 6. Licence Expiry -->
-            <div class="pombot-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
-              <div class="w-12 h-12 rounded-full bg-[#132320] flex items-center justify-center text-emerald-400 text-lg">
-                <i class="fas fa-hourglass-half"></i>
-              </div>
-              <div>
-                <div id="statLicenceExpiry" class="text-xl font-black text-white">1012 Days Left</div>
-                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">LICENCE EXPIRY</div>
               </div>
             </div>
 
@@ -606,7 +578,7 @@
             <p class="text-xs text-gray-400">Configure prices, tags, thumbnail photos, and vault delivery links</p>
           </div>
 
-          <div class="pombot-card rounded-2xl p-5 space-y-4">
+          <div class="webadmin-card rounded-2xl p-5 space-y-4">
             <div>
               <label class="block text-xs font-semibold text-gray-300 mb-1">Select Subscription Plan</label>
               <select id="adminPlanSelector" onchange="loadPlanForm()" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-xs text-blue-300 font-semibold outline-none"></select>
@@ -671,7 +643,7 @@
             </div>
           </div>
 
-          <div class="overflow-x-auto pombot-card rounded-2xl">
+          <div class="overflow-x-auto webadmin-card rounded-2xl">
             <table class="w-full text-left text-xs text-gray-300">
               <thead class="bg-[#171a24] text-gray-400 uppercase text-[10px] tracking-wider">
                 <tr>
@@ -694,7 +666,7 @@
             <p class="text-xs text-gray-400">Track device tokens, order counts, and VIP membership status</p>
           </div>
 
-          <div class="overflow-x-auto pombot-card rounded-2xl">
+          <div class="overflow-x-auto webadmin-card rounded-2xl">
             <table class="w-full text-left text-xs text-gray-300">
               <thead class="bg-[#171a24] text-gray-400 uppercase text-[10px]">
                 <tr>
@@ -709,42 +681,27 @@
           </div>
         </div>
 
-        <!-- ================= TAB 5: CHANNELS & BOT SETTINGS ================= -->
-        <div id="tabContent-channels" class="hidden space-y-4">
-          <div class="border-b border-white/[0.06] pb-3">
-            <h2 class="text-lg font-black text-white">Channels & Support Links</h2>
-            <p class="text-xs text-gray-400">Configure your official Telegram handles and VIP support</p>
-          </div>
-
-          <div class="pombot-card rounded-2xl p-5 space-y-4 text-xs">
-            <div>
-              <label class="block font-semibold text-gray-300 mb-1">Telegram Support / Channel URL</label>
-              <input type="url" id="adminTelegramInput" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="https://t.me/yourusername">
-            </div>
-            <div class="flex justify-end pt-2">
-              <button onclick="saveAllChanges()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow transition">
-                Save Channel Links
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- ================= TAB 6: BOT SETTINGS & BRAND ================= -->
+        <!-- ================= TAB 5: STORE SETTINGS ================= -->
         <div id="tabContent-settings" class="hidden space-y-4">
           <div class="border-b border-white/[0.06] pb-3">
-            <h2 class="text-lg font-black text-white">Bot & Payment Settings</h2>
-            <p class="text-xs text-gray-400">Update store branding and receiving UPI ID</p>
+            <h2 class="text-lg font-black text-white">Store Settings</h2>
+            <p class="text-xs text-gray-400">Update store branding, UPI address, and support links</p>
           </div>
 
-          <div class="pombot-card rounded-2xl p-5 space-y-4 text-xs">
+          <div class="webadmin-card rounded-2xl p-5 space-y-4 text-xs">
             <div>
-              <label class="block font-semibold text-gray-300 mb-1">Store / Bot Brand Name</label>
+              <label class="block font-semibold text-gray-300 mb-1">Store Brand Name</label>
               <input type="text" id="adminBrandName" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
             </div>
 
             <div>
               <label class="block font-semibold text-gray-300 mb-1">UPI ID (Receives Payments)</label>
               <input type="text" id="adminUpiInput" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
+            </div>
+
+            <div>
+              <label class="block font-semibold text-gray-300 mb-1">Telegram Support / Channel URL</label>
+              <input type="url" id="adminTelegramInput" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="https://t.me/yourusername">
             </div>
 
             <div class="flex justify-end pt-2">
@@ -760,7 +717,7 @@
   </div>
 
   <!-- MANAGE UTR STATUS MODAL -->
-  <dialog id="manageUtrModal" class="pombot-card text-white rounded-3xl p-6 max-w-sm w-11/12 backdrop:bg-black/80 shadow-2xl border border-white/10">
+  <dialog id="manageUtrModal" class="webadmin-card text-white rounded-3xl p-6 max-w-sm w-11/12 backdrop:bg-black/80 shadow-2xl border border-white/10">
     <div class="flex justify-between items-center pb-3 border-b border-white/10">
       <h3 class="text-sm font-bold flex items-center gap-2">
         <i class="fas fa-sliders-h text-blue-500"></i> Manage Transaction
@@ -1185,9 +1142,9 @@
       navigateTo('/panel');
     }
 
-    // Switch Tabs inside the POM BOT Console
+    // Switch Tabs inside the Web Admin Console
     function switchAdminTab(tabName) {
-      const validTabs = ["dashboard", "plans", "utr", "users", "channels", "settings"];
+      const validTabs = ["dashboard", "plans", "utr", "users", "settings"];
       const current = validTabs.includes(tabName) ? tabName : "dashboard";
 
       validTabs.forEach(t => {
@@ -1196,7 +1153,7 @@
         if (content) {
           if (t === current) {
             content.classList.remove("hidden");
-            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-3 pombot-active-item text-white";
+            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-3 webadmin-active-item text-white";
           } else {
             content.classList.add("hidden");
             if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-400 hover:text-white hover:bg-white/[0.04] transition";
@@ -1204,7 +1161,7 @@
         }
       });
 
-      // Close mobile drawer if opened
+      // Close mobile drawer if open
       const drawer = document.getElementById('adminDrawer');
       const backdrop = document.getElementById('drawerBackdrop');
       drawer.classList.add('-translate-x-full');
@@ -1213,8 +1170,7 @@
       if (current === 'dashboard') fetchAdminStats();
       if (current === 'utr') fetchAdminUtrs();
       if (current === 'users') fetchAdminUsers();
-      if (current === 'plans') populateAdminInputs();
-      if (current === 'channels' || current === 'settings') populateAdminInputs();
+      if (current === 'plans' || current === 'settings') populateAdminInputs();
     }
 
     async function fetchAdminStats() {
@@ -1225,9 +1181,7 @@
         document.getElementById("statTotalUsers").textContent = (stats.totalUsers || 0).toLocaleString();
         document.getElementById("statPremiumUsers").textContent = (stats.premiumUsers || 0).toLocaleString();
         document.getElementById("statPendingOrders").textContent = stats.pendingOrders || 0;
-        document.getElementById("statOpenReports").textContent = stats.openReports || 0;
         document.getElementById("statTotalRevenue").innerHTML = `&#8377;${(stats.totalRevenue || 0).toLocaleString()}`;
-        document.getElementById("statLicenceExpiry").textContent = `${stats.licenceDays || 1012} Days Left`;
         
         document.getElementById("pendingBadge").textContent = stats.pendingOrders || 0;
         const dot = document.getElementById("topNotificationDot");
@@ -1258,7 +1212,7 @@
             <td class="p-3 font-mono text-gray-300 font-bold">${u.deviceToken}</td>
             <td class="p-3">
               <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${u.isPremium ? 'bg-emerald-950 text-emerald-400 border border-emerald-600/30' : 'bg-gray-800 text-gray-400'}">
-                ${u.isPremium ? '★ VIP Premium' : 'Free Member'}
+                ${u.isPremium ? '★ VIP Member' : 'Visitor'}
               </span>
             </td>
             <td class="p-3 font-semibold">${u.ordersCount}</td>
