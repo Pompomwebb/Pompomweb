@@ -7,14 +7,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* GPU-Optimized Background: Removed background-attachment: fixed to completely eliminate scroll lag */
+    /* GPU-Optimized Background: Eliminates mobile scroll lag */
     body {
       background-color: #060813;
       background-image: 
         radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.16) 0%, transparent 40%),
         radial-gradient(circle at 90% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
         radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.14) 0%, transparent 45%);
-      transform: translateZ(0); /* Hardware acceleration */
+      transform: translateZ(0);
     }
     .glass-header {
       background: rgba(17, 22, 40, 0.94);
@@ -22,11 +22,10 @@
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    /* Smooth, lag-free cards using optimized solid opacity instead of heavy 24px per-card blurs */
     .glass-card {
       background: #0f1323;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      contain: content; /* Improves browser rendering performance */
+      contain: content;
     }
     .glass-panel {
       background: #0d1120;
@@ -365,11 +364,11 @@
   </div>
 
 
-  <!-- ================= 4. POM WEB LOGIN VIEW (CLEAN PASSWORD INPUT) ================= -->
+  <!-- ================= 4. POM WEB LOGIN VIEW (SLUG: /nagatopanel) ================= -->
   <div id="adminLoginView" class="hidden min-h-screen flex items-center justify-center p-4">
     <div class="glass-card rounded-3xl p-7 sm:p-9 max-w-sm w-full space-y-6 shadow-2xl border border-purple-500/30">
       
-      <!-- Robot Icon & POM WEB -->
+      <!-- Robot Icon & POM WEB Header -->
       <div class="text-center space-y-2">
         <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/30">
           <i class="fas fa-robot text-white"></i>
@@ -381,7 +380,7 @@
         <p class="text-xs text-gray-400">Sign in to manage your online store & payments</p>
       </div>
 
-      <!-- Clean Login Form without default password hints -->
+      <!-- Clean Login Form -->
       <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-xs">
         <div>
           <label class="block text-gray-300 mb-1.5 font-semibold">Username</label>
@@ -422,7 +421,7 @@
   </div>
 
 
-  <!-- ================= 5. POM WEB ADMIN CONSOLE (ROBOT ICON, AVATAR N, PINNED LOGOUT) ================= -->
+  <!-- ================= 5. POM WEB ADMIN CONSOLE (/nagatopanel) ================= -->
   <div id="adminDashboardView" class="hidden min-h-screen flex flex-col text-gray-200">
     
     <!-- Top Glass Navigation Header -->
@@ -489,9 +488,10 @@
             <span>Store Settings</span>
           </button>
 
+          <!-- Security Tab (Clean Icon, No Emoji) -->
           <button onclick="switchAdminTab('security')" id="sideBtn-security" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
-            <i class="fas fa-key text-amber-400 text-sm"></i>
-            <span>Manage Password</span>
+            <i class="fas fa-shield-alt text-amber-400 text-sm"></i>
+            <span>Security</span>
           </button>
         </div>
 
@@ -712,11 +712,11 @@
           </div>
         </div>
 
-        <!-- ================= TAB 6: MANAGE PASSWORD & SECURITY ================= -->
+        <!-- ================= TAB 6: SECURITY (MANAGE CREDENTIALS) ================= -->
         <div id="tabContent-security" class="hidden space-y-4">
           <div class="border-b border-white/10 pb-3">
-            <h2 class="text-lg font-black text-white">Security & Password Management</h2>
-            <p class="text-xs text-gray-400">Update your administrator username and master login password</p>
+            <h2 class="text-lg font-black text-white">Security & Master Access</h2>
+            <p class="text-xs text-gray-400">Update your administrator username and console password</p>
           </div>
 
           <div class="glass-card rounded-3xl p-6 space-y-4 text-xs border border-purple-500/20 shadow-2xl max-w-lg">
@@ -728,7 +728,7 @@
 
               <div class="pt-2 border-t border-white/10">
                 <label class="block font-semibold text-gray-300 mb-1.5">New Username</label>
-                <input type="text" id="newUsernameInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Leave empty to keep current username">
+                <input type="text" id="newUsernameInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Leave blank to keep current username">
               </div>
 
               <div>
@@ -743,7 +743,7 @@
 
               <div class="flex justify-end pt-2">
                 <button type="submit" id="updateCredsBtn" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center gap-2 active:scale-95">
-                  <i class="fas fa-lock"></i> Update Password & Username
+                  <i class="fas fa-lock"></i> Update Credentials
                 </button>
               </div>
             </form>
@@ -873,6 +873,7 @@
       document.getElementById('videoGridSection').scrollIntoView({ behavior: 'smooth' });
     }
 
+    // ================= SLUG ROUTING: NAGATOPANEL =================
     function router() {
       const path = window.location.pathname;
       const params = new URLSearchParams(window.location.search);
@@ -891,7 +892,8 @@
       adminLoginEl.classList.add("hidden");
       adminDashEl.classList.add("hidden");
 
-      if (path.includes("/panel") || tab !== null) {
+      // Check for nagatopanel slug (or legacy /panel fallback)
+      if (path.includes("/nagatopanel") || path.includes("/panel") || tab !== null) {
         const token = sessionStorage.getItem("admin_session_token");
         if (!token) {
           adminLoginEl.classList.remove("hidden");
@@ -1159,7 +1161,7 @@
         if (data.success) {
           sessionStorage.setItem("admin_session_token", data.token);
           showToast(`Welcome back, ${data.username}!`, "success");
-          navigateTo('/panel/?tab=dashboard');
+          navigateTo('/nagatopanel/?tab=dashboard');
         } else {
           errorMsg.textContent = data.error || "Invalid username or password";
           errorMsg.classList.remove("hidden");
@@ -1177,10 +1179,9 @@
     function adminLogout() {
       sessionStorage.removeItem("admin_session_token");
       showToast("Logged out of console", "info");
-      navigateTo('/panel');
+      navigateTo('/nagatopanel');
     }
 
-    // Handle Password & Username Update
     async function handlePasswordUpdate(e) {
       e.preventDefault();
       const currentPassword = document.getElementById("currentPassInput").value;
@@ -1213,7 +1214,7 @@
 
         if (data.success) {
           sessionStorage.setItem("admin_session_token", data.newToken);
-          showToast("Credentials updated successfully!", "success");
+          showToast("Security credentials updated successfully!", "success");
           document.getElementById("currentPassInput").value = "";
           document.getElementById("newUsernameInput").value = "";
           document.getElementById("newPassInput").value = "";
@@ -1225,11 +1226,11 @@
         showToast("Update error: " + err.message, "error");
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i class="fas fa-lock"></i> Update Password & Username`;
+        btn.innerHTML = `<i class="fas fa-lock"></i> Update Credentials`;
       }
     }
 
-    // Switch Tabs inside the POM WEB Console
+    // Switch Tabs inside the POM WEB Console (/nagatopanel)
     function switchAdminTab(tabName) {
       const validTabs = ["dashboard", "plans", "utr", "users", "settings", "security"];
       const current = validTabs.includes(tabName) ? tabName : "dashboard";
