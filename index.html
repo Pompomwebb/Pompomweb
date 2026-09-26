@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP 4K VAULT - POM WEB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Smooth, lag-free cards using optimized solid opacity instead of heavy 24px per-card blurs */
+    .glass-header {
+      background: rgba(17, 22, 40, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: #0f1323;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      contain: content;
+    }
+    .glass-panel {
+      background: #0d1120;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .admin-active-item {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-[#060813] text-white min-h-screen flex flex-col font-sans selection:bg-purple-600 selection:text-white relative">
+
+  <!-- ================= ZERO-LAG HARDWARE ACCELERATED AMBIENT LAYER ================= -->
+  <div class="fixed inset-0 -z-10 pointer-events-none" style="background-image: radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.16) 0%, transparent 40%), radial-gradient(circle at 90% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 40%), radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.14) 0%, transparent 45%);"></div>
+
+  <!-- ================= SLEEK TOAST NOTIFICATION ================= -->
+  <div id="toast" class="fixed top-5 right-5 z-50 transform transition-all duration-300 -translate-y-16 opacity-0 pointer-events-none flex items-center gap-3 px-5 py-3.5 rounded-full shadow-2xl border text-xs font-bold backdrop-blur-md">
+    <i id="toastIcon" class="text-base"></i>
+    <span id="toastMsg">Notification message</span>
+  </div>
+
+  <!-- ================= 1. STOREFRONT VIEW ================= -->
+  <div id="storefrontView" class="flex-1 flex flex-col relative pb-20">
+    <header class="glass-header sticky top-0 z-40 px-4 py-3 shadow-xl">
+      <div class="max-w-xl w-full mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pink-500 via-purple-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-purple-600/30">
+            <i class="fas fa-crown text-base"></i>
+          </div>
+          <div>
+            <span id="siteBrandName" class="font-black text-sm sm:text-base tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-100 to-purple-300">
+              VIP 4K VAULT
+            </span>
+            <span class="block text-[10px] text-gray-400 -mt-0.5 tracking-tight font-medium">Official Digital Store</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <a id="navTelegramLink" href="#" target="_blank" class="w-9 h-9 flex items-center justify-center bg-white/[0.05] border border-white/10 hover:border-sky-400/50 text-sky-400 rounded-xl text-base shadow-sm transition">
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+          <button onclick="navigateTo('/access')" class="px-4 py-2 bg-gradient-to-r from-[#7c66ff] via-[#8b5cf6] to-[#38bdf8] hover:brightness-110 text-white text-xs font-bold rounded-xl shadow-lg shadow-purple-600/30 flex items-center gap-2 border border-purple-400/30 transition active:scale-95">
+            <i class="fas fa-shield-alt text-xs"></i>
+            <span>Access</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-xl w-full mx-auto px-4 py-6 space-y-6">
+      <section class="text-center space-y-3.5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-950/70 border border-purple-500/30 text-[11px] font-semibold text-purple-200 shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>1,840+ Live VIP Members</span> &bull; <span>★ 4.9/5 Rating</span>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white leading-snug">
+          Watch & Unlock Premium Video Collections
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-md mx-auto">
+          Instant HTML5 DRM high-speed streaming on all devices. Browse 8,500+ private folders, watch free trailers, and unlock full access in 1 click.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-2 pt-1 text-[11px] text-gray-300 font-medium">
+          <span class="px-3 py-1 bg-white/[0.05] border border-white/10 rounded-full flex items-center gap-1.5"><i class="fas fa-bolt text-amber-400"></i> Instant 1-Click</span>
+          <span class="px-3 py-1 bg-white/[0.05] border border-white/10 rounded-full flex items-center gap-1.5"><i class="fas fa-shield-alt text-emerald-400"></i> 100% Anonymous</span>
+          <span class="px-3 py-1 bg-white/[0.05] border border-white/10 rounded-full flex items-center gap-1.5"><i class="fas fa-mobile-alt text-sky-400"></i> Mobile & PC Ready</span>
+          <span class="px-3 py-1 bg-white/[0.05] border border-white/10 rounded-full flex items-center gap-1.5"><span class="bg-rose-600 text-[9px] px-1 rounded font-black">4K</span> 4K Ultra HD</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <button onclick="scrollToGrid()" class="py-3.5 px-4 bg-gradient-to-r from-[#7c66ff] via-[#8b5cf6] to-[#38bdf8] hover:brightness-110 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-xl shadow-purple-600/30 flex items-center justify-center gap-2 transition active:scale-95">
+            <i class="fas fa-play-circle text-sm"></i> Explore 8,500+ Videos
+          </button>
+          <button onclick="navigateTo('/checkout?plan=7')" class="py-3.5 px-4 bg-white/[0.06] hover:bg-white/[0.1] border border-purple-500/50 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg flex items-center justify-center gap-2 transition active:scale-95">
+            <span class="text-amber-400">✨</span> VIP Pass (&#8377;199)
+          </button>
+        </div>
+      </section>
+
+      <div id="videoGridSection" class="flex justify-between items-center border-t border-white/10 pt-5">
+        <div>
+          <h2 class="text-base sm:text-lg font-bold text-gray-100 flex items-center gap-2">
+            <i class="fas fa-layer-group text-purple-400 text-sm"></i> Exclusive Video Collections
+          </h2>
+          <p class="text-[11px] text-gray-400">Select any collection to gain instant access</p>
+        </div>
+        <span class="text-[11px] bg-purple-950/80 text-purple-300 border border-purple-700/50 font-semibold px-2.5 py-0.5 rounded-full">
+          7 Plans Active
+        </span>
+      </div>
+
+      <div id="plansContainer" class="space-y-6"></div>
+
+      <!-- Bottom All-Access VIP Card -->
+      <section class="border-t border-white/10 pt-8 mt-10 space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-purple-400 font-extrabold text-[11px] tracking-widest uppercase flex items-center justify-center gap-1.5">
+            <span class="text-amber-400">✨</span> VIP ALL-ACCESS PASSES
+          </span>
+          <h2 class="text-xl sm:text-2xl font-black text-white">Full Platform Subscription Plans</h2>
+          <p class="text-xs text-gray-400 max-w-sm mx-auto">
+            Get unlimited all-access passes to stream and download all 8,500+ videos, private channels, and daily updates.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 shadow-2xl relative overflow-hidden border border-purple-500/40">
+          <div class="flex items-center gap-2 text-lg sm:text-xl font-black text-white">
+            <span>💋💦 ALL IN ONE PREMIUM 🥵</span>
+          </div>
+
+          <div class="flex items-baseline gap-1 mt-3">
+            <span class="text-3xl sm:text-4xl font-black text-emerald-400">&#8377;199</span>
+            <span class="text-xs text-gray-400 font-semibold">/pass</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Unlimited streaming & downloads for all collections.</p>
+
+          <div class="space-y-2.5 my-6 border-y border-white/10 py-4 text-xs font-semibold text-gray-200">
+            <div class="flex items-center gap-2.5">
+              <i class="fas fa-check-circle text-emerald-400 text-sm"></i>
+              <span>Full Access to 8,500+ HD Videos</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i class="fas fa-check-circle text-emerald-400 text-sm"></i>
+              <span>4K Ultra HD & 60FPS Streaming</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i class="fas fa-check-circle text-emerald-400 text-sm"></i>
+              <span>Instant Browser Delivery &bull; No Waiting</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i class="fas fa-check-circle text-emerald-400 text-sm"></i>
+              <span>24/7 Dedicated Telegram VIP Support</span>
+            </div>
+          </div>
+
+          <button onclick="navigateTo('/checkout?plan=7')" class="w-full py-4 bg-gradient-to-r from-[#7c66ff] via-[#8b5cf6] to-[#38bdf8] hover:brightness-110 text-white font-black text-sm rounded-2xl shadow-xl shadow-purple-600/30 flex items-center justify-center gap-2 transition active:scale-98">
+            <i class="fas fa-bolt text-yellow-300"></i> Get VIP Pass (&#8377;199)
+          </button>
+        </div>
+
+        <footer class="pt-6 pb-12 text-center space-y-3 text-xs text-gray-500">
+          <div class="flex justify-center gap-3 text-gray-400 font-semibold">
+            <button onclick="scrollToGrid()" class="hover:text-purple-400 transition">Video Folders</button>
+            <span>&bull;</span>
+            <button onclick="navigateTo('/checkout?plan=7')" class="hover:text-purple-400 transition">VIP Passes</button>
+            <span>&bull;</span>
+            <button onclick="navigateTo('/access')" class="hover:text-purple-400 transition">My Access</button>
+          </div>
+          <div>
+            <a id="footerTelegramLink" href="#" target="_blank" class="inline-flex items-center gap-1.5 text-sky-400 hover:text-sky-300 font-bold">
+              <i class="fab fa-telegram-plane"></i> 24/7 Telegram Support
+            </a>
+          </div>
+          <p class="text-[11px]">&copy; 2026 VIP Portal. All rights reserved.</p>
+        </footer>
+      </section>
+    </main>
+
+    <!-- ================= TRUE FLOATING 24/7 VIP SUPPORT BUTTON (FLOATS ON ALL SCREENS) ================= -->
+    <aside class="fixed bottom-5 right-5 z-50">
+      <a id="floatingTelegramLink" href="#" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#7c66ff] via-[#8b5cf6] to-[#38bdf8] hover:brightness-110 text-white font-bold rounded-full shadow-2xl shadow-purple-500/50 text-xs transition transform hover:scale-105 active:scale-95 border border-white/20">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <i class="fab fa-telegram-plane text-sm"></i>
+        <span>24/7 VIP Support</span>
+      </a>
+    </aside>
+  </div>
+
+
+  <!-- ================= 2. CHECKOUT VIEW ================= -->
+  <div id="checkoutView" class="hidden min-h-screen flex flex-col">
+    <header class="glass-header sticky top-0 z-40 px-4 py-3 shadow-xl">
+      <div class="max-w-xl w-full mx-auto flex items-center justify-between">
+        <button onclick="navigateTo('/')" class="text-xs text-gray-400 hover:text-white flex items-center gap-1.5 transition">
+          <i class="fas fa-arrow-left"></i> Cancel & Return
+        </button>
+        <span class="text-xs font-semibold text-gray-300 flex items-center gap-1.5">
+          <i class="fas fa-lock text-emerald-400"></i> Encrypted UPI Checkout
+        </span>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-xl w-full mx-auto px-4 py-6 space-y-6">
+      <div class="glass-card rounded-3xl p-5 shadow-xl relative overflow-hidden border border-purple-500/30">
+        <div class="flex justify-between items-start gap-4">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-[10px] font-bold text-purple-300 mb-1.5 uppercase">
+              Selected Subscription
+            </span>
+            <h2 id="checkoutPlanTitle" class="text-lg font-extrabold text-white">Plan Name</h2>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="text-xs text-gray-400">Duration:</span>
+              <span class="text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-600/30 px-2 py-0.5 rounded">
+                Lifetime VIP Access
+              </span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] text-gray-400 uppercase font-semibold">Total Payable</span>
+            <div id="checkoutPlanPrice" class="text-2xl font-black text-emerald-400">&#8377;0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 text-center space-y-4 shadow-xl">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3 text-left">
+          <div>
+            <h3 class="text-xs font-bold text-gray-200 uppercase tracking-wider flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-[10px] text-white">1</span>
+              Scan Generated QR Code
+            </h3>
+            <p class="text-[11px] text-gray-400 ml-7">Scan on any UPI App or click below to launch payment</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center py-2 space-y-3">
+          <div class="p-3 bg-white rounded-2xl shadow-xl border-4 border-purple-500/20 inline-block">
+            <img id="checkoutQrImg" src="" alt="UPI QR Code" class="w-48 h-48 sm:w-56 sm:h-56 object-contain">
+          </div>
+          <button onclick="downloadQrCode()" class="px-4 py-2 bg-white/[0.05] hover:bg-white/[0.1] text-sky-400 border border-white/10 text-xs font-bold rounded-xl flex items-center gap-2 transition active:scale-95 shadow">
+            <i class="fas fa-download"></i> Download QR Code
+          </button>
+        </div>
+
+        <div class="pt-3 border-t border-white/10">
+          <span class="text-[11px] text-gray-400 font-medium block mb-3">Or click your UPI app to pay directly:</span>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <a id="payPhonePeAnchor" href="#" class="py-3 px-3 bg-[#131728] hover:bg-[#1c223c] border border-purple-500/30 text-purple-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
+              <i class="fas fa-mobile-alt text-purple-400"></i> PhonePe
+            </a>
+            <a id="payGpayAnchor" href="#" class="py-3 px-3 bg-[#131728] hover:bg-[#1c223c] border border-blue-500/30 text-blue-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
+              <i class="fab fa-google-pay text-base text-blue-400"></i> GPay
+            </a>
+            <a id="payPaytmAnchor" href="#" class="py-3 px-3 bg-[#131728] hover:bg-[#1c223c] border border-sky-500/30 text-sky-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
+              <i class="fas fa-wallet text-sky-400"></i> Paytm
+            </a>
+            <a id="payOtherUpiAnchor" href="#" class="py-3 px-3 bg-gradient-to-r from-[#7c66ff] via-[#8b5cf6] to-[#38bdf8] hover:brightness-110 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow-lg shadow-purple-600/30">
+              <i class="fas fa-bolt text-yellow-300"></i> Other UPI
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl p-5 space-y-3 shadow-lg">
+        <h3 class="text-xs font-bold text-gray-200 uppercase tracking-wider flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-[10px] text-white">2</span>
+          Or Copy UPI ID Manually
+        </h3>
+        <div class="flex items-center justify-between bg-black/40 border border-white/10 rounded-xl p-2.5">
+          <span id="checkoutUpiText" class="font-mono text-xs text-purple-300 font-semibold truncate select-all px-2">merchant@upi</span>
+          <button onclick="copyUpiId()" class="px-3.5 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:brightness-110 text-white text-xs font-bold rounded-lg flex items-center gap-1.5 transition active:scale-95 shrink-0">
+            <i class="far fa-copy"></i>
+            <span id="copyBtnLabel">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl p-6 space-y-4 shadow-xl">
+        <h3 class="text-xs font-bold text-gray-200 uppercase tracking-wider flex items-center gap-2">
+          <span class="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-[10px] text-white">3</span>
+          Submit 12-Digit UTR to Verify
+        </h3>
+        <p class="text-[11px] text-gray-400 -mt-2">
+          After completing payment in your UPI app, copy the 12-digit UTR/Ref No. from the receipt and enter below.
+        </p>
+
+        <form onsubmit="handleUtrSubmission(event)" class="space-y-3">
+          <div>
+            <input type="text" id="utrInput" maxlength="12" inputmode="numeric" pattern="[0-9]{12}" 
+                   placeholder="Enter 12-digit UPI UTR number" 
+                   class="w-full bg-black/50 border border-white/10 focus:border-purple-500 rounded-xl p-3.5 text-center text-sm font-mono tracking-widest text-white outline-none transition" 
+                   required>
+            <span class="text-[10px] text-gray-500 mt-1 block text-center">Must be exactly 12 numerical digits</span>
+          </div>
+
+          <div id="utrStatusMsg" class="hidden text-xs text-center font-medium p-3 rounded-xl border"></div>
+
+          <button type="submit" id="verifyUtrBtn" class="w-full py-4 px-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:brightness-110 text-white text-sm font-extrabold rounded-xl shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition active:scale-98">
+            <i class="fas fa-check-circle"></i> Verify & Unlock Access Instantly
+          </button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+
+  <!-- ================= 3. USER ACCESS VIEW (/access) ================= -->
+  <div id="accessView" class="hidden min-h-screen flex flex-col">
+    <header class="glass-header sticky top-0 z-40 px-4 py-3 shadow-xl">
+      <div class="max-w-xl w-full mx-auto flex items-center justify-between">
+        <button onclick="navigateTo('/')" class="text-xs text-gray-400 hover:text-white flex items-center gap-1.5 transition">
+          <i class="fas fa-arrow-left"></i> Return to Storefront
+        </button>
+        <button onclick="navigateTo('/')" class="px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.1] text-gray-200 text-xs font-semibold rounded-lg border border-white/10 flex items-center gap-1.5 transition">
+          <i class="fas fa-play-circle text-purple-400"></i> Browse Videos
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-xl w-full mx-auto px-4 py-6 space-y-5">
+      <div class="flex items-center gap-2.5">
+        <i class="fas fa-shield-alt text-purple-400 text-xl"></i>
+        <h1 class="text-xl font-bold text-gray-100">My Access & Unlocked Videos</h1>
+      </div>
+
+      <div class="glass-panel rounded-2xl p-4 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-xs">
+          <i class="fas fa-mobile-alt text-emerald-400 text-base"></i>
+          <div>
+            <div class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Registered Device Token</div>
+            <div id="deviceTokenDisplay" class="font-mono text-gray-300 text-[11px]">dev_...</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-950/60 border border-emerald-600/40 text-emerald-400 rounded-md text-[10px] font-semibold">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Auto-Sync Active
+        </div>
+      </div>
+
+      <section class="glass-card rounded-3xl p-6 text-center space-y-4 shadow-lg">
+        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+          <h2 class="text-sm font-bold text-gray-200 flex items-center gap-2">
+            <i class="fas fa-folder-open text-purple-400"></i> Your Unlocked Video Folders
+          </h2>
+          <span id="unlockedCountBadge" class="text-[10px] bg-white/[0.05] text-gray-400 px-2.5 py-0.5 rounded-md font-semibold">0 Collections</span>
+        </div>
+        <div id="unlockedListContainer" class="py-4 space-y-3"></div>
+      </section>
+    </main>
+
+    <aside class="fixed bottom-5 right-5 z-40">
+      <a id="accessTelegramLink" href="#" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#7c66ff] to-[#38bdf8] text-white font-medium rounded-full shadow-lg shadow-purple-600/30 text-xs transition">
+        <i class="fab fa-telegram-plane"></i>
+        <span>24/7 Support</span>
+      </a>
+    </aside>
+  </div>
+
+
+  <!-- ================= 4. POM WEB LOGIN VIEW (SLUG: /nagatopanel) ================= -->
+  <div id="adminLoginView" class="hidden min-h-screen flex items-center justify-center p-4">
+    <div class="glass-card rounded-3xl p-7 sm:p-9 max-w-sm w-full space-y-6 shadow-2xl border border-purple-500/30">
+      
+      <div class="text-center space-y-2">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/30">
+          <i class="fas fa-robot text-white"></i>
+        </div>
+        <div class="flex items-center justify-center gap-2 pt-1">
+          <h2 class="text-xl font-black text-white tracking-wide">POM WEB</h2>
+          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-extrabold rounded-md text-white tracking-wide">CONSOLE</span>
+        </div>
+        <p class="text-xs text-gray-400">Sign in to manage your online store & payments</p>
+      </div>
+
+      <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block text-gray-300 mb-1.5 font-semibold">Username</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400 pointer-events-none">
+              <i class="fas fa-user text-xs"></i>
+            </span>
+            <input type="text" id="adminUsernameInput" class="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-3.5 py-3 text-white outline-none focus:border-blue-500 text-xs transition" placeholder="Enter username" required>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-300 mb-1.5 font-semibold">Password</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400 pointer-events-none">
+              <i class="fas fa-lock text-xs"></i>
+            </span>
+            <input type="password" id="adminPasswordInput" class="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-10 py-3 text-white outline-none focus:border-blue-500 text-xs transition" placeholder="Enter password" required>
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-white">
+              <i id="passwordEyeIcon" class="fas fa-eye text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="loginErrorMsg" class="hidden text-rose-400 text-xs text-center font-medium bg-rose-950/40 border border-rose-900/60 p-2.5 rounded-xl"></div>
+
+        <button type="submit" id="loginBtn" class="w-full py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 text-xs flex items-center justify-center gap-2 transition active:scale-95">
+          <i class="fas fa-sign-in-alt"></i> Login to Console
+        </button>
+      </form>
+
+      <div class="text-center pt-1">
+        <button onclick="navigateTo('/')" class="text-[11px] text-gray-400 hover:text-white transition">
+          &larr; Return to Storefront
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= 5. POM WEB ADMIN CONSOLE (/nagatopanel) ================= -->
+  <div id="adminDashboardView" class="hidden min-h-screen flex flex-col text-gray-200">
+    
+    <header class="glass-header px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-xl h-[57px]">
+      <div class="flex items-center gap-3">
+        <button onclick="toggleAdminDrawer()" class="w-9 h-9 rounded-xl hover:bg-white/[0.08] flex items-center justify-center text-gray-300 text-lg transition border border-white/10">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-500/30">
+            <i class="fas fa-robot"></i>
+          </div>
+          <span class="font-black text-sm tracking-wider text-white">POM WEB</span>
+          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-black rounded-md text-white tracking-wider">CONSOLE</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3.5">
+        <button onclick="switchAdminTab('utr')" class="text-gray-400 hover:text-white text-sm relative" title="Pending Orders">
+          <i class="fas fa-bell"></i>
+          <span id="topNotificationDot" class="hidden absolute -top-1 -right-1 w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+        </button>
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 border border-white/20 flex items-center justify-center text-xs font-extrabold text-white shadow-md">
+          N
+        </div>
+      </div>
+    </header>
+
+    <div class="flex-1 flex relative overflow-hidden h-[calc(100dvh-57px)]">
+      
+      <!-- Slide-Out Sidebar Drawer with Bottom-Pinned Logout -->
+      <aside id="adminDrawer" class="fixed md:static inset-y-0 left-0 top-[57px] md:top-0 z-30 w-64 glass-panel md:bg-transparent border-r border-white/10 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col justify-between p-3.5 h-[calc(100dvh-57px)]">
+        
+        <div class="space-y-1.5 overflow-y-auto">
+          <button onclick="switchAdminTab('dashboard')" id="sideBtn-dashboard" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+            <i class="fas fa-th-large text-blue-400 text-sm"></i>
+            <span>Dashboard</span>
+          </button>
+
+          <button onclick="switchAdminTab('plans')" id="sideBtn-plans" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+            <i class="fas fa-layer-group text-purple-400 text-sm"></i>
+            <span>Subscriptions (7 Plans)</span>
+          </button>
+
+          <button onclick="switchAdminTab('utr')" id="sideBtn-utr" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+            <i class="fas fa-credit-card text-emerald-400 text-sm"></i>
+            <span>Payment Approvals</span>
+            <span id="pendingBadge" class="ml-auto bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] px-2 py-0.5 rounded-full font-bold">0</span>
+          </button>
+
+          <button onclick="switchAdminTab('users')" id="sideBtn-users" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+            <i class="fas fa-users text-sky-400 text-sm"></i>
+            <span>Registered Users</span>
+          </button>
+
+          <button onclick="switchAdminTab('settings')" id="sideBtn-settings" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+            <i class="fas fa-cog text-gray-400 text-sm"></i>
+            <span>Store Settings</span>
+          </button>
+
+          <button onclick="switchAdminTab('security')" id="sideBtn-security" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+            <i class="fas fa-shield-alt text-amber-400 text-sm"></i>
+            <span>Security</span>
+          </button>
+        </div>
+
+        <div class="pt-3 border-t border-white/10 space-y-1.5 mt-auto">
+          <button onclick="navigateTo('/')" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/[0.06] transition">
+            <i class="fas fa-external-link-alt text-sm text-sky-400"></i>
+            <span>View Live Store</span>
+          </button>
+          <button onclick="adminLogout()" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-rose-400 hover:bg-rose-950/40 border border-rose-900/40 transition">
+            <i class="fas fa-sign-out-alt text-sm"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+
+      <div id="drawerBackdrop" onclick="toggleAdminDrawer()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-20 md:hidden"></div>
+
+      <!-- Main Admin Content Area -->
+      <main class="flex-1 p-4 sm:p-6 overflow-y-auto max-w-4xl w-full mx-auto">
+
+        <!-- ================= TAB 1: INSIGHTS OVERVIEW ================= -->
+        <div id="tabContent-dashboard" class="space-y-4">
+          <div class="border-b border-white/10 pb-3">
+            <h1 class="text-xl font-black text-white">Insights Overview</h1>
+            <p class="text-xs text-gray-400 mt-0.5">Welcome back. Here's what's happening with your website today.</p>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <div class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition hover:border-purple-500/40">
+              <div class="w-12 h-12 rounded-2xl bg-[#1e2338] border border-blue-500/30 flex items-center justify-center text-blue-400 text-lg shadow-inner">
+                <i class="fas fa-user-friends"></i>
+              </div>
+              <div>
+                <div id="statTotalUsers" class="text-xl font-black text-white">0</div>
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">TOTAL USERS</div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition hover:border-emerald-500/40">
+              <div class="w-12 h-12 rounded-2xl bg-[#132822] border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg shadow-inner">
+                <i class="fas fa-award"></i>
+              </div>
+              <div>
+                <div id="statPremiumUsers" class="text-xl font-black text-emerald-400">0</div>
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">ACTIVE SUBS</div>
+              </div>
+            </div>
+
+            <div onclick="switchAdminTab('utr')" class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition cursor-pointer hover:border-amber-500/50">
+              <div class="w-12 h-12 rounded-2xl bg-[#2e2213] border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg shadow-inner">
+                <i class="far fa-clock"></i>
+              </div>
+              <div>
+                <div id="statPendingOrders" class="text-xl font-black text-amber-400">0</div>
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">PENDING PAYMENTS</div>
+              </div>
+              <span class="ml-auto text-xs text-amber-400 hover:underline font-semibold flex items-center gap-1">
+                Review <i class="fas fa-arrow-right text-[10px]"></i>
+              </span>
+            </div>
+
+            <div class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition hover:border-sky-500/40">
+              <div class="w-12 h-12 rounded-2xl bg-[#16273d] border border-sky-500/30 flex items-center justify-center text-sky-400 text-lg shadow-inner">
+                <i class="fas fa-rupee-sign"></i>
+              </div>
+              <div>
+                <div id="statTotalRevenue" class="text-xl font-black text-sky-400">&#8377;0</div>
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">TOTAL REVENUE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: SUBSCRIPTIONS (EDIT 7 PLANS) ================= -->
+        <div id="tabContent-plans" class="hidden space-y-4">
+          <div class="border-b border-white/10 pb-3">
+            <h2 class="text-lg font-black text-white">Manage 7 Subscriptions</h2>
+            <p class="text-xs text-gray-400">Configure prices, tags, thumbnail photos, and vault delivery links</p>
+          </div>
+
+          <div class="glass-card rounded-3xl p-6 space-y-4 border border-purple-500/20 shadow-2xl">
+            <div>
+              <label class="block text-xs font-semibold text-gray-300 mb-1">Select Subscription Plan</label>
+              <select id="adminPlanSelector" onchange="loadPlanForm()" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs text-purple-300 font-semibold outline-none focus:border-purple-500"></select>
+            </div>
+
+            <div class="space-y-3.5 text-xs">
+              <div>
+                <label class="block font-semibold text-gray-400 mb-1">Plan Title</label>
+                <input type="text" id="adminPlanTitle" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block font-semibold text-gray-400 mb-1">Price (&#8377; INR)</label>
+                  <input type="number" id="adminPlanPrice" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
+                </div>
+                <div>
+                  <label class="block font-semibold text-gray-400 mb-1">Video / Folder Badge</label>
+                  <input type="text" id="adminPlanTag" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-semibold text-gray-400 mb-1">Card Photo URL</label>
+                <input type="url" id="adminPlanImage" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
+              </div>
+
+              <div>
+                <label class="block font-semibold text-emerald-400 mb-1">
+                  <i class="fas fa-link mr-1"></i> Unlocked Vault Link (Delivered upon approval)
+                </label>
+                <input type="url" id="adminPlanVaultUrl" placeholder="https://mega.nz/... or https://t.me/..." class="w-full bg-black/40 border border-emerald-500/40 rounded-xl p-3 text-white outline-none focus:border-emerald-500">
+              </div>
+
+              <div>
+                <label class="block font-semibold text-gray-400 mb-1">Description</label>
+                <textarea id="adminPlanDesc" rows="2" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500"></textarea>
+              </div>
+
+              <div class="pt-2 flex justify-end">
+                <button onclick="saveAllChanges()" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-purple-600/30 transition flex items-center gap-2 active:scale-95">
+                  <i class="fas fa-save"></i> Save Plan Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 3: PAYMENTS (UTR APPROVALS) ================= -->
+        <div id="tabContent-utr" class="hidden space-y-4">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-white/10 pb-3">
+            <div>
+              <h2 class="text-lg font-black text-white">Payment Verifications</h2>
+              <p class="text-xs text-gray-400">Review 12-digit UTR references against bank receipts</p>
+            </div>
+            
+            <div class="flex items-center gap-1.5 text-xs bg-black/40 p-1 rounded-xl border border-white/10">
+              <button onclick="filterUtrs('ALL')" id="filterBtn-ALL" class="px-3 py-1 rounded-lg font-bold bg-blue-600 text-white">All</button>
+              <button onclick="filterUtrs('PENDING')" id="filterBtn-PENDING" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Pending</button>
+              <button onclick="filterUtrs('APPROVED')" id="filterBtn-APPROVED" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Approved</button>
+              <button onclick="filterUtrs('REJECTED')" id="filterBtn-REJECTED" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Rejected</button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto glass-card rounded-2xl border border-white/10 shadow-xl">
+            <table class="w-full text-left text-xs text-gray-300">
+              <thead class="bg-black/40 text-gray-400 uppercase text-[10px] tracking-wider">
+                <tr>
+                  <th class="p-3">UTR Reference</th>
+                  <th class="p-3">Plan</th>
+                  <th class="p-3">Amount</th>
+                  <th class="p-3">Status</th>
+                  <th class="p-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="utrTableBody" class="divide-y divide-white/5"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ================= TAB 4: USERS (SEARCH BAR, 50 LIMIT, PAGINATION) ================= -->
+        <div id="tabContent-users" class="hidden space-y-4">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-white/10 pb-3">
+            <div>
+              <h2 class="text-lg font-black text-white">Registered Users & Devices</h2>
+              <p class="text-xs text-gray-400">Track device tokens, order counts, and VIP membership status</p>
+            </div>
+            <div id="userCountSummary" class="text-xs font-semibold text-purple-300 bg-purple-950/50 border border-purple-500/30 px-3 py-1 rounded-full">
+              Total: 0
+            </div>
+          </div>
+
+          <!-- Real-Time Search Bar -->
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400 pointer-events-none">
+              <i class="fas fa-search text-xs"></i>
+            </span>
+            <input type="text" id="userSearchInput" oninput="handleUserSearch()" placeholder="Search device token or status (e.g. VIP, Visitor)..." 
+                   class="w-full bg-black/40 border border-white/10 rounded-2xl pl-10 pr-4 py-3 text-xs text-white outline-none focus:border-purple-500 transition">
+          </div>
+
+          <!-- Table Container (50 Limit) -->
+          <div class="overflow-x-auto glass-card rounded-2xl border border-white/10 shadow-xl">
+            <table class="w-full text-left text-xs text-gray-300">
+              <thead class="bg-black/40 text-gray-400 uppercase text-[10px]">
+                <tr>
+                  <th class="p-3.5">Device Token</th>
+                  <th class="p-3.5">Tier Status</th>
+                  <th class="p-3.5">Orders</th>
+                  <th class="p-3.5 text-right">Total Spent</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody" class="divide-y divide-white/5"></tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Bar (Limit 50, Next, Previous) -->
+          <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-2 text-xs text-gray-400">
+            <div id="userPaginationInfo">Showing 0-0 of 0 Users</div>
+            
+            <div class="flex items-center gap-2">
+              <button id="userPrevBtn" onclick="changeUserPage(-1)" class="px-3.5 py-1.5 bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 rounded-xl font-bold text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center gap-1.5">
+                <i class="fas fa-chevron-left text-[10px]"></i> Previous
+              </button>
+              <span id="userCurrentPage" class="font-bold text-white px-2 py-1 bg-black/40 rounded-lg border border-white/10">Page 1</span>
+              <button id="userNextBtn" onclick="changeUserPage(1)" class="px-3.5 py-1.5 bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 rounded-xl font-bold text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center gap-1.5">
+                Next <i class="fas fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 5: STORE SETTINGS ================= -->
+        <div id="tabContent-settings" class="hidden space-y-4">
+          <div class="border-b border-white/10 pb-3">
+            <h2 class="text-lg font-black text-white">Store Settings</h2>
+            <p class="text-xs text-gray-400">Update store branding, UPI address, and support links</p>
+          </div>
+
+          <div class="glass-card rounded-3xl p-6 space-y-4 text-xs border border-purple-500/20 shadow-2xl">
+            <div>
+              <label class="block font-semibold text-gray-300 mb-1">Store Brand Name</label>
+              <input type="text" id="adminBrandName" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
+            </div>
+
+            <div>
+              <label class="block font-semibold text-gray-300 mb-1">UPI ID (Receives Payments)</label>
+              <input type="text" id="adminUpiInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
+            </div>
+
+            <div>
+              <label class="block font-semibold text-gray-300 mb-1">Telegram Support / Channel URL</label>
+              <input type="url" id="adminTelegramInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500" placeholder="https://t.me/yourusername">
+            </div>
+
+            <div class="flex justify-end pt-2">
+              <button onclick="saveAllChanges()" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-purple-600/30 transition active:scale-95">
+                Save Settings
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 6: SECURITY (MANAGE CREDENTIALS) ================= -->
+        <div id="tabContent-security" class="hidden space-y-4">
+          <div class="border-b border-white/10 pb-3">
+            <h2 class="text-lg font-black text-white">Security & Master Access</h2>
+            <p class="text-xs text-gray-400">Update your administrator username and console password</p>
+          </div>
+
+          <div class="glass-card rounded-3xl p-6 space-y-4 text-xs border border-purple-500/20 shadow-2xl max-w-lg">
+            <form onsubmit="handlePasswordUpdate(event)" class="space-y-4">
+              <div>
+                <label class="block font-semibold text-gray-300 mb-1.5">Current Master Password</label>
+                <input type="password" id="currentPassInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Enter current password" required>
+              </div>
+
+              <div class="pt-2 border-t border-white/10">
+                <label class="block font-semibold text-gray-300 mb-1.5">New Username</label>
+                <input type="text" id="newUsernameInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Leave blank to keep current username">
+              </div>
+
+              <div>
+                <label class="block font-semibold text-gray-300 mb-1.5">New Password</label>
+                <input type="password" id="newPassInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Enter new password (min. 4 characters)" required>
+              </div>
+
+              <div>
+                <label class="block font-semibold text-gray-300 mb-1.5">Confirm New Password</label>
+                <input type="password" id="confirmPassInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Re-type new password" required>
+              </div>
+
+              <div class="flex justify-end pt-2">
+                <button type="submit" id="updateCredsBtn" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center gap-2 active:scale-95">
+                  <i class="fas fa-lock"></i> Update Credentials
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- MANAGE UTR STATUS MODAL -->
+  <dialog id="manageUtrModal" class="glass-card text-white rounded-3xl p-6 max-w-sm w-11/12 backdrop:bg-black/80 shadow-2xl border border-white/10">
+    <div class="flex justify-between items-center pb-3 border-b border-white/10">
+      <h3 class="text-sm font-bold flex items-center gap-2">
+        <i class="fas fa-sliders-h text-purple-400"></i> Manage Transaction
+      </h3>
+      <button onclick="document.getElementById('manageUtrModal').close()" class="text-gray-400 hover:text-white text-xl leading-none">&times;</button>
+    </div>
+
+    <div class="space-y-4 mt-4 text-xs">
+      <div class="bg-black/40 p-3 rounded-2xl border border-white/10 space-y-1">
+        <div class="text-gray-400">UTR: <span id="modalUtrText" class="font-mono text-purple-400 font-bold"></span></div>
+        <div class="text-gray-400">Plan: <span id="modalPlanText" class="text-white font-semibold"></span></div>
+        <div class="text-gray-400">Amount: <span id="modalAmountText" class="text-emerald-400 font-bold"></span></div>
+      </div>
+
+      <div>
+        <label class="block font-semibold text-gray-300 mb-1.5">Change Status</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" onclick="setUtrStatus('APPROVED')" class="py-2 rounded-xl bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-600/50 text-emerald-300 font-bold flex flex-col items-center gap-1 transition">
+            <i class="fas fa-check-circle"></i> Approve
+          </button>
+          <button type="button" onclick="setUtrStatus('PENDING')" class="py-2 rounded-xl bg-amber-950/80 hover:bg-amber-900 border border-amber-600/50 text-amber-300 font-bold flex flex-col items-center gap-1 transition">
+            <i class="fas fa-clock"></i> Pending
+          </button>
+          <button type="button" onclick="setUtrStatus('REJECTED')" class="py-2 rounded-xl bg-rose-950/80 hover:bg-rose-900 border border-rose-600/50 text-rose-300 font-bold flex flex-col items-center gap-1 transition">
+            <i class="fas fa-times-circle"></i> Reject
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-white/10">
+        <button type="button" onclick="deleteUtrSubmission()" class="w-full py-2.5 bg-white/[0.05] hover:bg-rose-950/80 border border-white/10 text-rose-400 font-bold rounded-xl flex items-center justify-center gap-2 transition">
+          <i class="fas fa-trash-alt"></i> Delete Submission
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Client-Side Dynamic Controller -->
+  <script>
+    let appConfig = null;
+    let selectedCheckoutPlan = null;
+    let rawAdminSubmissions = [];
+    let currentFilter = 'ALL';
+    let activeManageUtr = null;
+
+    // Users Pagination & Search State (50 items per page limit)
+    let rawAdminUsers = [];
+    let filteredAdminUsers = [];
+    let userCurrentPage = 1;
+    const userPageLimit = 50;
+
+    function toggleAdminDrawer() {
+      const drawer = document.getElementById('adminDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      drawer.classList.toggle('-translate-x-full');
+      backdrop.classList.toggle('hidden');
+    }
+
+    function togglePasswordVisibility() {
+      const input = document.getElementById('adminPasswordInput');
+      const icon = document.getElementById('passwordEyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fas fa-eye-slash text-xs';
+      } else {
+        input.type = 'password';
+        icon.className = 'fas fa-eye text-xs';
+      }
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toastMsg');
+      const icon = document.getElementById('toastIcon');
+
+      msg.textContent = message;
+
+      if (type === 'success') {
+        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-full shadow-2xl border text-xs font-bold backdrop-blur-md bg-emerald-950/90 border-emerald-600/50 text-emerald-300";
+        icon.className = "fas fa-check-circle text-base text-emerald-400";
+      } else if (type === 'error') {
+        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-full shadow-2xl border text-xs font-bold backdrop-blur-md bg-rose-950/90 border-rose-600/50 text-rose-300";
+        icon.className = "fas fa-exclamation-circle text-base text-rose-400";
+      } else {
+        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-full shadow-2xl border text-xs font-bold backdrop-blur-md bg-purple-950/90 border-purple-600/50 text-purple-300";
+        icon.className = "fas fa-info-circle text-base text-purple-400";
+      }
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('-translate-y-16', 'opacity-0');
+      }, 3000);
+    }
+
+    function getDeviceToken() {
+      let token = localStorage.getItem('device_token');
+      if (!token) {
+        token = 'dev_' + Math.floor(100000000000 + Math.random() * 900000000000) + '_' + Math.random().toString(36).substring(2, 9);
+        localStorage.setItem('device_token', token);
+      }
+      return token;
+    }
+
+    async function fetchConfig() {
+      try {
+        const response = await fetch('/api/config');
+        if (!response.ok) throw new Error("API offline");
+        appConfig = await response.json();
+
+        fetch('/api/register-device', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ deviceToken: getDeviceToken() })
+        }).catch(() => {});
+      } catch (err) {
+        console.warn("Using fallback data:", err);
+      }
+    }
+
+    function scrollToGrid() {
+      document.getElementById('videoGridSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function router() {
+      const path = window.location.pathname;
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      const planId = params.get("plan");
+
+      const storefrontEl = document.getElementById("storefrontView");
+      const checkoutEl = document.getElementById("checkoutView");
+      const accessEl = document.getElementById("accessView");
+      const adminLoginEl = document.getElementById("adminLoginView");
+      const adminDashEl = document.getElementById("adminDashboardView");
+
+      storefrontEl.classList.add("hidden");
+      checkoutEl.classList.add("hidden");
+      accessEl.classList.add("hidden");
+      adminLoginEl.classList.add("hidden");
+      adminDashEl.classList.add("hidden");
+
+      if (path.includes("/nagatopanel") || path.includes("/panel") || tab !== null) {
+        const token = sessionStorage.getItem("admin_session_token");
+        if (!token) {
+          adminLoginEl.classList.remove("hidden");
+        } else {
+          adminDashEl.classList.remove("hidden");
+          switchAdminTab(tab || "dashboard");
+        }
+        return;
+      }
+
+      if (path.includes("/checkout") || planId !== null) {
+        checkoutEl.classList.remove("hidden");
+        renderCheckout(planId || 7);
+        return;
+      }
+
+      if (path.includes("/access") || params.get("view") === "access") {
+        accessEl.classList.remove("hidden");
+        renderAccessDashboard();
+        return;
+      }
+
+      storefrontEl.classList.remove("hidden");
+      renderStorefront();
+    }
+
+    function navigateTo(urlPath) {
+      window.history.pushState({}, "", urlPath);
+      router();
+    }
+
+    window.addEventListener("popstate", router);
+
+    function renderStorefront() {
+      if (!appConfig) return;
+
+      document.getElementById("siteBrandName").textContent = appConfig.brandName;
+      document.getElementById("navTelegramLink").href = appConfig.telegramUrl;
+      document.getElementById("floatingTelegramLink").href = appConfig.telegramUrl;
+      document.getElementById("footerTelegramLink").href = appConfig.telegramUrl;
+
+      const container = document.getElementById("plansContainer");
+      container.innerHTML = "";
+
+      appConfig.plans.forEach((plan, index) => {
+        const isHighlight = index === appConfig.plans.length - 1;
+        const card = document.createElement("div");
+        card.className = `glass-card rounded-3xl overflow-hidden transition-all duration-200 ${
+          isHighlight 
+            ? "border-purple-500/80 ring-1 ring-purple-500/30 shadow-2xl shadow-purple-900/30" 
+            : "hover:border-purple-500/40 shadow-xl"
+        }`;
+
+        card.innerHTML = `
+          <div class="relative h-48 w-full bg-black/60 overflow-hidden">
+            <img src="${plan.image}" alt="${plan.title}" loading="lazy" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0f1323] via-transparent to-black/60"></div>
+            
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
+              <span class="bg-black/75 backdrop-blur text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-full border border-amber-500/30 flex items-center gap-1 shadow">
+                <i class="fas fa-video text-[9px]"></i> ${plan.tag}
+              </span>
+              <span class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow">
+                ${plan.badge}
+              </span>
+            </div>
+
+            <div class="absolute top-3 right-3 bg-black/80 backdrop-blur border border-emerald-500/40 text-emerald-400 font-black px-3 py-1 rounded-xl text-sm shadow">
+              &#8377;${plan.price}
+            </div>
+          </div>
+
+          <div class="p-5 space-y-4">
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-gray-100 flex items-center gap-1.5">
+                <span class="text-purple-400">💎</span> ${plan.title}
+              </h3>
+              <p class="text-xs text-gray-400 mt-1.5 line-clamp-2 leading-relaxed">${plan.desc}</p>
+            </div>
+
+            <button onclick="navigateTo('/checkout?plan=${plan.id}')" 
+                    class="w-full py-4 px-5 bg-gradient-to-r from-[#7c66ff] via-[#8b5cf6] to-[#38bdf8] hover:brightness-110 shadow-xl shadow-purple-600/30 text-white text-sm sm:text-base font-extrabold tracking-wide rounded-2xl flex items-center justify-center gap-2.5 transition active:scale-[0.98]">
+              <i class="fas fa-unlock-alt text-sm"></i> Unlock Entire Collection (&#8377;${plan.price})
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderCheckout(planId) {
+      if (!appConfig) return;
+      selectedCheckoutPlan = appConfig.plans.find(p => p.id == planId) || appConfig.plans[appConfig.plans.length - 1];
+
+      document.getElementById("checkoutPlanTitle").textContent = selectedCheckoutPlan.title;
+      document.getElementById("checkoutPlanPrice").innerHTML = `&#8377;${selectedCheckoutPlan.price}`;
+      document.getElementById("checkoutUpiText").textContent = appConfig.upiId;
+
+      const pa = encodeURIComponent(appConfig.upiId);
+      const pn = encodeURIComponent(appConfig.brandName);
+      const am = selectedCheckoutPlan.price;
+      const tn = encodeURIComponent(selectedCheckoutPlan.title);
+
+      const standardUpi = `upi://pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=8&data=${encodeURIComponent(standardUpi)}`;
+      document.getElementById("checkoutQrImg").src = qrApiUrl;
+
+      document.getElementById("payOtherUpiAnchor").href = standardUpi;
+      document.getElementById("payPhonePeAnchor").href = `phonepe://pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
+      document.getElementById("payGpayAnchor").href = `tez://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
+      document.getElementById("payPaytmAnchor").href = `paytmmp://pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
+
+      document.getElementById("utrInput").value = "";
+      document.getElementById("utrStatusMsg").className = "hidden text-xs text-center font-medium p-3 rounded-2xl border";
+    }
+
+    async function downloadQrCode() {
+      const img = document.getElementById("checkoutQrImg");
+      if (!img.src) return;
+
+      try {
+        const response = await fetch(img.src);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = `UPI-Payment-QR-${selectedCheckoutPlan ? selectedCheckoutPlan.price : 'store'}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+        showToast("QR Code downloaded!", "success");
+      } catch {
+        window.open(img.src, '_blank');
+      }
+    }
+
+    function copyUpiId() {
+      if (!appConfig) return;
+      navigator.clipboard.writeText(appConfig.upiId).then(() => {
+        const label = document.getElementById("copyBtnLabel");
+        label.textContent = "Copied! ✓";
+        showToast("UPI ID copied!", "info");
+        setTimeout(() => { label.textContent = "Copy"; }, 2000);
+      });
+    }
+
+    async function handleUtrSubmission(e) {
+      e.preventDefault();
+      const utr = document.getElementById("utrInput").value.trim();
+      const statusMsg = document.getElementById("utrStatusMsg");
+      const btn = document.getElementById("verifyUtrBtn");
+
+      if (utr.length !== 12 || !/^\d+$/.test(utr)) {
+        statusMsg.textContent = "Please enter a valid 12-digit numerical UTR number.";
+        statusMsg.className = "text-rose-400 bg-rose-950/60 border-rose-800 text-xs text-center font-medium p-3 rounded-2xl border block";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Submitting...`;
+
+      try {
+        const res = await fetch('/api/submit-utr', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            utr,
+            planId: selectedCheckoutPlan.id,
+            planTitle: selectedCheckoutPlan.title,
+            price: selectedCheckoutPlan.price,
+            deviceToken: getDeviceToken()
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.status === 'APPROVED') {
+          statusMsg.textContent = "Payment Verified & Approved! Unlocking your access...";
+          statusMsg.className = "text-emerald-400 bg-emerald-950/60 border-emerald-800 text-xs text-center font-bold p-3 rounded-2xl border block";
+          showToast("Payment Verified!", "success");
+          setTimeout(() => navigateTo('/access'), 1200);
+        } else {
+          statusMsg.innerHTML = `<i class="fas fa-clock text-amber-400 mr-1"></i> UTR ${utr} submitted for verification. As soon as admin confirms funds, your collection unlocks automatically!`;
+          statusMsg.className = "text-amber-300 bg-amber-950/60 border-amber-800 text-xs text-center font-medium p-3 rounded-2xl border block leading-relaxed";
+          showToast("UTR submitted for review", "info");
+        }
+      } catch (err) {
+        statusMsg.textContent = "Failed: " + err.message;
+        statusMsg.className = "text-rose-400 bg-rose-950/60 border-rose-800 text-xs text-center font-medium p-3 rounded-2xl border block";
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-check-circle"></i> Verify & Unlock Access Instantly`;
+      }
+    }
+
+    async function renderAccessDashboard() {
+      const deviceToken = getDeviceToken();
+      document.getElementById("deviceTokenDisplay").textContent = deviceToken;
+
+      const container = document.getElementById("unlockedListContainer");
+      const badge = document.getElementById("unlockedCountBadge");
+
+      try {
+        const res = await fetch(`/api/user-access?deviceToken=${encodeURIComponent(deviceToken)}`);
+        const { unlocked } = await res.json();
+
+        badge.textContent = `${unlocked.length} Collection${unlocked.length === 1 ? '' : 's'}`;
+
+        if (unlocked.length === 0) {
+          container.innerHTML = `
+            <div class="py-6 space-y-3">
+              <div class="w-14 h-14 mx-auto rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-gray-500 text-2xl">
+                <i class="far fa-folder-open"></i>
+              </div>
+              <h3 class="text-xs font-bold text-gray-300">No Unlocked Collections Yet</h3>
+              <p class="text-[11px] text-gray-500 max-w-xs mx-auto">When your payment is confirmed, your purchased collections appear here.</p>
+              <button onclick="navigateTo('/')" class="px-5 py-2.5 bg-gradient-to-r from-[#7c66ff] to-[#38bdf8] text-white text-xs font-bold rounded-full shadow-lg shadow-purple-600/30 transition">
+                Explore Available Packs
+              </button>
+            </div>
+          `;
+        } else {
+          container.innerHTML = unlocked.map(item => `
+            <div class="glass-panel rounded-2xl p-4 flex items-center justify-between text-left shadow">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-950 border border-purple-600/40 flex items-center justify-center text-purple-400 text-lg">
+                  <i class="fas fa-play"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-100">${item.planTitle}</h4>
+                  <span class="text-[10px] text-gray-400">Verified &bull; UTR: ${item.utr}</span>
+                </div>
+              </div>
+              <a href="${item.vaultUrl}" target="_blank" class="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-xs rounded-full shadow flex items-center gap-1.5 transition">
+                <i class="fas fa-external-link-alt text-[10px]"></i> Access Vault
+              </a>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // ================= ADMIN AUTH =================
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const username = document.getElementById("adminUsernameInput").value.trim();
+      const password = document.getElementById("adminPasswordInput").value;
+      const errorMsg = document.getElementById("loginErrorMsg");
+      const btn = document.getElementById("loginBtn");
+
+      errorMsg.classList.add("hidden");
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Authenticating...`;
+
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (data.success) {
+          sessionStorage.setItem("admin_session_token", data.token);
+          showToast(`Welcome back, ${data.username}!`, "success");
+          navigateTo('/nagatopanel/?tab=dashboard');
+        } else {
+          errorMsg.textContent = data.error || "Invalid username or password";
+          errorMsg.classList.remove("hidden");
+          showToast("Authentication failed", "error");
+        }
+      } catch {
+        errorMsg.textContent = "Server error. Try again.";
+        errorMsg.classList.remove("hidden");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-sign-in-alt"></i> Login to Console`;
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem("admin_session_token");
+      showToast("Logged out of console", "info");
+      navigateTo('/nagatopanel');
+    }
+
+    async function handlePasswordUpdate(e) {
+      e.preventDefault();
+      const currentPassword = document.getElementById("currentPassInput").value;
+      const newUsername = document.getElementById("newUsernameInput").value.trim();
+      const newPassword = document.getElementById("newPassInput").value;
+      const confirmPassword = document.getElementById("confirmPassInput").value;
+      const btn = document.getElementById("updateCredsBtn");
+
+      if (newPassword !== confirmPassword) {
+        showToast("New passwords do not match!", "error");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Updating...`;
+
+      const token = sessionStorage.getItem("admin_session_token");
+
+      try {
+        const res = await fetch('/api/admin/change-credentials', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+          },
+          body: JSON.stringify({ currentPassword, newUsername, newPassword })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          sessionStorage.setItem("admin_session_token", data.newToken);
+          showToast("Security credentials updated successfully!", "success");
+          document.getElementById("currentPassInput").value = "";
+          document.getElementById("newUsernameInput").value = "";
+          document.getElementById("newPassInput").value = "";
+          document.getElementById("confirmPassInput").value = "";
+        } else {
+          showToast(data.error || "Failed to update credentials", "error");
+        }
+      } catch (err) {
+        showToast("Update error: " + err.message, "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-lock"></i> Update Credentials`;
+      }
+    }
+
+    // Switch Tabs inside POM WEB (/nagatopanel)
+    function switchAdminTab(tabName) {
+      const validTabs = ["dashboard", "plans", "utr", "users", "settings", "security"];
+      const current = validTabs.includes(tabName) ? tabName : "dashboard";
+
+      validTabs.forEach(t => {
+        const content = document.getElementById(`tabContent-${t}`);
+        const btn = document.getElementById(`sideBtn-${t}`);
+        if (content) {
+          if (t === current) {
+            content.classList.remove("hidden");
+            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-3 admin-active-item transition";
+          } else {
+            content.classList.add("hidden");
+            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/[0.06] transition";
+          }
+        }
+      });
+
+      const drawer = document.getElementById('adminDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      drawer.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+
+      if (current === 'dashboard') fetchAdminStats();
+      if (current === 'utr') fetchAdminUtrs();
+      if (current === 'users') fetchAdminUsers();
+      if (current === 'plans' || current === 'settings') populateAdminInputs();
+    }
+
+    async function fetchAdminStats() {
+      const token = sessionStorage.getItem("admin_session_token");
+      try {
+        const res = await fetch('/api/admin/stats', { headers: { 'Authorization': token } });
+        const stats = await res.json();
+        document.getElementById("statTotalUsers").textContent = (stats.totalUsers || 0).toLocaleString();
+        document.getElementById("statPremiumUsers").textContent = (stats.premiumUsers || 0).toLocaleString();
+        document.getElementById("statPendingOrders").textContent = stats.pendingOrders || 0;
+        document.getElementById("statTotalRevenue").innerHTML = `&#8377;${(stats.totalRevenue || 0).toLocaleString()}`;
+        
+        document.getElementById("pendingBadge").textContent = stats.pendingOrders || 0;
+        const dot = document.getElementById("topNotificationDot");
+        if (stats.pendingOrders > 0) dot.classList.remove("hidden");
+        else dot.classList.add("hidden");
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // ================= REGISTERED USERS: SEARCH, LIMIT 50 & PAGINATION =================
+    async function fetchAdminUsers() {
+      const token = sessionStorage.getItem("admin_session_token");
+      try {
+        const res = await fetch('/api/admin/users', { headers: { 'Authorization': token } });
+        const data = await res.json();
+        rawAdminUsers = data.users || [];
+        filteredAdminUsers = [...rawAdminUsers];
+        userCurrentPage = 1;
+        renderPaginatedUsers();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function handleUserSearch() {
+      const query = document.getElementById("userSearchInput").value.trim().toLowerCase();
+      if (!query) {
+        filteredAdminUsers = [...rawAdminUsers];
+      } else {
+        filteredAdminUsers = rawAdminUsers.filter(u => {
+          const tokenMatch = u.deviceToken.toLowerCase().includes(query);
+          const statusMatch = (u.isPremium ? "vip member" : "visitor").includes(query);
+          return tokenMatch || statusMatch;
+        });
+      }
+      userCurrentPage = 1;
+      renderPaginatedUsers();
+    }
+
+    function changeUserPage(direction) {
+      const maxPages = Math.ceil(filteredAdminUsers.length / userPageLimit) || 1;
+      const target = userCurrentPage + direction;
+      if (target >= 1 && target <= maxPages) {
+        userCurrentPage = target;
+        renderPaginatedUsers();
+      }
+    }
+
+    function renderPaginatedUsers() {
+      const tbody = document.getElementById("usersTableBody");
+      tbody.innerHTML = "";
+
+      const totalUsers = filteredAdminUsers.length;
+      document.getElementById("userCountSummary").textContent = `Total: ${totalUsers} Users`;
+
+      if (totalUsers === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-500 font-medium"><i class="fas fa-user-slash text-2xl mb-2 block"></i>No matching users found.</td></tr>`;
+        document.getElementById("userPaginationInfo").textContent = "Showing 0 of 0 Users";
+        document.getElementById("userPrevBtn").disabled = true;
+        document.getElementById("userNextBtn").disabled = true;
+        document.getElementById("userCurrentPage").textContent = "Page 1 of 1";
+        return;
+      }
+
+      const maxPages = Math.ceil(totalUsers / userPageLimit) || 1;
+      if (userCurrentPage > maxPages) userCurrentPage = maxPages;
+
+      const startIndex = (userCurrentPage - 1) * userPageLimit;
+      const endIndex = Math.min(startIndex + userPageLimit, totalUsers);
+      const pageUsers = filteredAdminUsers.slice(startIndex, endIndex);
+
+      pageUsers.forEach(u => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-white/[0.04] transition";
+        tr.innerHTML = `
+          <td class="p-3.5 font-mono text-gray-300 font-bold flex items-center gap-2">
+            <span>${u.deviceToken}</span>
+            <button onclick="navigator.clipboard.writeText('${u.deviceToken}'); showToast('Token copied', 'info')" class="text-gray-500 hover:text-white" title="Copy Token">
+              <i class="far fa-copy text-xs"></i>
+            </button>
+          </td>
+          <td class="p-3.5">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${u.isPremium ? 'bg-emerald-950 text-emerald-400 border border-emerald-600/30' : 'bg-gray-800 text-gray-400'}">
+              ${u.isPremium ? '★ VIP Member' : 'Visitor'}
+            </span>
+          </td>
+          <td class="p-3.5 font-semibold text-gray-300">${u.ordersCount}</td>
+          <td class="p-3.5 text-right font-black text-emerald-400">&#8377;${u.totalSpent}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Update Pagination Indicators
+      document.getElementById("userPaginationInfo").textContent = `Showing ${startIndex + 1}–${endIndex} of ${totalUsers} Users (Limit 50/page)`;
+      document.getElementById("userCurrentPage").textContent = `Page ${userCurrentPage} of ${maxPages}`;
+      document.getElementById("userPrevBtn").disabled = userCurrentPage <= 1;
+      document.getElementById("userNextBtn").disabled = userCurrentPage >= maxPages;
+    }
+
+    async function fetchAdminUtrs() {
+      const token = sessionStorage.getItem("admin_session_token");
+      try {
+        const res = await fetch('/api/admin/utrs', { headers: { 'Authorization': token } });
+        const data = await res.json();
+        rawAdminSubmissions = data.submissions || [];
+        document.getElementById("pendingBadge").textContent = rawAdminSubmissions.filter(s => s.status === 'PENDING').length;
+        renderFilteredUtrs();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function filterUtrs(filterType) {
+      currentFilter = filterType;
+      ['ALL', 'PENDING', 'APPROVED', 'REJECTED'].forEach(type => {
+        const btn = document.getElementById(`filterBtn-${type}`);
+        if (type === filterType) {
+          btn.className = "px-3 py-1 rounded-lg font-bold bg-blue-600 text-white";
+        } else {
+          btn.className = "px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white";
+        }
+      });
+      renderFilteredUtrs();
+    }
+
+    function renderFilteredUtrs() {
+      const tbody = document.getElementById("utrTableBody");
+      tbody.innerHTML = "";
+
+      let filtered = rawAdminSubmissions;
+      if (currentFilter !== 'ALL') {
+        filtered = rawAdminSubmissions.filter(s => s.status === currentFilter);
+      }
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-gray-500">No ${currentFilter.toLowerCase()} transactions found.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(sub => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-white/[0.04] transition";
+        tr.innerHTML = `
+          <td class="p-3 font-mono text-purple-300 font-bold flex items-center gap-2">
+            <span>${sub.utr}</span>
+            <button onclick="navigator.clipboard.writeText('${sub.utr}'); showToast('UTR copied', 'info')" class="text-gray-500 hover:text-white">
+              <i class="far fa-copy text-xs"></i>
+            </button>
+          </td>
+          <td class="p-3">${sub.planTitle}</td>
+          <td class="p-3 font-bold text-emerald-400">&#8377;${sub.price}</td>
+          <td class="p-3">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
+              sub.status === 'APPROVED' ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-600/40' :
+              sub.status === 'REJECTED' ? 'bg-rose-950/80 text-rose-400 border border-rose-600/40' :
+              'bg-amber-950/80 text-amber-300 border border-amber-600/40'
+            }">${sub.status}</span>
+          </td>
+          <td class="p-3 text-right">
+            <button onclick="openManageUtrModal('${sub.utr}')" class="px-3 py-1 bg-white/[0.08] hover:bg-white/[0.15] text-purple-300 border border-white/10 font-bold rounded-xl text-xs transition">
+              <i class="fas fa-edit"></i> Manage
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openManageUtrModal(utr) {
+      activeManageUtr = rawAdminSubmissions.find(s => s.utr === utr);
+      if (!activeManageUtr) return;
+
+      document.getElementById("modalUtrText").textContent = activeManageUtr.utr;
+      document.getElementById("modalPlanText").textContent = activeManageUtr.planTitle;
+      document.getElementById("modalAmountText").innerHTML = `&#8377;${activeManageUtr.price}`;
+
+      document.getElementById("manageUtrModal").showModal();
+    }
+
+    async function setUtrStatus(newStatus) {
+      if (!activeManageUtr) return;
+      const token = sessionStorage.getItem("admin_session_token");
+
+      try {
+        const res = await fetch('/api/admin/utr-action', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': token },
+          body: JSON.stringify({ utr: activeManageUtr.utr, action: newStatus })
+        });
+        if (res.ok) {
+          document.getElementById("manageUtrModal").close();
+          showToast(`Status updated to ${newStatus}`, "success");
+          fetchAdminUtrs();
+          fetchAdminStats();
+        }
+      } catch (err) {
+        showToast("Update failed: " + err.message, "error");
+      }
+    }
+
+    async function deleteUtrSubmission() {
+      if (!activeManageUtr) return;
+      if (!confirm(`Delete UTR ${activeManageUtr.utr} permanently?`)) return;
+
+      const token = sessionStorage.getItem("admin_session_token");
+      try {
+        const res = await fetch('/api/admin/utr-action', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': token },
+          body: JSON.stringify({ utr: activeManageUtr.utr, action: 'DELETE' })
+        });
+        if (res.ok) {
+          document.getElementById("manageUtrModal").close();
+          showToast("Submission deleted", "info");
+          fetchAdminUtrs();
+          fetchAdminStats();
+        }
+      } catch (err) {
+        showToast("Delete failed", "error");
+      }
+    }
+
+    function populateAdminInputs() {
+      if (!appConfig) return;
+      document.getElementById("adminBrandName").value = appConfig.brandName;
+      document.getElementById("adminUpiInput").value = appConfig.upiId;
+      document.getElementById("adminTelegramInput").value = appConfig.telegramUrl;
+
+      const selector = document.getElementById("adminPlanSelector");
+      const prevIdx = selector.value || 0;
+      selector.innerHTML = "";
+      appConfig.plans.forEach((plan, i) => {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = `Plan ${i + 1}: ${plan.title} (₹${plan.price})`;
+        selector.appendChild(opt);
+      });
+      selector.value = prevIdx < appConfig.plans.length ? prevIdx : 0;
+      loadPlanForm();
+    }
+
+    function loadPlanForm() {
+      if (!appConfig) return;
+      const idx = document.getElementById("adminPlanSelector").value;
+      const plan = appConfig.plans[idx];
+
+      document.getElementById("adminPlanTitle").value = plan.title;
+      document.getElementById("adminPlanPrice").value = plan.price;
+      document.getElementById("adminPlanTag").value = plan.tag;
+      document.getElementById("adminPlanImage").value = plan.image;
+      document.getElementById("adminPlanVaultUrl").value = plan.vaultUrl || "";
+      document.getElementById("adminPlanDesc").value = plan.desc;
+    }
+
+    async function saveAllChanges() {
+      appConfig.brandName = document.getElementById("adminBrandName").value.trim();
+      appConfig.upiId = document.getElementById("adminUpiInput").value.trim();
+      appConfig.telegramUrl = document.getElementById("adminTelegramInput").value.trim();
+
+      const idx = document.getElementById("adminPlanSelector").value;
+      if (appConfig.plans[idx]) {
+        appConfig.plans[idx].title = document.getElementById("adminPlanTitle").value.trim();
+        appConfig.plans[idx].price = Number(document.getElementById("adminPlanPrice").value);
+        appConfig.plans[idx].tag = document.getElementById("adminPlanTag").value.trim();
+        appConfig.plans[idx].image = document.getElementById("adminPlanImage").value.trim();
+        appConfig.plans[idx].vaultUrl = document.getElementById("adminPlanVaultUrl").value.trim();
+        appConfig.plans[idx].desc = document.getElementById("adminPlanDesc").value.trim();
+      }
+
+      const token = sessionStorage.getItem("admin_session_token");
+
+      try {
+        const res = await fetch('/api/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': token },
+          body: JSON.stringify(appConfig)
+        });
+        if (!res.ok) throw new Error("Save error");
+        showToast("Settings updated successfully!", "success");
+      } catch (err) {
+        showToast("Save error: " + err.message, "error");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await fetchConfig();
+      router();
+    });
+  </script>
+</body>
+</html>
