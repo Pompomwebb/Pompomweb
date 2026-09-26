@@ -11,7 +11,6 @@
 
   <!-- ================= 1. STOREFRONT VIEW ================= -->
   <div id="storefrontView" class="flex-1 flex flex-col">
-    <!-- Top Sticky Header -->
     <header class="border-b border-gray-800/80 bg-[#0d1322]/90 backdrop-blur sticky top-0 z-40 px-4 py-3">
       <div class="max-w-xl w-full mx-auto flex justify-between items-center">
         <!-- Logo & Title -->
@@ -23,7 +22,7 @@
           </div>
         </div>
 
-        <!-- Right Header: Telegram Icon & Access Button -->
+        <!-- Right Header -->
         <div class="flex items-center gap-2.5">
           <a id="navTelegramLink" href="#" target="_blank" class="w-9 h-9 flex items-center justify-center bg-[#0e1626] border border-sky-500/40 hover:border-sky-400 text-sky-400 rounded-xl text-base shadow-sm transition">
             <i class="fab fa-telegram-plane"></i>
@@ -37,7 +36,6 @@
     </header>
 
     <main class="flex-1 max-w-xl w-full mx-auto px-4 py-6 space-y-6">
-      <!-- Announcement Hero -->
       <section class="text-center space-y-3">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/70 border border-blue-700/40 text-[11px] font-semibold text-blue-300 shadow-inner">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -51,7 +49,6 @@
           Instant HTML5 DRM high-speed streaming on all devices. Browse 8,500+ private folders, watch free trailers, and unlock full access in 1 click.
         </p>
 
-        <!-- Feature Badges -->
         <div class="flex flex-wrap justify-center gap-2 pt-1 text-[11px] text-gray-300 font-medium">
           <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-full flex items-center gap-1.5"><i class="fas fa-bolt text-amber-400"></i> Instant 1-Click</span>
           <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-full flex items-center gap-1.5"><i class="fas fa-shield-alt text-emerald-400"></i> 100% Anonymous</span>
@@ -59,7 +56,7 @@
           <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-full flex items-center gap-1.5"><span class="bg-rose-600 text-[9px] px-1 rounded font-black">4K</span> 4K Ultra HD</span>
         </div>
 
-        <!-- NEW: Hero Action Buttons from Screenshot -->
+        <!-- Hero Buttons -->
         <div class="grid grid-cols-2 gap-3 pt-3">
           <button onclick="scrollToGrid()" class="py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition active:scale-95">
             <i class="fas fa-play-circle text-sm"></i> Explore 8,500+ Videos
@@ -70,7 +67,6 @@
         </div>
       </section>
 
-      <!-- Section Title -->
       <div id="videoGridSection" class="flex justify-between items-center border-t border-gray-800/80 pt-5">
         <div>
           <h2 class="text-base sm:text-lg font-bold text-gray-100 flex items-center gap-2">
@@ -83,10 +79,10 @@
         </span>
       </div>
 
-      <!-- 7 Dynamic Cards Container -->
+      <!-- 7 Cards Dynamic Container -->
       <div id="plansContainer" class="space-y-5"></div>
 
-      <!-- ================= NEW: BOTTOM ALL-ACCESS VIP CARD (From Screenshot) ================= -->
+      <!-- Bottom Lifetime VIP Card -->
       <section class="border-t border-gray-800/80 pt-8 mt-10 space-y-4">
         <div class="text-center space-y-1">
           <span class="text-blue-400 font-extrabold text-[11px] tracking-widest uppercase flex items-center justify-center gap-1.5">
@@ -133,7 +129,6 @@
           </button>
         </div>
 
-        <!-- Footer Links -->
         <footer class="pt-6 pb-12 text-center space-y-3 text-xs text-gray-500">
           <div class="flex justify-center gap-3 text-gray-400 font-semibold">
             <button onclick="scrollToGrid()" class="hover:text-blue-400">Video Folders</button>
@@ -152,7 +147,6 @@
       </section>
     </main>
 
-    <!-- Floating 24/7 VIP Support Button -->
     <aside class="fixed bottom-5 right-5 z-40">
       <a id="floatingTelegramLink" href="#" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold rounded-full shadow-lg shadow-sky-500/30 text-xs transition transform hover:scale-105">
         <i class="fab fa-telegram-plane text-base"></i>
@@ -162,7 +156,7 @@
   </div>
 
 
-  <!-- ================= 2. DEDICATED CHECKOUT VIEW (/checkout?plan=...) ================= -->
+  <!-- ================= 2. CHECKOUT VIEW WITH QR DOWNLOAD & FIXED UPI ================= -->
   <div id="checkoutView" class="hidden min-h-screen flex flex-col bg-[#070b13]">
     <header class="border-b border-gray-800/80 bg-[#0d1322]/90 backdrop-blur sticky top-0 z-40 px-4 py-3">
       <div class="max-w-xl w-full mx-auto flex items-center justify-between">
@@ -198,7 +192,7 @@
         </div>
       </div>
 
-      <!-- Step 1: Scan QR Code & Launch Specific Apps -->
+      <!-- Step 1: QR & App Launchers -->
       <div class="bg-[#0d1322] border border-gray-800 rounded-2xl p-6 text-center space-y-4 shadow-xl">
         <div class="flex items-center justify-between border-b border-gray-800/80 pb-3 text-left">
           <div>
@@ -206,32 +200,38 @@
               <span class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white">1</span>
               Scan Generated QR Code
             </h3>
-            <p class="text-[11px] text-gray-400 ml-7">Open any UPI app on your phone & scan to pay</p>
+            <p class="text-[11px] text-gray-400 ml-7">Scan on any UPI App or click below to launch</p>
           </div>
         </div>
 
-        <div class="flex justify-center py-2">
+        <!-- Generated QR Code Image -->
+        <div class="flex flex-col items-center justify-center py-2 space-y-3">
           <div class="p-3 bg-white rounded-2xl shadow-xl border-4 border-blue-500/20 inline-block">
             <img id="checkoutQrImg" src="" alt="UPI QR Code" class="w-48 h-48 sm:w-56 sm:h-56 object-contain">
           </div>
+
+          <!-- NEW: Download QR Option -->
+          <button onclick="downloadQrCode()" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-sky-400 border border-gray-700 text-xs font-bold rounded-xl flex items-center gap-2 transition active:scale-95 shadow">
+            <i class="fas fa-download"></i> Download QR Code
+          </button>
         </div>
 
-        <!-- Android Deep Link App Launchers -->
+        <!-- Working Direct <a> UPI App Redirects -->
         <div class="pt-3 border-t border-gray-800/80">
-          <span class="text-[11px] text-gray-400 font-medium block mb-3">Or click to pay directly inside your installed app:</span>
+          <span class="text-[11px] text-gray-400 font-medium block mb-3">Or click your UPI app to pay directly:</span>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            <button onclick="launchUPIApp('gpay')" class="py-3 px-3 bg-gray-800/90 hover:bg-gray-700 border border-gray-700 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95">
-              <i class="fab fa-google-pay text-base text-blue-400"></i> GPay
-            </button>
-            <button onclick="launchUPIApp('phonepe')" class="py-3 px-3 bg-gray-800/90 hover:bg-gray-700 border border-gray-700 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95">
+            <a id="payPhonePeAnchor" href="#" class="py-3 px-3 bg-[#172033] hover:bg-[#1f2b45] border border-purple-500/30 text-purple-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
               <i class="fas fa-mobile-alt text-purple-400"></i> PhonePe
-            </button>
-            <button onclick="launchUPIApp('paytm')" class="py-3 px-3 bg-gray-800/90 hover:bg-gray-700 border border-gray-700 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95">
+            </a>
+            <a id="payGpayAnchor" href="#" class="py-3 px-3 bg-[#172033] hover:bg-[#1f2b45] border border-blue-500/30 text-blue-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
+              <i class="fab fa-google-pay text-base text-blue-400"></i> GPay
+            </a>
+            <a id="payPaytmAnchor" href="#" class="py-3 px-3 bg-[#172033] hover:bg-[#1f2b45] border border-sky-500/30 text-sky-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
               <i class="fas fa-wallet text-sky-400"></i> Paytm
-            </button>
-            <button onclick="launchUPIApp('other')" class="py-3 px-3 bg-blue-600/90 hover:bg-blue-500 border border-blue-500/40 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95">
+            </a>
+            <a id="payOtherUpiAnchor" href="#" class="py-3 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:brightness-110 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow-md shadow-blue-600/30">
               <i class="fas fa-bolt text-yellow-300"></i> Other UPI
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -242,7 +242,6 @@
           <span class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white">2</span>
           Or Copy UPI ID Manually
         </h3>
-        
         <div class="flex items-center justify-between bg-gray-900/90 border border-gray-700 rounded-xl p-2.5">
           <span id="checkoutUpiText" class="font-mono text-xs text-blue-300 font-semibold truncate select-all px-2">merchant@upi</span>
           <button onclick="copyUpiId()" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg flex items-center gap-1.5 transition active:scale-95 shrink-0">
@@ -252,14 +251,14 @@
         </div>
       </div>
 
-      <!-- Step 3: 12-Digit UTR Submission -->
+      <!-- Step 3: Enter 12-Digit UTR -->
       <div class="bg-[#0d1322] border border-gray-800 rounded-2xl p-6 space-y-4 shadow-xl">
         <h3 class="text-xs font-bold text-gray-200 uppercase tracking-wider flex items-center gap-2">
           <span class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white">3</span>
           Submit 12-Digit UTR to Verify
         </h3>
         <p class="text-[11px] text-gray-400 -mt-2">
-          After completing payment in your UPI app, enter the 12-digit UTR/Ref No. from the receipt.
+          After completing payment in your UPI app, copy the 12-digit UTR/Ref No. from the receipt and enter below.
         </p>
 
         <form onsubmit="handleUtrSubmission(event)" class="space-y-3">
@@ -301,7 +300,7 @@
         <h1 class="text-xl font-bold text-gray-100">My Access & Unlocked Videos</h1>
       </div>
 
-      <!-- Device Token Pill -->
+      <!-- Device Token Card -->
       <div class="bg-[#0f172a] border border-gray-800 rounded-xl p-3.5 flex items-center justify-between">
         <div class="flex items-center gap-2 text-xs">
           <i class="fas fa-mobile-alt text-emerald-400 text-base"></i>
@@ -316,7 +315,7 @@
         </div>
       </div>
 
-      <!-- Section: Unlocked Video Folders -->
+      <!-- Unlocked List -->
       <section class="bg-[#0d1322] border border-gray-800 rounded-2xl p-6 text-center space-y-4 shadow-lg">
         <div class="flex justify-between items-center border-b border-gray-800/80 pb-3">
           <h2 class="text-sm font-bold text-gray-200 flex items-center gap-2">
@@ -325,9 +324,7 @@
           <span id="unlockedCountBadge" class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded-md font-semibold">0 Collections</span>
         </div>
 
-        <div id="unlockedListContainer" class="py-4 space-y-3">
-          <!-- Populated from server -->
-        </div>
+        <div id="unlockedListContainer" class="py-4 space-y-3"></div>
       </section>
     </main>
 
@@ -365,16 +362,16 @@
   </div>
 
 
-  <!-- ================= 5. ADMIN DASHBOARD WITH UTR APPROVALS (/panel/?tab=...) ================= -->
+  <!-- ================= 5. FULL ADMIN CONTROL PANEL WITH DASHBOARD ================= -->
   <div id="adminDashboardView" class="hidden min-h-screen flex flex-col bg-[#0b0f19]">
     <header class="border-b border-gray-800 bg-[#0d1322] px-6 py-4 flex justify-between items-center sticky top-0 z-30">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white shadow-md">
-          <i class="fas fa-sliders-h text-sm"></i>
+          <i class="fas fa-chart-line text-sm"></i>
         </div>
         <div>
-          <h1 class="text-base font-bold text-gray-100">Storefront Control Panel</h1>
-          <p class="text-[11px] text-gray-400">Slug: <span id="currentSlugDisplay" class="font-mono text-blue-400">/panel/?tab=theme</span></p>
+          <h1 class="text-base font-bold text-gray-100">Store Management Console</h1>
+          <p class="text-[11px] text-gray-400">Slug: <span id="currentSlugDisplay" class="font-mono text-blue-400">/panel/?tab=dashboard</span></p>
         </div>
       </div>
 
@@ -388,34 +385,193 @@
       </div>
     </header>
 
-    <div class="max-w-5xl w-full mx-auto p-4 sm:p-6 flex-1 flex flex-col md:flex-row gap-6">
-      <aside class="w-full md:w-56 space-y-1">
-        <button onclick="navigateTo('/panel/?tab=theme')" id="tabBtn-theme" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3">
-          <i class="fas fa-paint-brush"></i> Theme & Brand
+    <div class="max-w-6xl w-full mx-auto p-4 sm:p-6 flex-1 flex flex-col md:flex-row gap-6">
+      <!-- Admin Sidebar Navigation -->
+      <aside class="w-full md:w-60 space-y-1">
+        <button onclick="navigateTo('/panel/?tab=dashboard')" id="tabBtn-dashboard" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3">
+          <i class="fas fa-tachometer-alt"></i> Overview Dashboard
+        </button>
+        <button onclick="navigateTo('/panel/?tab=utr')" id="tabBtn-utr" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3">
+          <i class="fas fa-check-double text-emerald-400"></i> UTR Approvals 
+          <span id="pendingBadge" class="ml-auto bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-bold">0</span>
         </button>
         <button onclick="navigateTo('/panel/?tab=plans')" id="tabBtn-plans" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3">
           <i class="fas fa-th-list"></i> Edit 7 Plans
         </button>
+        <button onclick="navigateTo('/panel/?tab=theme')" id="tabBtn-theme" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3">
+          <i class="fas fa-paint-brush"></i> Theme & Brand
+        </button>
         <button onclick="navigateTo('/panel/?tab=payments')" id="tabBtn-payments" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3">
           <i class="fas fa-wallet"></i> UPI & Social Links
         </button>
-        <!-- NEW TAB: Review & Approve UTRs -->
-        <button onclick="navigateTo('/panel/?tab=utr')" id="tabBtn-utr" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-amber-400">
-          <i class="fas fa-shield-check"></i> UTR Approvals <span id="pendingBadge" class="ml-auto bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded font-bold">0</span>
-        </button>
       </aside>
 
+      <!-- Main Admin Panel Content -->
       <section class="flex-1 bg-[#111827] border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-xl overflow-hidden">
-        <!-- Tab 1: Theme -->
-        <div id="tabContent-theme" class="space-y-4">
-          <h2 class="text-sm font-bold text-gray-100 border-b border-gray-800 pb-2">Store Branding & Logo</h2>
+        
+        <!-- Tab 0: OVERVIEW DASHBOARD -->
+        <div id="tabContent-dashboard" class="space-y-6">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+            <div>
+              <h2 class="text-base font-bold text-gray-100 flex items-center gap-2">
+                <i class="fas fa-chart-pie text-blue-500"></i> Store Performance & Analytics
+              </h2>
+              <p class="text-xs text-gray-400">Real-time statistics across all user devices and transactions</p>
+            </div>
+            <button onclick="fetchAdminStats()" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-sky-400 text-xs font-semibold rounded-lg flex items-center gap-1.5 border border-gray-700 transition">
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+          </div>
+
+          <!-- 4 Core Metric Cards -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-[#0e1626] border border-blue-500/20 rounded-2xl p-4 space-y-2">
+              <div class="flex justify-between items-center text-blue-400 text-sm">
+                <span class="text-xs font-semibold text-gray-400">Total Users</span>
+                <i class="fas fa-users"></i>
+              </div>
+              <div id="statTotalUsers" class="text-2xl font-black text-white">0</div>
+              <div class="text-[10px] text-gray-500">Registered devices</div>
+            </div>
+
+            <div class="bg-[#0e1626] border border-emerald-500/20 rounded-2xl p-4 space-y-2">
+              <div class="flex justify-between items-center text-emerald-400 text-sm">
+                <span class="text-xs font-semibold text-gray-400">Premium Users</span>
+                <i class="fas fa-crown"></i>
+              </div>
+              <div id="statPremiumUsers" class="text-2xl font-black text-emerald-400">0</div>
+              <div class="text-[10px] text-gray-500">Active verified members</div>
+            </div>
+
+            <div class="bg-[#0e1626] border border-amber-500/20 rounded-2xl p-4 space-y-2">
+              <div class="flex justify-between items-center text-amber-400 text-sm">
+                <span class="text-xs font-semibold text-gray-400">Pending Orders</span>
+                <i class="fas fa-clock"></i>
+              </div>
+              <div id="statPendingOrders" class="text-2xl font-black text-amber-300">0</div>
+              <div class="text-[10px] text-gray-500">Awaiting UTR review</div>
+            </div>
+
+            <div class="bg-[#0e1626] border border-indigo-500/20 rounded-2xl p-4 space-y-2">
+              <div class="flex justify-between items-center text-indigo-400 text-sm">
+                <span class="text-xs font-semibold text-gray-400">Total Revenue</span>
+                <i class="fas fa-rupee-sign"></i>
+              </div>
+              <div id="statTotalRevenue" class="text-2xl font-black text-white">&#8377;0</div>
+              <div id="statPaidOrders" class="text-[10px] text-gray-500">0 completed payments</div>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Banner -->
+          <div class="bg-gradient-to-r from-blue-950/60 to-indigo-950/60 border border-blue-700/30 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-600/30 flex items-center justify-center text-blue-400 text-lg">
+                <i class="fas fa-bell"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-gray-200">Pending Payment Queue</h4>
+                <p class="text-[11px] text-gray-400">Check and approve customer UTR transactions to grant vault access.</p>
+              </div>
+            </div>
+            <button onclick="navigateTo('/panel/?tab=utr')" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow transition shrink-0">
+              Open UTR Approvals &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 1: UTR APPROVALS (With Filter & Icons) -->
+        <div id="tabContent-utr" class="hidden space-y-4">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-gray-800 pb-3">
+            <div>
+              <h2 class="text-base font-bold text-gray-100 flex items-center gap-2">
+                <i class="fas fa-shield-alt text-emerald-400"></i> UTR Payment Verification
+              </h2>
+              <p class="text-xs text-gray-400">Match the submitted 12-digit UTR with your bank/UPI app and approve</p>
+            </div>
+            
+            <!-- Filter Pills -->
+            <div class="flex items-center gap-1.5 text-xs bg-gray-900 p-1 rounded-xl border border-gray-800">
+              <button onclick="filterUtrs('ALL')" id="filterBtn-ALL" class="px-3 py-1 rounded-lg font-bold bg-blue-600 text-white">All</button>
+              <button onclick="filterUtrs('PENDING')" id="filterBtn-PENDING" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Pending</button>
+              <button onclick="filterUtrs('APPROVED')" id="filterBtn-APPROVED" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Approved</button>
+              <button onclick="filterUtrs('REJECTED')" id="filterBtn-REJECTED" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Rejected</button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-gray-300">
+              <thead class="bg-gray-900/90 text-gray-400 uppercase text-[10px] tracking-wider">
+                <tr>
+                  <th class="p-3"><i class="fas fa-hashtag mr-1"></i> 12-Digit UTR</th>
+                  <th class="p-3"><i class="fas fa-layer-group mr-1"></i> Plan</th>
+                  <th class="p-3"><i class="fas fa-coins mr-1"></i> Amount</th>
+                  <th class="p-3"><i class="fas fa-info-circle mr-1"></i> Status</th>
+                  <th class="p-3 text-right"><i class="fas fa-cogs mr-1"></i> Actions</th>
+                </tr>
+              </thead>
+              <tbody id="utrTableBody" class="divide-y divide-gray-800/80"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 2: EDIT 7 PLANS (With Vault URL delivery link) -->
+        <div id="tabContent-plans" class="hidden space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h2 class="text-sm font-bold text-gray-100 flex items-center gap-2">
+              <i class="fas fa-edit text-blue-400"></i> Configure 7 Plans
+            </h2>
+            <span class="text-[10px] text-gray-400">Total: 7 Items</span>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Select Plan to Modify</label>
+            <select id="adminPlanSelector" onchange="loadPlanForm()" class="w-full bg-blue-950/80 border border-blue-700/60 rounded-xl p-2.5 text-xs text-blue-200 font-semibold outline-none"></select>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Plan Title</label>
+              <input type="text" id="adminPlanTitle" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Price (&#8377; INR)</label>
+                <input type="number" id="adminPlanPrice" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Video / Folder Badge</label>
+                <input type="text" id="adminPlanTag" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Card Photo URL</label>
+              <input type="url" id="adminPlanImage" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            </div>
+            <!-- Automated delivery vault URL -->
+            <div>
+              <label class="block text-xs font-semibold text-emerald-400 mb-1">
+                <i class="fas fa-link"></i> Unlocked Vault URL (Delivered upon approval)
+              </label>
+              <input type="url" id="adminPlanVaultUrl" placeholder="https://mega.nz/... or https://t.me/..." class="w-full bg-gray-900 border border-emerald-500/40 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500">
+              <span class="text-[10px] text-gray-500 mt-0.5 block">When admin approves the user's UTR, their "Access Vault" button will open this secret link.</span>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Description</label>
+              <textarea id="adminPlanDesc" rows="2" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: THEME & BRAND -->
+        <div id="tabContent-theme" class="hidden space-y-4">
+          <h2 class="text-sm font-bold text-gray-100 border-b border-gray-800 pb-2 flex items-center gap-2">
+            <i class="fas fa-paint-brush text-indigo-400"></i> Store Branding & Logo
+          </h2>
           <div>
             <label class="block text-xs font-semibold text-gray-400 mb-1">Store Brand Name</label>
-            <input type="text" id="adminBrandName" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            <input type="text" id="adminBrandName" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
           </div>
           <div>
             <label class="block text-xs font-semibold text-gray-400 mb-1">Brand Logo Image URL</label>
-            <input type="url" id="adminLogoUrl" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            <input type="url" id="adminLogoUrl" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
           </div>
           <div class="pt-2">
             <span class="text-[11px] text-gray-400 block mb-1">Logo Preview:</span>
@@ -423,81 +579,24 @@
           </div>
         </div>
 
-        <!-- Tab 2: Plans -->
-        <div id="tabContent-plans" class="hidden space-y-4">
-          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-            <h2 class="text-sm font-bold text-gray-100">Configure Plans</h2>
-            <span class="text-[10px] text-gray-400">Total: 7 Items</span>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-400 mb-1">Select Plan to Modify</label>
-            <select id="adminPlanSelector" onchange="loadPlanForm()" class="w-full bg-blue-950/80 border border-blue-700/60 rounded-lg p-2.5 text-xs text-blue-200 font-semibold outline-none"></select>
-          </div>
-          <div class="space-y-3">
-            <div>
-              <label class="block text-xs font-semibold text-gray-400 mb-1">Plan Title</label>
-              <input type="text" id="adminPlanTitle" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-semibold text-gray-400 mb-1">Price (&#8377; INR)</label>
-                <input type="number" id="adminPlanPrice" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-gray-400 mb-1">Video / Folder Badge</label>
-                <input type="text" id="adminPlanTag" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
-              </div>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-gray-400 mb-1">Card Photo URL</label>
-              <input type="url" id="adminPlanImage" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-gray-400 mb-1">Description</label>
-              <textarea id="adminPlanDesc" rows="2" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab 3: Payments -->
+        <!-- Tab 4: PAYMENTS & SUPPORT -->
         <div id="tabContent-payments" class="hidden space-y-4">
-          <h2 class="text-sm font-bold text-gray-100 border-b border-gray-800 pb-2">Payment Gateway & Support</h2>
+          <h2 class="text-sm font-bold text-gray-100 border-b border-gray-800 pb-2 flex items-center gap-2">
+            <i class="fas fa-wallet text-sky-400"></i> Payment Gateway & Support
+          </h2>
           <div>
             <label class="block text-xs font-semibold text-gray-400 mb-1">UPI ID (Receives Payments)</label>
-            <input type="text" id="adminUpiInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            <input type="text" id="adminUpiInput" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
           </div>
           <div>
             <label class="block text-xs font-semibold text-gray-400 mb-1">Telegram Support Link</label>
-            <input type="url" id="adminTelegramInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            <input type="url" id="adminTelegramInput" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
           </div>
         </div>
 
-        <!-- NEW Tab 4: UTR Submissions Review -->
-        <div id="tabContent-utr" class="hidden space-y-4">
-          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-            <h2 class="text-sm font-bold text-gray-100">Review Submitted Payments</h2>
-            <button onclick="fetchAdminUtrs()" class="text-xs text-blue-400 hover:underline"><i class="fas fa-sync-alt"></i> Refresh</button>
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs text-gray-300">
-              <thead class="bg-gray-900 text-gray-400 uppercase text-[10px]">
-                <tr>
-                  <th class="p-2.5">UTR / Ref No.</th>
-                  <th class="p-2.5">Plan</th>
-                  <th class="p-2.5">Amount</th>
-                  <th class="p-2.5">Status</th>
-                  <th class="p-2.5 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody id="utrTableBody" class="divide-y divide-gray-800">
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
+        <!-- Save Button for Form Tabs -->
         <div id="saveBtnContainer" class="mt-6 pt-4 border-t border-gray-800 flex justify-end">
-          <button id="saveConfigBtn" onclick="saveAllChanges()" class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-600/30 flex items-center gap-2">
+          <button id="saveConfigBtn" onclick="saveAllChanges()" class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-600/30 flex items-center gap-2 transition active:scale-95">
             <i class="fas fa-save"></i> Save All Changes
           </button>
         </div>
@@ -505,10 +604,12 @@
     </div>
   </div>
 
-  <!-- Client-Side Routing and Logic -->
+  <!-- Client-Side Routing and Dynamic Logic -->
   <script>
     let appConfig = null;
     let selectedCheckoutPlan = null;
+    let rawAdminSubmissions = [];
+    let currentFilter = 'ALL';
 
     function getDeviceToken() {
       let token = localStorage.getItem('device_token');
@@ -524,8 +625,15 @@
         const response = await fetch('/api/config');
         if (!response.ok) throw new Error("API offline");
         appConfig = await response.json();
+
+        // Register device token in background
+        fetch('/api/register-device', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ deviceToken: getDeviceToken() })
+        }).catch(() => {});
       } catch (err) {
-        console.warn("Using fallback cached data:", err);
+        console.warn("Using fallback data:", err);
       }
     }
 
@@ -557,7 +665,7 @@
           adminLoginEl.classList.remove("hidden");
         } else {
           adminDashEl.classList.remove("hidden");
-          switchAdminTab(tab || "theme");
+          switchAdminTab(tab || "dashboard");
         }
         return;
       }
@@ -655,40 +763,46 @@
       document.getElementById("checkoutPlanPrice").innerHTML = `&#8377;${selectedCheckoutPlan.price}`;
       document.getElementById("checkoutUpiText").textContent = appConfig.upiId;
 
-      const upiLink = `upi://pay?pa=${encodeURIComponent(appConfig.upiId)}&pn=${encodeURIComponent(appConfig.brandName)}&am=${selectedCheckoutPlan.price}&cu=INR&tn=${encodeURIComponent(selectedCheckoutPlan.title)}`;
-      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=8&data=${encodeURIComponent(upiLink)}`;
-      document.getElementById("checkoutQrImg").src = qrApiUrl;
-
-      document.getElementById("utrInput").value = "";
-      document.getElementById("utrStatusMsg").className = "hidden text-xs text-center font-medium p-3 rounded-xl border";
-    }
-
-    // Reliable Android UPI App Intent Launcher
-    function launchUPIApp(appType) {
-      if (!appConfig || !selectedCheckoutPlan) return;
-
       const pa = encodeURIComponent(appConfig.upiId);
       const pn = encodeURIComponent(appConfig.brandName);
       const am = selectedCheckoutPlan.price;
       const tn = encodeURIComponent(selectedCheckoutPlan.title);
 
       const standardUpi = `upi://pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
+      
+      // Real-time QR Code
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=8&data=${encodeURIComponent(standardUpi)}`;
+      document.getElementById("checkoutQrImg").src = qrApiUrl;
 
-      let intentUrl = standardUpi;
+      // Direct <a> tags that trigger Android OS UPI choosers cleanly
+      document.getElementById("payOtherUpiAnchor").href = standardUpi;
+      document.getElementById("payPhonePeAnchor").href = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=com.phonepe.app;end`;
+      document.getElementById("payGpayAnchor").href = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+      document.getElementById("payPaytmAnchor").href = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=net.one97.paytm;end`;
 
-      if (appType === 'phonepe') {
-        intentUrl = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=com.phonepe.app;end`;
-      } else if (appType === 'paytm') {
-        intentUrl = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=net.one97.paytm;end`;
-      } else if (appType === 'gpay') {
-        intentUrl = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+      document.getElementById("utrInput").value = "";
+      document.getElementById("utrStatusMsg").className = "hidden text-xs text-center font-medium p-3 rounded-xl border";
+    }
+
+    // Download QR Code direct function
+    async function downloadQrCode() {
+      const img = document.getElementById("checkoutQrImg");
+      if (!img.src) return;
+
+      try {
+        const response = await fetch(img.src);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = `UPI-Payment-QR-${selectedCheckoutPlan ? selectedCheckoutPlan.price : 'store'}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+      } catch {
+        window.open(img.src, '_blank');
       }
-
-      // Try intent first, fallback to standard UPI
-      window.location.href = intentUrl;
-      setTimeout(() => {
-        window.location.href = standardUpi;
-      }, 1000);
     }
 
     function copyUpiId() {
@@ -700,7 +814,6 @@
       });
     }
 
-    // Real UTR Submission Handler
     async function handleUtrSubmission(e) {
       e.preventDefault();
       const utr = document.getElementById("utrInput").value.trim();
@@ -772,7 +885,7 @@
               </div>
               <div>
                 <h3 class="text-sm font-bold text-gray-300">No Unlocked Video Collections Yet</h3>
-                <p class="text-xs text-gray-500 max-w-xs mx-auto mt-1">When your payment is confirmed, your purchased collections will appear here.</p>
+                <p class="text-xs text-gray-500 max-w-xs mx-auto mt-1">When your payment is confirmed by the admin, your purchased collections will appear here with direct vault access.</p>
               </div>
               <button onclick="navigateTo('/')" class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-500/20 transition">
                 Explore Available Video Packs
@@ -788,12 +901,12 @@
                 </div>
                 <div>
                   <h4 class="text-xs font-bold text-gray-100">${item.planTitle}</h4>
-                  <span class="text-[10px] text-gray-400">Unlocked &bull; UTR: ${item.utr}</span>
+                  <span class="text-[10px] text-gray-400">Verified &bull; UTR: ${item.utr}</span>
                 </div>
               </div>
-              <span class="px-3 py-1 bg-emerald-600 text-white font-bold text-xs rounded-lg shadow">
-                Access Vault
-              </span>
+              <a href="${item.vaultUrl}" target="_blank" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg shadow flex items-center gap-1.5 transition">
+                <i class="fas fa-external-link-alt text-[10px]"></i> Access Vault
+              </a>
             </div>
           `).join('');
         }
@@ -821,7 +934,7 @@
         const data = await res.json();
         if (data.success) {
           sessionStorage.setItem("admin_session_token", data.token);
-          navigateTo('/panel/?tab=theme');
+          navigateTo('/panel/?tab=dashboard');
         } else {
           errorMsg.textContent = data.error || "Invalid password";
           errorMsg.classList.remove("hidden");
@@ -841,8 +954,8 @@
     }
 
     function switchAdminTab(tabName) {
-      const validTabs = ["theme", "plans", "payments", "utr"];
-      const current = validTabs.includes(tabName) ? tabName : "theme";
+      const validTabs = ["dashboard", "utr", "plans", "theme", "payments"];
+      const current = validTabs.includes(tabName) ? tabName : "dashboard";
       document.getElementById("currentSlugDisplay").textContent = `/panel/?tab=${current}`;
 
       validTabs.forEach(t => {
@@ -858,12 +971,33 @@
       });
 
       const saveBtn = document.getElementById("saveBtnContainer");
-      if (current === 'utr') {
+      if (current === 'utr' || current === 'dashboard') {
         saveBtn.classList.add("hidden");
-        fetchAdminUtrs();
+        if (current === 'dashboard') fetchAdminStats();
+        if (current === 'utr') fetchAdminUtrs();
       } else {
         saveBtn.classList.remove("hidden");
         populateAdminInputs();
+      }
+    }
+
+    // Fetch and render Overview Dashboard metrics
+    async function fetchAdminStats() {
+      const token = sessionStorage.getItem("admin_session_token");
+      try {
+        const res = await fetch('/api/admin/stats', {
+          headers: { 'Authorization': token }
+        });
+        const stats = await res.json();
+
+        document.getElementById("statTotalUsers").textContent = stats.totalUsers || 0;
+        document.getElementById("statPremiumUsers").textContent = stats.premiumUsers || 0;
+        document.getElementById("statPendingOrders").textContent = stats.pendingOrders || 0;
+        document.getElementById("statTotalRevenue").innerHTML = `&#8377;${stats.totalRevenue || 0}`;
+        document.getElementById("statPaidOrders").textContent = `${stats.paidOrders || 0} completed orders`;
+        document.getElementById("pendingBadge").textContent = stats.pendingOrders || 0;
+      } catch (err) {
+        console.error("Failed to load admin stats:", err);
       }
     }
 
@@ -874,42 +1008,81 @@
           headers: { 'Authorization': token }
         });
         const data = await res.json();
-        const tbody = document.getElementById("utrTableBody");
-        tbody.innerHTML = "";
+        rawAdminSubmissions = data.submissions || [];
 
-        const pending = data.submissions.filter(s => s.status === 'PENDING').length;
+        const pending = rawAdminSubmissions.filter(s => s.status === 'PENDING').length;
         document.getElementById("pendingBadge").textContent = pending;
 
-        if (data.submissions.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No payment submissions yet.</td></tr>`;
-          return;
-        }
-
-        data.submissions.forEach(sub => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="p-2.5 font-mono text-blue-300 font-bold">${sub.utr}</td>
-            <td class="p-2.5">${sub.planTitle}</td>
-            <td class="p-2.5 font-bold text-emerald-400">&#8377;${sub.price}</td>
-            <td class="p-2.5">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${
-                sub.status === 'APPROVED' ? 'bg-emerald-950 text-emerald-400 border border-emerald-700/50' :
-                sub.status === 'REJECTED' ? 'bg-rose-950 text-rose-400 border border-rose-700/50' :
-                'bg-amber-950 text-amber-300 border border-amber-700/50'
-              }">${sub.status}</span>
-            </td>
-            <td class="p-2.5 text-right space-x-1">
-              ${sub.status === 'PENDING' ? `
-                <button onclick="actOnUtr('${sub.utr}', 'APPROVE')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-[10px] font-bold">Approve</button>
-                <button onclick="actOnUtr('${sub.utr}', 'REJECT')" class="px-2.5 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded text-[10px] font-bold">Reject</button>
-              ` : `<span class="text-gray-500 text-[10px]">Processed</span>`}
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
+        renderFilteredUtrs();
       } catch (err) {
         console.error(err);
       }
+    }
+
+    function filterUtrs(filterType) {
+      currentFilter = filterType;
+      ['ALL', 'PENDING', 'APPROVED', 'REJECTED'].forEach(type => {
+        const btn = document.getElementById(`filterBtn-${type}`);
+        if (type === filterType) {
+          btn.className = "px-3 py-1 rounded-lg font-bold bg-blue-600 text-white";
+        } else {
+          btn.className = "px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white";
+        }
+      });
+      renderFilteredUtrs();
+    }
+
+    function renderFilteredUtrs() {
+      const tbody = document.getElementById("utrTableBody");
+      tbody.innerHTML = "";
+
+      let filtered = rawAdminSubmissions;
+      if (currentFilter !== 'ALL') {
+        filtered = rawAdminSubmissions.filter(s => s.status === currentFilter);
+      }
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-gray-500"><i class="fas fa-inbox text-2xl mb-2 block"></i>No ${currentFilter.toLowerCase()} transactions found.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(sub => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-gray-800/40 transition";
+        tr.innerHTML = `
+          <td class="p-3 font-mono text-blue-300 font-bold flex items-center gap-2">
+            <span>${sub.utr}</span>
+            <button onclick="navigator.clipboard.writeText('${sub.utr}')" title="Copy UTR" class="text-gray-500 hover:text-white transition">
+              <i class="far fa-copy text-xs"></i>
+            </button>
+          </td>
+          <td class="p-3">${sub.planTitle}</td>
+          <td class="p-3 font-bold text-emerald-400">&#8377;${sub.price}</td>
+          <td class="p-3">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold ${
+              sub.status === 'APPROVED' ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-600/40' :
+              sub.status === 'REJECTED' ? 'bg-rose-950/80 text-rose-400 border border-rose-600/40' :
+              'bg-amber-950/80 text-amber-300 border border-amber-600/40'
+            }">
+              <i class="fas ${
+                sub.status === 'APPROVED' ? 'fa-check-circle' :
+                sub.status === 'REJECTED' ? 'fa-times-circle' :
+                'fa-clock animate-pulse'
+              }"></i>
+              ${sub.status}
+            </span>
+          </td>
+          <td class="p-3 text-right space-x-1.5">
+            ${sub.status === 'PENDING' ? `
+              <button onclick="actOnUtr('${sub.utr}', 'APPROVE')" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition shadow"><i class="fas fa-check"></i> Approve</button>
+              <button onclick="actOnUtr('${sub.utr}', 'REJECT')" class="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-xs font-bold transition shadow"><i class="fas fa-times"></i> Reject</button>
+            ` : `
+              <span class="text-gray-500 text-xs italic">${sub.status.toLowerCase()}</span>
+            `}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
     }
 
     async function actOnUtr(utr, action) {
@@ -925,6 +1098,7 @@
         });
         if (res.ok) {
           fetchAdminUtrs();
+          fetchAdminStats();
         }
       } catch (err) {
         alert("Action failed: " + err.message);
@@ -961,6 +1135,7 @@
       document.getElementById("adminPlanPrice").value = plan.price;
       document.getElementById("adminPlanTag").value = plan.tag;
       document.getElementById("adminPlanImage").value = plan.image;
+      document.getElementById("adminPlanVaultUrl").value = plan.vaultUrl || "";
       document.getElementById("adminPlanDesc").value = plan.desc;
     }
 
@@ -979,6 +1154,7 @@
       appConfig.plans[idx].price = Number(document.getElementById("adminPlanPrice").value);
       appConfig.plans[idx].tag = document.getElementById("adminPlanTag").value.trim();
       appConfig.plans[idx].image = document.getElementById("adminPlanImage").value.trim();
+      appConfig.plans[idx].vaultUrl = document.getElementById("adminPlanVaultUrl").value.trim();
       appConfig.plans[idx].desc = document.getElementById("adminPlanDesc").value.trim();
 
       const token = sessionStorage.getItem("admin_session_token");
@@ -993,7 +1169,7 @@
           body: JSON.stringify(appConfig)
         });
         if (!res.ok) throw new Error("Save error");
-        alert("Changes saved and live globally on the server!");
+        alert("Configuration saved and live!");
       } catch (err) {
         alert("Failed to save changes: " + err.message);
       } finally {
