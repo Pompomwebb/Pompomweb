@@ -9,11 +9,16 @@
 </head>
 <body class="bg-[#070b13] text-white min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
 
+  <!-- ================= SLEEK TOAST NOTIFICATION CONTAINER ================= -->
+  <div id="toast" class="fixed top-5 right-5 z-50 transform transition-all duration-300 -translate-y-16 opacity-0 pointer-events-none flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border text-xs font-bold backdrop-blur-md">
+    <i id="toastIcon" class="text-base"></i>
+    <span id="toastMsg">Notification message</span>
+  </div>
+
   <!-- ================= 1. STOREFRONT VIEW ================= -->
   <div id="storefrontView" class="flex-1 flex flex-col">
     <header class="border-b border-gray-800/80 bg-[#0d1322]/90 backdrop-blur sticky top-0 z-40 px-4 py-3">
       <div class="max-w-xl w-full mx-auto flex justify-between items-center">
-        <!-- Logo & Title -->
         <div class="flex items-center gap-3">
           <img id="siteLogo" src="" alt="Logo" class="w-9 h-9 rounded-xl object-cover ring-2 ring-blue-500/40 shadow-lg shadow-blue-500/20">
           <div>
@@ -22,7 +27,6 @@
           </div>
         </div>
 
-        <!-- Right Header -->
         <div class="flex items-center gap-2.5">
           <a id="navTelegramLink" href="#" target="_blank" class="w-9 h-9 flex items-center justify-center bg-[#0e1626] border border-sky-500/40 hover:border-sky-400 text-sky-400 rounded-xl text-base shadow-sm transition">
             <i class="fab fa-telegram-plane"></i>
@@ -56,7 +60,6 @@
           <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-full flex items-center gap-1.5"><span class="bg-rose-600 text-[9px] px-1 rounded font-black">4K</span> 4K Ultra HD</span>
         </div>
 
-        <!-- Hero Buttons -->
         <div class="grid grid-cols-2 gap-3 pt-3">
           <button onclick="scrollToGrid()" class="py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition active:scale-95">
             <i class="fas fa-play-circle text-sm"></i> Explore 8,500+ Videos
@@ -79,7 +82,6 @@
         </span>
       </div>
 
-      <!-- 7 Cards Dynamic Container -->
       <div id="plansContainer" class="space-y-5"></div>
 
       <!-- Bottom Lifetime VIP Card -->
@@ -156,7 +158,7 @@
   </div>
 
 
-  <!-- ================= 2. CHECKOUT VIEW WITH QR DOWNLOAD & FIXED UPI ================= -->
+  <!-- ================= 2. CHECKOUT VIEW WITH WORKING APP REDIRECTS ================= -->
   <div id="checkoutView" class="hidden min-h-screen flex flex-col bg-[#070b13]">
     <header class="border-b border-gray-800/80 bg-[#0d1322]/90 backdrop-blur sticky top-0 z-40 px-4 py-3">
       <div class="max-w-xl w-full mx-auto flex items-center justify-between">
@@ -170,7 +172,6 @@
     </header>
 
     <main class="flex-1 max-w-xl w-full mx-auto px-4 py-6 space-y-6">
-      <!-- Plan Summary Card -->
       <div class="bg-[#0f172a] border border-blue-500/30 rounded-2xl p-5 shadow-xl relative overflow-hidden">
         <div class="flex justify-between items-start gap-4">
           <div>
@@ -192,7 +193,7 @@
         </div>
       </div>
 
-      <!-- Step 1: QR & App Launchers -->
+      <!-- Step 1: Scan QR Code & Native Direct App Links -->
       <div class="bg-[#0d1322] border border-gray-800 rounded-2xl p-6 text-center space-y-4 shadow-xl">
         <div class="flex items-center justify-between border-b border-gray-800/80 pb-3 text-left">
           <div>
@@ -200,35 +201,37 @@
               <span class="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white">1</span>
               Scan Generated QR Code
             </h3>
-            <p class="text-[11px] text-gray-400 ml-7">Scan on any UPI App or click below to launch</p>
+            <p class="text-[11px] text-gray-400 ml-7">Scan on any UPI App or click below to launch payment</p>
           </div>
         </div>
 
-        <!-- Generated QR Code Image -->
         <div class="flex flex-col items-center justify-center py-2 space-y-3">
           <div class="p-3 bg-white rounded-2xl shadow-xl border-4 border-blue-500/20 inline-block">
             <img id="checkoutQrImg" src="" alt="UPI QR Code" class="w-48 h-48 sm:w-56 sm:h-56 object-contain">
           </div>
 
-          <!-- NEW: Download QR Option -->
           <button onclick="downloadQrCode()" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-sky-400 border border-gray-700 text-xs font-bold rounded-xl flex items-center gap-2 transition active:scale-95 shadow">
             <i class="fas fa-download"></i> Download QR Code
           </button>
         </div>
 
-        <!-- Working Direct <a> UPI App Redirects -->
+        <!-- FIXED: Direct Native App URI Schemes (No Play Store redirects) -->
         <div class="pt-3 border-t border-gray-800/80">
           <span class="text-[11px] text-gray-400 font-medium block mb-3">Or click your UPI app to pay directly:</span>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <!-- PhonePe -->
             <a id="payPhonePeAnchor" href="#" class="py-3 px-3 bg-[#172033] hover:bg-[#1f2b45] border border-purple-500/30 text-purple-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
               <i class="fas fa-mobile-alt text-purple-400"></i> PhonePe
             </a>
+            <!-- Google Pay (Tez scheme) -->
             <a id="payGpayAnchor" href="#" class="py-3 px-3 bg-[#172033] hover:bg-[#1f2b45] border border-blue-500/30 text-blue-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
               <i class="fab fa-google-pay text-base text-blue-400"></i> GPay
             </a>
+            <!-- Paytm -->
             <a id="payPaytmAnchor" href="#" class="py-3 px-3 bg-[#172033] hover:bg-[#1f2b45] border border-sky-500/30 text-sky-300 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow">
               <i class="fas fa-wallet text-sky-400"></i> Paytm
             </a>
+            <!-- Universal System Sheet -->
             <a id="payOtherUpiAnchor" href="#" class="py-3 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:brightness-110 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 shadow-md shadow-blue-600/30">
               <i class="fas fa-bolt text-yellow-300"></i> Other UPI
             </a>
@@ -300,7 +303,6 @@
         <h1 class="text-xl font-bold text-gray-100">My Access & Unlocked Videos</h1>
       </div>
 
-      <!-- Device Token Card -->
       <div class="bg-[#0f172a] border border-gray-800 rounded-xl p-3.5 flex items-center justify-between">
         <div class="flex items-center gap-2 text-xs">
           <i class="fas fa-mobile-alt text-emerald-400 text-base"></i>
@@ -315,7 +317,6 @@
         </div>
       </div>
 
-      <!-- Unlocked List -->
       <section class="bg-[#0d1322] border border-gray-800 rounded-2xl p-6 text-center space-y-4 shadow-lg">
         <div class="flex justify-between items-center border-b border-gray-800/80 pb-3">
           <h2 class="text-sm font-bold text-gray-200 flex items-center gap-2">
@@ -323,7 +324,6 @@
           </h2>
           <span id="unlockedCountBadge" class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded-md font-semibold">0 Collections</span>
         </div>
-
         <div id="unlockedListContainer" class="py-4 space-y-3"></div>
       </section>
     </main>
@@ -362,7 +362,7 @@
   </div>
 
 
-  <!-- ================= 5. FULL ADMIN CONTROL PANEL WITH DASHBOARD ================= -->
+  <!-- ================= 5. FULL ADMIN CONTROL PANEL WITH DASHBOARD & STATUS MANAGER ================= -->
   <div id="adminDashboardView" class="hidden min-h-screen flex flex-col bg-[#0b0f19]">
     <header class="border-b border-gray-800 bg-[#0d1322] px-6 py-4 flex justify-between items-center sticky top-0 z-30">
       <div class="flex items-center gap-3">
@@ -386,7 +386,6 @@
     </header>
 
     <div class="max-w-6xl w-full mx-auto p-4 sm:p-6 flex-1 flex flex-col md:flex-row gap-6">
-      <!-- Admin Sidebar Navigation -->
       <aside class="w-full md:w-60 space-y-1">
         <button onclick="navigateTo('/panel/?tab=dashboard')" id="tabBtn-dashboard" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3">
           <i class="fas fa-tachometer-alt"></i> Overview Dashboard
@@ -406,7 +405,6 @@
         </button>
       </aside>
 
-      <!-- Main Admin Panel Content -->
       <section class="flex-1 bg-[#111827] border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-xl overflow-hidden">
         
         <!-- Tab 0: OVERVIEW DASHBOARD -->
@@ -423,7 +421,6 @@
             </button>
           </div>
 
-          <!-- 4 Core Metric Cards -->
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <div class="bg-[#0e1626] border border-blue-500/20 rounded-2xl p-4 space-y-2">
               <div class="flex justify-between items-center text-blue-400 text-sm">
@@ -461,35 +458,18 @@
               <div id="statPaidOrders" class="text-[10px] text-gray-500">0 completed payments</div>
             </div>
           </div>
-
-          <!-- Quick Navigation Banner -->
-          <div class="bg-gradient-to-r from-blue-950/60 to-indigo-950/60 border border-blue-700/30 rounded-2xl p-4 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-blue-600/30 flex items-center justify-center text-blue-400 text-lg">
-                <i class="fas fa-bell"></i>
-              </div>
-              <div>
-                <h4 class="text-xs font-bold text-gray-200">Pending Payment Queue</h4>
-                <p class="text-[11px] text-gray-400">Check and approve customer UTR transactions to grant vault access.</p>
-              </div>
-            </div>
-            <button onclick="navigateTo('/panel/?tab=utr')" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow transition shrink-0">
-              Open UTR Approvals &rarr;
-            </button>
-          </div>
         </div>
 
-        <!-- Tab 1: UTR APPROVALS (With Filter & Icons) -->
+        <!-- Tab 1: UTR APPROVALS (With Manage Button & Action Icons) -->
         <div id="tabContent-utr" class="hidden space-y-4">
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-gray-800 pb-3">
             <div>
               <h2 class="text-base font-bold text-gray-100 flex items-center gap-2">
                 <i class="fas fa-shield-alt text-emerald-400"></i> UTR Payment Verification
               </h2>
-              <p class="text-xs text-gray-400">Match the submitted 12-digit UTR with your bank/UPI app and approve</p>
+              <p class="text-xs text-gray-400">Match the submitted 12-digit UTR with your bank/UPI app and manage status</p>
             </div>
             
-            <!-- Filter Pills -->
             <div class="flex items-center gap-1.5 text-xs bg-gray-900 p-1 rounded-xl border border-gray-800">
               <button onclick="filterUtrs('ALL')" id="filterBtn-ALL" class="px-3 py-1 rounded-lg font-bold bg-blue-600 text-white">All</button>
               <button onclick="filterUtrs('PENDING')" id="filterBtn-PENDING" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Pending</button>
@@ -514,7 +494,7 @@
           </div>
         </div>
 
-        <!-- Tab 2: EDIT 7 PLANS (With Vault URL delivery link) -->
+        <!-- Tab 2: EDIT 7 PLANS -->
         <div id="tabContent-plans" class="hidden space-y-4">
           <div class="flex justify-between items-center border-b border-gray-800 pb-2">
             <h2 class="text-sm font-bold text-gray-100 flex items-center gap-2">
@@ -545,13 +525,11 @@
               <label class="block text-xs font-semibold text-gray-400 mb-1">Card Photo URL</label>
               <input type="url" id="adminPlanImage" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-blue-500">
             </div>
-            <!-- Automated delivery vault URL -->
             <div>
               <label class="block text-xs font-semibold text-emerald-400 mb-1">
                 <i class="fas fa-link"></i> Unlocked Vault URL (Delivered upon approval)
               </label>
               <input type="url" id="adminPlanVaultUrl" placeholder="https://mega.nz/... or https://t.me/..." class="w-full bg-gray-900 border border-emerald-500/40 rounded-xl p-2.5 text-xs text-white outline-none focus:border-emerald-500">
-              <span class="text-[10px] text-gray-500 mt-0.5 block">When admin approves the user's UTR, their "Access Vault" button will open this secret link.</span>
             </div>
             <div>
               <label class="block text-xs font-semibold text-gray-400 mb-1">Description</label>
@@ -594,7 +572,6 @@
           </div>
         </div>
 
-        <!-- Save Button for Form Tabs -->
         <div id="saveBtnContainer" class="mt-6 pt-4 border-t border-gray-800 flex justify-end">
           <button id="saveConfigBtn" onclick="saveAllChanges()" class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-600/30 flex items-center gap-2 transition active:scale-95">
             <i class="fas fa-save"></i> Save All Changes
@@ -604,12 +581,77 @@
     </div>
   </div>
 
-  <!-- Client-Side Routing and Dynamic Logic -->
+  <!-- ================= 6. MANAGE UTR STATUS MODAL ================= -->
+  <dialog id="manageUtrModal" class="bg-[#111827] text-white rounded-2xl border border-gray-700 p-6 max-w-sm w-11/12 backdrop:bg-black/80 shadow-2xl">
+    <div class="flex justify-between items-center pb-3 border-b border-gray-800">
+      <h3 class="text-sm font-bold flex items-center gap-2">
+        <i class="fas fa-sliders-h text-blue-500"></i> Manage Transaction
+      </h3>
+      <button onclick="document.getElementById('manageUtrModal').close()" class="text-gray-400 hover:text-white text-xl leading-none">&times;</button>
+    </div>
+
+    <div class="space-y-4 mt-4 text-xs">
+      <div class="bg-gray-900/80 p-3 rounded-xl border border-gray-800 space-y-1">
+        <div class="text-gray-400">UTR: <span id="modalUtrText" class="font-mono text-blue-300 font-bold"></span></div>
+        <div class="text-gray-400">Plan: <span id="modalPlanText" class="text-white font-semibold"></span></div>
+        <div class="text-gray-400">Amount: <span id="modalAmountText" class="text-emerald-400 font-bold"></span></div>
+      </div>
+
+      <div>
+        <label class="block font-semibold text-gray-300 mb-1.5">Change Status</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" onclick="setUtrStatus('APPROVED')" class="py-2 px-2 rounded-xl bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-600/50 text-emerald-300 font-bold transition flex flex-col items-center gap-1">
+            <i class="fas fa-check-circle"></i> Approve
+          </button>
+          <button type="button" onclick="setUtrStatus('PENDING')" class="py-2 px-2 rounded-xl bg-amber-950/80 hover:bg-amber-900 border border-amber-600/50 text-amber-300 font-bold transition flex flex-col items-center gap-1">
+            <i class="fas fa-clock"></i> Pending
+          </button>
+          <button type="button" onclick="setUtrStatus('REJECTED')" class="py-2 px-2 rounded-xl bg-rose-950/80 hover:bg-rose-900 border border-rose-600/50 text-rose-300 font-bold transition flex flex-col items-center gap-1">
+            <i class="fas fa-times-circle"></i> Reject
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-gray-800">
+        <button type="button" onclick="deleteUtrSubmission()" class="w-full py-2.5 bg-gray-800 hover:bg-rose-950/80 hover:border-rose-700/60 border border-gray-700 text-rose-400 font-bold rounded-xl flex items-center justify-center gap-2 transition">
+          <i class="fas fa-trash-alt"></i> Delete Submission
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Client-Side Logic & Dynamic Features -->
   <script>
     let appConfig = null;
     let selectedCheckoutPlan = null;
     let rawAdminSubmissions = [];
     let currentFilter = 'ALL';
+    let activeManageUtr = null;
+
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toastMsg');
+      const icon = document.getElementById('toastIcon');
+
+      msg.textContent = message;
+
+      if (type === 'success') {
+        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border text-xs font-bold backdrop-blur-md bg-emerald-950/90 border-emerald-600/50 text-emerald-300";
+        icon.className = "fas fa-check-circle text-base text-emerald-400";
+      } else if (type === 'error') {
+        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border text-xs font-bold backdrop-blur-md bg-rose-950/90 border-rose-600/50 text-rose-300";
+        icon.className = "fas fa-exclamation-circle text-base text-rose-400";
+      } else {
+        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border text-xs font-bold backdrop-blur-md bg-blue-950/90 border-blue-600/50 text-blue-300";
+        icon.className = "fas fa-info-circle text-base text-blue-400";
+      }
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('-translate-y-16', 'opacity-0');
+      }, 3000);
+    }
 
     function getDeviceToken() {
       let token = localStorage.getItem('device_token');
@@ -626,7 +668,6 @@
         if (!response.ok) throw new Error("API offline");
         appConfig = await response.json();
 
-        // Register device token in background
         fetch('/api/register-device', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -770,21 +811,19 @@
 
       const standardUpi = `upi://pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
       
-      // Real-time QR Code
       const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=8&data=${encodeURIComponent(standardUpi)}`;
       document.getElementById("checkoutQrImg").src = qrApiUrl;
 
-      // Direct <a> tags that trigger Android OS UPI choosers cleanly
+      // FIXED Direct Application URI Schemes
       document.getElementById("payOtherUpiAnchor").href = standardUpi;
-      document.getElementById("payPhonePeAnchor").href = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=com.phonepe.app;end`;
-      document.getElementById("payGpayAnchor").href = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
-      document.getElementById("payPaytmAnchor").href = `intent://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}#Intent;scheme=upi;package=net.one97.paytm;end`;
+      document.getElementById("payPhonePeAnchor").href = `phonepe://pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
+      document.getElementById("payGpayAnchor").href = `tez://upi/pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
+      document.getElementById("payPaytmAnchor").href = `paytmmp://pay?pa=${pa}&pn=${pn}&am=${am}&cu=INR&tn=${tn}`;
 
       document.getElementById("utrInput").value = "";
       document.getElementById("utrStatusMsg").className = "hidden text-xs text-center font-medium p-3 rounded-xl border";
     }
 
-    // Download QR Code direct function
     async function downloadQrCode() {
       const img = document.getElementById("checkoutQrImg");
       if (!img.src) return;
@@ -800,6 +839,7 @@
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(blobUrl);
+        showToast("QR Code downloaded successfully!", "success");
       } catch {
         window.open(img.src, '_blank');
       }
@@ -810,6 +850,7 @@
       navigator.clipboard.writeText(appConfig.upiId).then(() => {
         const label = document.getElementById("copyBtnLabel");
         label.textContent = "Copied! ";
+        showToast("UPI ID copied to clipboard!", "info");
         setTimeout(() => { label.textContent = "Copy"; }, 2000);
       });
     }
@@ -847,14 +888,17 @@
         if (data.status === 'APPROVED') {
           statusMsg.textContent = "Payment Verified & Approved! Unlocking your access...";
           statusMsg.className = "text-emerald-400 bg-emerald-950/60 border-emerald-800 text-xs text-center font-bold p-3 rounded-xl border block";
+          showToast("Payment Verified!", "success");
           setTimeout(() => navigateTo('/access'), 1200);
         } else {
           statusMsg.innerHTML = `<i class="fas fa-clock text-amber-400 mr-1"></i> UTR ${utr} submitted for verification. As soon as the admin confirms the funds in the bank account, your collection will unlock automatically on your device!`;
           statusMsg.className = "text-amber-300 bg-amber-950/60 border-amber-800 text-xs text-center font-medium p-3 rounded-xl border block leading-relaxed";
+          showToast("UTR submitted for admin verification", "info");
         }
       } catch (err) {
         statusMsg.textContent = "Failed to submit UTR: " + err.message;
         statusMsg.className = "text-rose-400 bg-rose-950/60 border-rose-800 text-xs text-center font-medium p-3 rounded-xl border block";
+        showToast("Submission failed: " + err.message, "error");
       } finally {
         btn.disabled = false;
         btn.innerHTML = `<i class="fas fa-check-circle"></i> Verify & Unlock Access Instantly`;
@@ -934,10 +978,12 @@
         const data = await res.json();
         if (data.success) {
           sessionStorage.setItem("admin_session_token", data.token);
+          showToast("Welcome to Admin Console", "success");
           navigateTo('/panel/?tab=dashboard');
         } else {
           errorMsg.textContent = data.error || "Invalid password";
           errorMsg.classList.remove("hidden");
+          showToast("Incorrect password", "error");
         }
       } catch {
         errorMsg.textContent = "Server error. Try again.";
@@ -950,6 +996,7 @@
 
     function adminLogout() {
       sessionStorage.removeItem("admin_session_token");
+      showToast("Logged out successfully", "info");
       navigateTo('/panel');
     }
 
@@ -981,7 +1028,6 @@
       }
     }
 
-    // Fetch and render Overview Dashboard metrics
     async function fetchAdminStats() {
       const token = sessionStorage.getItem("admin_session_token");
       try {
@@ -997,7 +1043,7 @@
         document.getElementById("statPaidOrders").textContent = `${stats.paidOrders || 0} completed orders`;
         document.getElementById("pendingBadge").textContent = stats.pendingOrders || 0;
       } catch (err) {
-        console.error("Failed to load admin stats:", err);
+        console.error(err);
       }
     }
 
@@ -1052,7 +1098,7 @@
         tr.innerHTML = `
           <td class="p-3 font-mono text-blue-300 font-bold flex items-center gap-2">
             <span>${sub.utr}</span>
-            <button onclick="navigator.clipboard.writeText('${sub.utr}')" title="Copy UTR" class="text-gray-500 hover:text-white transition">
+            <button onclick="navigator.clipboard.writeText('${sub.utr}'); showToast('UTR copied', 'info')" title="Copy UTR" class="text-gray-500 hover:text-white transition">
               <i class="far fa-copy text-xs"></i>
             </button>
           </td>
@@ -1072,20 +1118,56 @@
               ${sub.status}
             </span>
           </td>
-          <td class="p-3 text-right space-x-1.5">
-            ${sub.status === 'PENDING' ? `
-              <button onclick="actOnUtr('${sub.utr}', 'APPROVE')" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition shadow"><i class="fas fa-check"></i> Approve</button>
-              <button onclick="actOnUtr('${sub.utr}', 'REJECT')" class="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-xs font-bold transition shadow"><i class="fas fa-times"></i> Reject</button>
-            ` : `
-              <span class="text-gray-500 text-xs italic">${sub.status.toLowerCase()}</span>
-            `}
+          <td class="p-3 text-right">
+            <!-- Manage Status Button -->
+            <button onclick="openManageUtrModal('${sub.utr}')" class="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-sky-400 border border-gray-700 font-bold rounded-lg text-xs flex items-center gap-1.5 ml-auto transition shadow">
+              <i class="fas fa-edit"></i> Manage
+            </button>
           </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    async function actOnUtr(utr, action) {
+    function openManageUtrModal(utr) {
+      activeManageUtr = rawAdminSubmissions.find(s => s.utr === utr);
+      if (!activeManageUtr) return;
+
+      document.getElementById("modalUtrText").textContent = activeManageUtr.utr;
+      document.getElementById("modalPlanText").textContent = activeManageUtr.planTitle;
+      document.getElementById("modalAmountText").innerHTML = `&#8377;${activeManageUtr.price}`;
+
+      document.getElementById("manageUtrModal").showModal();
+    }
+
+    async function setUtrStatus(newStatus) {
+      if (!activeManageUtr) return;
+      const token = sessionStorage.getItem("admin_session_token");
+
+      try {
+        const res = await fetch('/api/admin/utr-action', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': token
+          },
+          body: JSON.stringify({ utr: activeManageUtr.utr, action: newStatus })
+        });
+        if (res.ok) {
+          document.getElementById("manageUtrModal").close();
+          showToast(`Status updated to ${newStatus}`, "success");
+          fetchAdminUtrs();
+          fetchAdminStats();
+        }
+      } catch (err) {
+        showToast("Update failed: " + err.message, "error");
+      }
+    }
+
+    async function deleteUtrSubmission() {
+      if (!activeManageUtr) return;
+      if (!confirm(`Delete UTR ${activeManageUtr.utr} permanently?`)) return;
+
       const token = sessionStorage.getItem("admin_session_token");
       try {
         const res = await fetch('/api/admin/utr-action', {
@@ -1094,14 +1176,16 @@
             'Content-Type': 'application/json',
             'Authorization': token
           },
-          body: JSON.stringify({ utr, action })
+          body: JSON.stringify({ utr: activeManageUtr.utr, action: 'DELETE' })
         });
         if (res.ok) {
+          document.getElementById("manageUtrModal").close();
+          showToast("Submission deleted permanently", "info");
           fetchAdminUtrs();
           fetchAdminStats();
         }
       } catch (err) {
-        alert("Action failed: " + err.message);
+        showToast("Delete failed: " + err.message, "error");
       }
     }
 
@@ -1169,9 +1253,10 @@
           body: JSON.stringify(appConfig)
         });
         if (!res.ok) throw new Error("Save error");
-        alert("Configuration saved and live!");
+        // Sleek toast replaces browser alert
+        showToast("Configuration saved and live globally!", "success");
       } catch (err) {
-        alert("Failed to save changes: " + err.message);
+        showToast("Failed to save changes: " + err.message, "error");
       } finally {
         btn.disabled = false;
         btn.innerHTML = `<i class="fas fa-save"></i> Save All Changes`;

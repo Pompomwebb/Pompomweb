@@ -33,7 +33,6 @@ function writeData(data) {
 app.get('/api/config', (req, res) => {
   const data = readData();
   const publicData = { ...data };
-  // Hide secret vault links and submissions list from unverified visitors
   publicData.plans = (publicData.plans || []).map(p => {
     const safePlan = { ...p };
     delete safePlan.vaultUrl;
@@ -44,7 +43,7 @@ app.get('/api/config', (req, res) => {
   res.json(publicData);
 });
 
-// Public: Register Device Token Visit
+// Public: Register Device Token
 app.post('/api/register-device', (req, res) => {
   const { deviceToken } = req.body;
   if (!deviceToken) return res.status(400).json({ error: 'Device token required' });
@@ -93,7 +92,7 @@ app.post('/api/submit-utr', (req, res) => {
   res.json({ success: true, status: 'PENDING', message: 'UTR submitted for admin approval.' });
 });
 
-// Public: Check User Access (Delivers Vault URL if Approved)
+// Public: User Access Check
 app.get('/api/user-access', (req, res) => {
   const { deviceToken } = req.query;
   if (!deviceToken) return res.json({ unlocked: [] });
@@ -149,8 +148,7 @@ app.get('/api/admin/stats', checkAdminAuth, (req, res) => {
     premiumUsers: premiumDevices.size,
     paidOrders: approved.length,
     pendingOrders: pending.length,
-    totalRevenue: totalRevenue,
-    recentOrders: submissions.slice(0, 5)
+    totalRevenue: totalRevenue
   });
 });
 
@@ -171,18 +169,24 @@ app.get('/api/admin/utrs', checkAdminAuth, (req, res) => {
   res.json({ submissions: data.submissions || [] });
 });
 
-// Admin: Approve / Reject UTR
+// Admin: Manage UTR Status & Deletion
 app.post('/api/admin/utr-action', checkAdminAuth, (req, res) => {
-  const { utr, action } = req.body;
+  const { utr, action } = req.body; // action: 'APPROVED' | 'PENDING' | 'REJECTED' | 'DELETE'
   const data = readData();
+
+  if (action === 'DELETE') {
+    data.submissions = data.submissions.filter(s => s.utr !== utr);
+    writeData(data);
+    return res.json({ success: true, message: 'Submission deleted permanently' });
+  }
 
   const item = data.submissions.find(s => s.utr === utr);
   if (!item) return res.status(404).json({ error: 'UTR record not found' });
 
-  item.status = action === 'APPROVE' ? 'APPROVED' : 'REJECTED';
+  item.status = action;
   writeData(data);
 
-  res.json({ success: true, message: `UTR marked as ${item.status}` });
+  res.json({ success: true, message: `UTR status changed to ${action}` });
 });
 
 app.get('*', (req, res) => {
