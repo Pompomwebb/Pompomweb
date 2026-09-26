@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIP 4K VAULT - Web Admin & Store</title>
+  <title>VIP 4K VAULT - POM WEB</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Ambient glow background matching login screen */
     body {
       background-color: #060813;
       background-image: 
@@ -22,7 +23,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-card {
-      background: linear-gradient(145deg, rgba(16, 21, 38, 0.88), rgba(9, 12, 24, 0.94));
+      background: linear-gradient(145deg, rgba(16, 21, 38, 0.85), rgba(9, 12, 24, 0.92));
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -31,22 +32,13 @@
       background: rgba(13, 17, 32, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    /* Web Admin Theme */
-    .webadmin-bg {
-      background-color: #0b0c10;
-    }
-    .webadmin-card {
-      background-color: #12141a;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .webadmin-card:hover {
-      background-color: #161820;
-    }
-    .webadmin-active-item {
-      background: #171a24;
-      border: 1px solid rgba(59, 130, 246, 0.25);
+    .admin-active-item {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
     }
   </style>
 </head>
@@ -375,23 +367,23 @@
   </div>
 
 
-  <!-- ================= 4. CLEAN WEB ADMIN LOGIN VIEW (USERNAME & PASSWORD) ================= -->
+  <!-- ================= 4. POM WEB LOGIN VIEW (WITHOUT DEFAULT TEXT) ================= -->
   <div id="adminLoginView" class="hidden min-h-screen flex items-center justify-center p-4">
     <div class="glass-card rounded-3xl p-7 sm:p-9 max-w-sm w-full space-y-6 shadow-2xl border border-purple-500/30">
       
-      <!-- Brand Header -->
+      <!-- Brand Header with POM WEB -->
       <div class="text-center space-y-2">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/30">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/30">
           <i class="fas fa-shield-alt text-white"></i>
         </div>
         <div class="flex items-center justify-center gap-2 pt-1">
-          <h2 class="text-xl font-black text-white tracking-wide">WEB ADMIN</h2>
+          <h2 class="text-xl font-black text-white tracking-wide">POM WEB</h2>
           <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-extrabold rounded-md text-white tracking-wide">CONSOLE</span>
         </div>
         <p class="text-xs text-gray-400">Sign in to manage your online store & payments</p>
       </div>
 
-      <!-- Login Form -->
+      <!-- Login Form: default: admin123 is completely removed -->
       <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-xs">
         <div>
           <label class="block text-gray-300 mb-1.5 font-semibold">Username</label>
@@ -409,7 +401,8 @@
             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400 pointer-events-none">
               <i class="fas fa-lock text-xs"></i>
             </span>
-            <input type="password" id="adminPasswordInput" class="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-10 py-3 text-white outline-none focus:border-blue-500 text-xs transition" placeholder="Password (default: admin123)" required>
+            <!-- Clean Password Input without default credential hints -->
+            <input type="password" id="adminPasswordInput" class="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-10 py-3 text-white outline-none focus:border-blue-500 text-xs transition" placeholder="Password" required>
             <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-white">
               <i id="passwordEyeIcon" class="fas fa-eye text-xs"></i>
             </button>
@@ -432,33 +425,33 @@
   </div>
 
 
-  <!-- ================= 5. STREAMLINED WEB STORE ADMIN CONSOLE ================= -->
-  <div id="adminDashboardView" class="hidden min-h-screen flex flex-col webadmin-bg text-gray-200">
+  <!-- ================= 5. POM WEB ADMIN CONSOLE (THEMED TO MATCH LOGIN PAGE) ================= -->
+  <div id="adminDashboardView" class="hidden min-h-screen flex flex-col text-gray-200">
     
-    <!-- Top Navigation Header -->
-    <header class="border-b border-white/[0.06] bg-[#0c0d12] px-4 py-3 flex justify-between items-center sticky top-0 z-40">
+    <!-- Top Glass Navigation Header -->
+    <header class="glass-header px-4 py-3 flex justify-between items-center sticky top-0 z-40 shadow-xl">
       <div class="flex items-center gap-3">
         <!-- Sidebar Toggle Icon (☰) -->
-        <button onclick="toggleAdminDrawer()" class="w-9 h-9 rounded-lg hover:bg-white/[0.05] flex items-center justify-center text-gray-300 text-lg transition">
+        <button onclick="toggleAdminDrawer()" class="w-9 h-9 rounded-xl hover:bg-white/[0.08] flex items-center justify-center text-gray-300 text-lg transition border border-white/10">
           <i class="fas fa-bars"></i>
         </button>
-        <!-- Rebranded Header (Store/Web, No Bot) -->
+        <!-- POM WEB Header with Shield Icon & Blue Badge -->
         <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-sm">
-            <i class="fas fa-store"></i>
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center text-sm shadow-md shadow-blue-500/30">
+            <i class="fas fa-shield-alt"></i>
           </div>
-          <span class="font-black text-sm tracking-wider text-white">WEB ADMIN</span>
-          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-black rounded text-white tracking-wider">CONSOLE</span>
+          <span class="font-black text-sm tracking-wider text-white">POM WEB</span>
+          <span class="px-2 py-0.5 bg-blue-600 text-[10px] font-black rounded-md text-white tracking-wider">CONSOLE</span>
         </div>
       </div>
 
-      <!-- Top Right: Notification Bell with count & User Avatar -->
+      <!-- Top Right: Notification Bell & User Avatar -->
       <div class="flex items-center gap-3.5">
         <button onclick="switchAdminTab('utr')" class="text-gray-400 hover:text-white text-sm relative" title="Pending Orders">
           <i class="fas fa-bell"></i>
-          <span id="topNotificationDot" class="hidden absolute -top-1 -right-1 w-2 h-2 bg-amber-400 rounded-full"></span>
+          <span id="topNotificationDot" class="hidden absolute -top-1 -right-1 w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
         </button>
-        <div class="w-7 h-7 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-xs font-bold text-white shadow">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 border border-white/20 flex items-center justify-center text-xs font-bold text-white shadow-md">
           R
         </div>
       </div>
@@ -466,8 +459,8 @@
 
     <div class="flex-1 flex relative overflow-hidden">
       
-      <!-- Slide-Out Sidebar Drawer (Useless links removed) -->
-      <aside id="adminDrawer" class="fixed md:static inset-y-0 left-0 z-30 w-64 bg-[#0a0b0f] md:bg-transparent border-r border-white/[0.06] transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col p-3 space-y-1 overflow-y-auto">
+      <!-- Slide-Out Sidebar Drawer Styled with Frosted Glass -->
+      <aside id="adminDrawer" class="fixed md:static inset-y-0 left-0 z-30 w-64 glass-panel md:bg-transparent border-r border-white/10 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col p-3 space-y-1.5 overflow-y-auto">
         
         <button onclick="switchAdminTab('dashboard')" id="sideBtn-dashboard" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
           <i class="fas fa-th-large text-blue-400 text-sm"></i>
@@ -475,18 +468,18 @@
         </button>
 
         <button onclick="switchAdminTab('plans')" id="sideBtn-plans" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
-          <i class="fas fa-layer-group text-gray-400 text-sm"></i>
+          <i class="fas fa-layer-group text-purple-400 text-sm"></i>
           <span>Subscriptions (7 Plans)</span>
         </button>
 
         <button onclick="switchAdminTab('utr')" id="sideBtn-utr" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
-          <i class="fas fa-credit-card text-gray-400 text-sm"></i>
+          <i class="fas fa-credit-card text-emerald-400 text-sm"></i>
           <span>Payment Approvals</span>
-          <span id="pendingBadge" class="ml-auto bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full font-bold">0</span>
+          <span id="pendingBadge" class="ml-auto bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] px-2 py-0.5 rounded-full font-bold">0</span>
         </button>
 
         <button onclick="switchAdminTab('users')" id="sideBtn-users" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
-          <i class="fas fa-users text-gray-400 text-sm"></i>
+          <i class="fas fa-users text-sky-400 text-sm"></i>
           <span>Registered Users</span>
         </button>
 
@@ -495,12 +488,12 @@
           <span>Store Settings</span>
         </button>
 
-        <div class="pt-4 mt-auto border-t border-white/[0.06] space-y-1">
-          <button onclick="navigateTo('/')" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-400 hover:text-white hover:bg-white/[0.04]">
+        <div class="pt-4 mt-auto border-t border-white/10 space-y-1">
+          <button onclick="navigateTo('/')" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/[0.06] transition">
             <i class="fas fa-external-link-alt text-sm"></i>
             <span>View Live Store</span>
           </button>
-          <button onclick="adminLogout()" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-rose-400 hover:bg-rose-950/30">
+          <button onclick="adminLogout()" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-rose-400 hover:bg-rose-950/40 transition">
             <i class="fas fa-sign-out-alt text-sm"></i>
             <span>Logout</span>
           </button>
@@ -508,24 +501,24 @@
       </aside>
 
       <!-- Backdrop for mobile drawer -->
-      <div id="drawerBackdrop" onclick="toggleAdminDrawer()" class="hidden fixed inset-0 bg-black/60 z-20 md:hidden"></div>
+      <div id="drawerBackdrop" onclick="toggleAdminDrawer()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-20 md:hidden"></div>
 
       <!-- Main Admin Content Area -->
       <main class="flex-1 p-4 sm:p-6 overflow-y-auto max-w-4xl w-full mx-auto">
 
-        <!-- ================= TAB 1: CLEAN INSIGHTS OVERVIEW (NO TIMER, NO REPORTS) ================= -->
+        <!-- ================= TAB 1: INSIGHTS OVERVIEW (THEMED TO MATCH LOGIN PAGE) ================= -->
         <div id="tabContent-dashboard" class="space-y-4">
-          <div class="border-b border-white/[0.06] pb-3">
+          <div class="border-b border-white/10 pb-3">
             <h1 class="text-xl font-black text-white">Insights Overview</h1>
             <p class="text-xs text-gray-400 mt-0.5">Welcome back. Here's what's happening with your website today.</p>
           </div>
 
-          <!-- Clean 4-Card Stack: Only Real & Useful Web Metrics -->
+          <!-- Glassmorphic Stacked Metric Cards -->
           <div class="space-y-3 pt-2">
             
             <!-- 1. Total Users -->
-            <div class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
-              <div class="w-12 h-12 rounded-full bg-[#181a24] flex items-center justify-center text-gray-300 text-lg">
+            <div class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition hover:border-purple-500/40">
+              <div class="w-12 h-12 rounded-2xl bg-[#1e2338] border border-blue-500/30 flex items-center justify-center text-blue-400 text-lg shadow-inner">
                 <i class="fas fa-user-friends"></i>
               </div>
               <div>
@@ -535,8 +528,8 @@
             </div>
 
             <!-- 2. Active Subs -->
-            <div class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
-              <div class="w-12 h-12 rounded-full bg-[#132320] flex items-center justify-center text-emerald-400 text-lg">
+            <div class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition hover:border-emerald-500/40">
+              <div class="w-12 h-12 rounded-2xl bg-[#132822] border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg shadow-inner">
                 <i class="fas fa-award"></i>
               </div>
               <div>
@@ -545,21 +538,23 @@
               </div>
             </div>
 
-            <!-- 3. Pending Payments (Clickable Review) -->
-            <div onclick="switchAdminTab('utr')" class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition cursor-pointer hover:border-amber-500/30">
-              <div class="w-12 h-12 rounded-full bg-[#262016] flex items-center justify-center text-amber-400 text-lg">
+            <!-- 3. Pending Payments -->
+            <div onclick="switchAdminTab('utr')" class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition cursor-pointer hover:border-amber-500/50">
+              <div class="w-12 h-12 rounded-2xl bg-[#2e2213] border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg shadow-inner">
                 <i class="far fa-clock"></i>
               </div>
               <div>
                 <div id="statPendingOrders" class="text-xl font-black text-amber-400">0</div>
                 <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">PENDING PAYMENTS</div>
               </div>
-              <span class="ml-auto text-xs text-amber-400 hover:underline font-semibold">Review &rarr;</span>
+              <span class="ml-auto text-xs text-amber-400 hover:underline font-semibold flex items-center gap-1">
+                Review <i class="fas fa-arrow-right text-[10px]"></i>
+              </span>
             </div>
 
             <!-- 4. Total Revenue -->
-            <div class="webadmin-card rounded-2xl p-4 flex items-center gap-4 shadow-sm transition">
-              <div class="w-12 h-12 rounded-full bg-[#162035] flex items-center justify-center text-sky-400 text-lg">
+            <div class="glass-card rounded-2xl p-4 flex items-center gap-4 shadow-xl border border-white/10 transition hover:border-sky-500/40">
+              <div class="w-12 h-12 rounded-2xl bg-[#16273d] border border-sky-500/30 flex items-center justify-center text-sky-400 text-lg shadow-inner">
                 <i class="fas fa-rupee-sign"></i>
               </div>
               <div>
@@ -573,53 +568,53 @@
 
         <!-- ================= TAB 2: SUBSCRIPTIONS (EDIT 7 PLANS) ================= -->
         <div id="tabContent-plans" class="hidden space-y-4">
-          <div class="border-b border-white/[0.06] pb-3">
+          <div class="border-b border-white/10 pb-3">
             <h2 class="text-lg font-black text-white">Manage 7 Subscriptions</h2>
             <p class="text-xs text-gray-400">Configure prices, tags, thumbnail photos, and vault delivery links</p>
           </div>
 
-          <div class="webadmin-card rounded-2xl p-5 space-y-4">
+          <div class="glass-card rounded-3xl p-6 space-y-4 border border-purple-500/20 shadow-2xl">
             <div>
               <label class="block text-xs font-semibold text-gray-300 mb-1">Select Subscription Plan</label>
-              <select id="adminPlanSelector" onchange="loadPlanForm()" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-xs text-blue-300 font-semibold outline-none"></select>
+              <select id="adminPlanSelector" onchange="loadPlanForm()" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-xs text-purple-300 font-semibold outline-none focus:border-purple-500"></select>
             </div>
 
-            <div class="space-y-3 text-xs">
+            <div class="space-y-3.5 text-xs">
               <div>
                 <label class="block font-semibold text-gray-400 mb-1">Plan Title</label>
-                <input type="text" id="adminPlanTitle" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
+                <input type="text" id="adminPlanTitle" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
               </div>
 
               <div class="grid grid-cols-2 gap-3">
                 <div>
                   <label class="block font-semibold text-gray-400 mb-1">Price (&#8377; INR)</label>
-                  <input type="number" id="adminPlanPrice" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
+                  <input type="number" id="adminPlanPrice" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
                 </div>
                 <div>
                   <label class="block font-semibold text-gray-400 mb-1">Video / Folder Badge</label>
-                  <input type="text" id="adminPlanTag" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
+                  <input type="text" id="adminPlanTag" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
                 </div>
               </div>
 
               <div>
                 <label class="block font-semibold text-gray-400 mb-1">Card Photo URL</label>
-                <input type="url" id="adminPlanImage" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
+                <input type="url" id="adminPlanImage" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
               </div>
 
               <div>
                 <label class="block font-semibold text-emerald-400 mb-1">
                   <i class="fas fa-link mr-1"></i> Unlocked Vault Link (Delivered upon approval)
                 </label>
-                <input type="url" id="adminPlanVaultUrl" placeholder="https://mega.nz/... or https://t.me/..." class="w-full bg-[#171a24] border border-emerald-500/40 rounded-xl p-3 text-white outline-none focus:border-emerald-500">
+                <input type="url" id="adminPlanVaultUrl" placeholder="https://mega.nz/... or https://t.me/..." class="w-full bg-black/40 border border-emerald-500/40 rounded-xl p-3 text-white outline-none focus:border-emerald-500">
               </div>
 
               <div>
                 <label class="block font-semibold text-gray-400 mb-1">Description</label>
-                <textarea id="adminPlanDesc" rows="2" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500"></textarea>
+                <textarea id="adminPlanDesc" rows="2" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500"></textarea>
               </div>
 
               <div class="pt-2 flex justify-end">
-                <button onclick="saveAllChanges()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-md transition flex items-center gap-2">
+                <button onclick="saveAllChanges()" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-purple-600/30 transition flex items-center gap-2 active:scale-95">
                   <i class="fas fa-save"></i> Save Plan Changes
                 </button>
               </div>
@@ -629,13 +624,13 @@
 
         <!-- ================= TAB 3: PAYMENTS (UTR APPROVALS) ================= -->
         <div id="tabContent-utr" class="hidden space-y-4">
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-white/[0.06] pb-3">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-white/10 pb-3">
             <div>
               <h2 class="text-lg font-black text-white">Payment Verifications</h2>
               <p class="text-xs text-gray-400">Review 12-digit UTR references against bank receipts</p>
             </div>
             
-            <div class="flex items-center gap-1.5 text-xs bg-[#171a24] p-1 rounded-xl border border-white/10">
+            <div class="flex items-center gap-1.5 text-xs bg-black/40 p-1 rounded-xl border border-white/10">
               <button onclick="filterUtrs('ALL')" id="filterBtn-ALL" class="px-3 py-1 rounded-lg font-bold bg-blue-600 text-white">All</button>
               <button onclick="filterUtrs('PENDING')" id="filterBtn-PENDING" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Pending</button>
               <button onclick="filterUtrs('APPROVED')" id="filterBtn-APPROVED" class="px-3 py-1 rounded-lg font-semibold text-gray-400 hover:text-white">Approved</button>
@@ -643,9 +638,9 @@
             </div>
           </div>
 
-          <div class="overflow-x-auto webadmin-card rounded-2xl">
+          <div class="overflow-x-auto glass-card rounded-2xl border border-white/10 shadow-xl">
             <table class="w-full text-left text-xs text-gray-300">
-              <thead class="bg-[#171a24] text-gray-400 uppercase text-[10px] tracking-wider">
+              <thead class="bg-black/40 text-gray-400 uppercase text-[10px] tracking-wider">
                 <tr>
                   <th class="p-3">UTR Reference</th>
                   <th class="p-3">Plan</th>
@@ -654,21 +649,21 @@
                   <th class="p-3 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody id="utrTableBody" class="divide-y divide-white/[0.04]"></tbody>
+              <tbody id="utrTableBody" class="divide-y divide-white/5"></tbody>
             </table>
           </div>
         </div>
 
         <!-- ================= TAB 4: USERS (REGISTERED DEVICES) ================= -->
         <div id="tabContent-users" class="hidden space-y-4">
-          <div class="border-b border-white/[0.06] pb-3">
+          <div class="border-b border-white/10 pb-3">
             <h2 class="text-lg font-black text-white">Registered Users & Devices</h2>
             <p class="text-xs text-gray-400">Track device tokens, order counts, and VIP membership status</p>
           </div>
 
-          <div class="overflow-x-auto webadmin-card rounded-2xl">
+          <div class="overflow-x-auto glass-card rounded-2xl border border-white/10 shadow-xl">
             <table class="w-full text-left text-xs text-gray-300">
-              <thead class="bg-[#171a24] text-gray-400 uppercase text-[10px]">
+              <thead class="bg-black/40 text-gray-400 uppercase text-[10px]">
                 <tr>
                   <th class="p-3">Device Token</th>
                   <th class="p-3">Tier Status</th>
@@ -676,36 +671,36 @@
                   <th class="p-3 text-right">Total Spent</th>
                 </tr>
               </thead>
-              <tbody id="usersTableBody" class="divide-y divide-white/[0.04]"></tbody>
+              <tbody id="usersTableBody" class="divide-y divide-white/5"></tbody>
             </table>
           </div>
         </div>
 
         <!-- ================= TAB 5: STORE SETTINGS ================= -->
         <div id="tabContent-settings" class="hidden space-y-4">
-          <div class="border-b border-white/[0.06] pb-3">
+          <div class="border-b border-white/10 pb-3">
             <h2 class="text-lg font-black text-white">Store Settings</h2>
             <p class="text-xs text-gray-400">Update store branding, UPI address, and support links</p>
           </div>
 
-          <div class="webadmin-card rounded-2xl p-5 space-y-4 text-xs">
+          <div class="glass-card rounded-3xl p-6 space-y-4 text-xs border border-purple-500/20 shadow-2xl">
             <div>
               <label class="block font-semibold text-gray-300 mb-1">Store Brand Name</label>
-              <input type="text" id="adminBrandName" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
+              <input type="text" id="adminBrandName" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
             </div>
 
             <div>
               <label class="block font-semibold text-gray-300 mb-1">UPI ID (Receives Payments)</label>
-              <input type="text" id="adminUpiInput" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500">
+              <input type="text" id="adminUpiInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500">
             </div>
 
             <div>
               <label class="block font-semibold text-gray-300 mb-1">Telegram Support / Channel URL</label>
-              <input type="url" id="adminTelegramInput" class="w-full bg-[#171a24] border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="https://t.me/yourusername">
+              <input type="url" id="adminTelegramInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-purple-500" placeholder="https://t.me/yourusername">
             </div>
 
             <div class="flex justify-end pt-2">
-              <button onclick="saveAllChanges()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow transition">
+              <button onclick="saveAllChanges()" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-purple-600/30 transition active:scale-95">
                 Save Settings
               </button>
             </div>
@@ -717,17 +712,17 @@
   </div>
 
   <!-- MANAGE UTR STATUS MODAL -->
-  <dialog id="manageUtrModal" class="webadmin-card text-white rounded-3xl p-6 max-w-sm w-11/12 backdrop:bg-black/80 shadow-2xl border border-white/10">
+  <dialog id="manageUtrModal" class="glass-card text-white rounded-3xl p-6 max-w-sm w-11/12 backdrop:bg-black/80 shadow-2xl border border-white/10">
     <div class="flex justify-between items-center pb-3 border-b border-white/10">
       <h3 class="text-sm font-bold flex items-center gap-2">
-        <i class="fas fa-sliders-h text-blue-500"></i> Manage Transaction
+        <i class="fas fa-sliders-h text-purple-400"></i> Manage Transaction
       </h3>
       <button onclick="document.getElementById('manageUtrModal').close()" class="text-gray-400 hover:text-white text-xl leading-none">&times;</button>
     </div>
 
     <div class="space-y-4 mt-4 text-xs">
-      <div class="bg-[#171a24] p-3 rounded-2xl border border-white/10 space-y-1">
-        <div class="text-gray-400">UTR: <span id="modalUtrText" class="font-mono text-blue-400 font-bold"></span></div>
+      <div class="bg-black/40 p-3 rounded-2xl border border-white/10 space-y-1">
+        <div class="text-gray-400">UTR: <span id="modalUtrText" class="font-mono text-purple-400 font-bold"></span></div>
         <div class="text-gray-400">Plan: <span id="modalPlanText" class="text-white font-semibold"></span></div>
         <div class="text-gray-400">Amount: <span id="modalAmountText" class="text-emerald-400 font-bold"></span></div>
       </div>
@@ -755,7 +750,7 @@
     </div>
   </dialog>
 
-  <!-- Client-Side Scripts -->
+  <!-- Client-Side Dynamic Controller -->
   <script>
     let appConfig = null;
     let selectedCheckoutPlan = null;
@@ -796,8 +791,8 @@
         toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-full shadow-2xl border text-xs font-bold backdrop-blur-md bg-rose-950/90 border-rose-600/50 text-rose-300";
         icon.className = "fas fa-exclamation-circle text-base text-rose-400";
       } else {
-        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-full shadow-2xl border text-xs font-bold backdrop-blur-md bg-blue-950/90 border-blue-600/50 text-blue-300";
-        icon.className = "fas fa-info-circle text-base text-blue-400";
+        toast.className = "fixed top-5 right-5 z-50 transform transition-all duration-300 translate-y-0 opacity-100 flex items-center gap-3 px-5 py-3.5 rounded-full shadow-2xl border text-xs font-bold backdrop-blur-md bg-purple-950/90 border-purple-600/50 text-purple-300";
+        icon.className = "fas fa-info-circle text-base text-purple-400";
       }
 
       setTimeout(() => {
@@ -1142,7 +1137,7 @@
       navigateTo('/panel');
     }
 
-    // Switch Tabs inside the Web Admin Console
+    // Switch Tabs inside the POM WEB Console
     function switchAdminTab(tabName) {
       const validTabs = ["dashboard", "plans", "utr", "users", "settings"];
       const current = validTabs.includes(tabName) ? tabName : "dashboard";
@@ -1153,15 +1148,14 @@
         if (content) {
           if (t === current) {
             content.classList.remove("hidden");
-            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-3 webadmin-active-item text-white";
+            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-3 admin-active-item transition";
           } else {
             content.classList.add("hidden");
-            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-400 hover:text-white hover:bg-white/[0.04] transition";
+            if (btn) btn.className = "w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-300 hover:text-white hover:bg-white/[0.06] transition";
           }
         }
       });
 
-      // Close mobile drawer if open
       const drawer = document.getElementById('adminDrawer');
       const backdrop = document.getElementById('drawerBackdrop');
       drawer.classList.add('-translate-x-full');
@@ -1207,7 +1201,7 @@
 
         data.users.forEach(u => {
           const tr = document.createElement("tr");
-          tr.className = "hover:bg-white/[0.02] transition";
+          tr.className = "hover:bg-white/[0.04] transition";
           tr.innerHTML = `
             <td class="p-3 font-mono text-gray-300 font-bold">${u.deviceToken}</td>
             <td class="p-3">
@@ -1267,9 +1261,9 @@
 
       filtered.forEach(sub => {
         const tr = document.createElement("tr");
-        tr.className = "hover:bg-white/[0.02] transition";
+        tr.className = "hover:bg-white/[0.04] transition";
         tr.innerHTML = `
-          <td class="p-3 font-mono text-blue-400 font-bold flex items-center gap-2">
+          <td class="p-3 font-mono text-purple-300 font-bold flex items-center gap-2">
             <span>${sub.utr}</span>
             <button onclick="navigator.clipboard.writeText('${sub.utr}'); showToast('UTR copied', 'info')" class="text-gray-500 hover:text-white">
               <i class="far fa-copy text-xs"></i>
@@ -1285,7 +1279,7 @@
             }">${sub.status}</span>
           </td>
           <td class="p-3 text-right">
-            <button onclick="openManageUtrModal('${sub.utr}')" class="px-3 py-1 bg-white/[0.05] hover:bg-white/[0.1] text-blue-400 border border-white/10 font-bold rounded-xl text-xs">
+            <button onclick="openManageUtrModal('${sub.utr}')" class="px-3 py-1 bg-white/[0.08] hover:bg-white/[0.15] text-purple-300 border border-white/10 font-bold rounded-xl text-xs transition">
               <i class="fas fa-edit"></i> Manage
             </button>
           </td>
