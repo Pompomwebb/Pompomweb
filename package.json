@@ -1,0 +1,13 @@
+{
+  "name": "vip-digital-store",
+  "version": "1.0.0",
+  "description": "Digital Storefront with dynamic slug-based admin panel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Membership Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#070b13] text-white min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+
+  <!-- ================= STOREFRONT VIEW ================= -->
+  <div id="storefrontView" class="flex-1 flex flex-col">
+    <header class="border-b border-gray-800/80 bg-[#0d1322]/90 backdrop-blur sticky top-0 z-40 px-4 py-3">
+      <div class="max-w-xl w-full mx-auto flex justify-between items-center">
+        
+        <!-- Brand Logo & Name -->
+        <div class="flex items-center gap-3">
+          <img id="siteLogo" src="" alt="Brand Logo" class="w-9 h-9 rounded-xl object-cover ring-2 ring-blue-500/40 shadow-lg shadow-blue-500/20">
+          <div>
+            <span id="siteBrandName" class="font-extrabold text-sm sm:text-base tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-200"></span>
+            <span class="block text-[10px] text-gray-400 -mt-0.5 tracking-tight font-medium">Official Digital Store</span>
+          </div>
+        </div>
+
+        <!-- Top Right Actions -->
+        <div class="flex items-center gap-2">
+          <a id="navTelegramLink" href="#" target="_blank" class="w-8 h-8 flex items-center justify-center bg-gray-800/90 hover:bg-gray-700 text-sky-400 rounded-lg text-sm transition">
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+          <!-- Navigate into the Slug-based Panel -->
+          <button onclick="navigateTo('/panel/?tab=theme')" class="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-[11px] font-bold tracking-wide rounded-lg shadow-md shadow-blue-600/30 flex items-center gap-1.5 transition">
+            <i class="fas fa-cog"></i> Admin Panel
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-xl w-full mx-auto px-4 py-6 space-y-6">
+      <section class="text-center space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/70 border border-blue-700/40 text-[11px] font-semibold text-blue-300 shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>1,840+ Live VIP Members</span> &bull; <span>★ 4.9/5 Rating</span>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-snug">
+          Watch & Unlock Premium Video Collections
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md mx-auto">
+          Instant HTML5 DRM high-speed streaming on all devices. Browse private vaults with 1-click cloud access.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-2 pt-1 text-[11px] text-gray-300 font-medium">
+          <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-md">⚡ Instant 1-Click</span>
+          <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-md">🔒 100% Anonymous</span>
+          <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-md">📱 Mobile & PC Ready</span>
+          <span class="px-2.5 py-1 bg-gray-900/80 border border-gray-800 rounded-md">🎬 4K Ultra HD</span>
+        </div>
+      </section>
+
+      <div class="flex justify-between items-center border-t border-gray-800/80 pt-5">
+        <div>
+          <h2 class="text-base sm:text-lg font-bold text-gray-100 flex items-center gap-2">
+            <i class="fas fa-layer-group text-blue-500 text-sm"></i> Exclusive Video Collections
+          </h2>
+          <p class="text-[11px] text-gray-400">Select any collection to gain instant access</p>
+        </div>
+        <span class="text-[11px] bg-blue-950 text-blue-400 border border-blue-800/60 font-semibold px-2 py-0.5 rounded-full">
+          7 Plans Active
+        </span>
+      </div>
+
+      <!-- 7 Cards Dynamic Grid -->
+      <div id="plansContainer" class="space-y-4"></div>
+    </main>
+
+    <!-- Floating 24/7 Support -->
+    <aside class="fixed bottom-5 right-5 z-40">
+      <a id="floatingTelegramLink" href="#" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold rounded-full shadow-lg shadow-sky-500/30 text-xs transition transform hover:scale-105">
+        <i class="fab fa-telegram-plane text-base"></i>
+        <span>24/7 VIP Support</span>
+      </a>
+    </aside>
+  </div>
+
+
+  <!-- ================= SLUG ADMIN PANEL VIEW (/panel/?tab=...) ================= -->
+  <div id="adminView" class="hidden min-h-screen flex flex-col bg-[#0b0f19]">
+    <header class="border-b border-gray-800 bg-[#0d1322] px-6 py-4 flex justify-between items-center sticky top-0 z-30">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white shadow-md">
+          <i class="fas fa-sliders-h text-sm"></i>
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-gray-100">Control Panel</h1>
+          <p class="text-[11px] text-gray-400">Route: <span id="currentSlugDisplay" class="font-mono text-blue-400">/panel/?tab=theme</span></p>
+        </div>
+      </div>
+
+      <button onclick="navigateTo('/')" class="px-3.5 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-semibold rounded-lg flex items-center gap-2 transition border border-gray-700">
+        <i class="fas fa-arrow-left"></i> View Live Store
+      </button>
+    </header>
+
+    <div class="max-w-4xl w-full mx-auto p-4 sm:p-6 flex-1 flex flex-col md:flex-row gap-6">
+      <!-- Admin Sidebar Navigation -->
+      <aside class="w-full md:w-56 space-y-1">
+        <button onclick="navigateTo('/panel/?tab=theme')" id="tabBtn-theme" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+          <i class="fas fa-paint-brush"></i> Theme & Brand
+        </button>
+        <button onclick="navigateTo('/panel/?tab=plans')" id="tabBtn-plans" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+          <i class="fas fa-th-list"></i> Edit 7 Plans
+        </button>
+        <button onclick="navigateTo('/panel/?tab=payments')" id="tabBtn-payments" class="w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+          <i class="fas fa-wallet"></i> UPI & Social Links
+        </button>
+      </aside>
+
+      <!-- Admin Tab Panels -->
+      <section class="flex-1 bg-[#111827] border border-gray-800 rounded-2xl p-5 sm:p-6 shadow-xl">
+        <!-- Tab 1: Theme & Brand -->
+        <div id="tabContent-theme" class="space-y-4">
+          <h2 class="text-sm font-bold text-gray-100 border-b border-gray-800 pb-2">Store Branding & Logo</h2>
+          
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Store Brand Name</label>
+            <input type="text" id="adminBrandName" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Brand Logo Image URL</label>
+            <input type="url" id="adminLogoUrl" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500" placeholder="https://...">
+          </div>
+
+          <div class="pt-2">
+            <span class="text-[11px] text-gray-400 block mb-1">Logo Preview:</span>
+            <img id="adminLogoPreview" src="" class="w-12 h-12 rounded-xl object-cover ring-1 ring-gray-700">
+          </div>
+        </div>
+
+        <!-- Tab 2: Edit All 7 Plans -->
+        <div id="tabContent-plans" class="hidden space-y-4">
+          <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+            <h2 class="text-sm font-bold text-gray-100">Configure Plans</h2>
+            <span class="text-[10px] text-gray-400">Total: 7 Items</span>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Select Plan to Modify</label>
+            <select id="adminPlanSelector" onchange="loadPlanForm()" class="w-full bg-blue-950/80 border border-blue-700/60 rounded-lg p-2.5 text-xs text-blue-200 font-semibold outline-none"></select>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Plan Title</label>
+              <input type="text" id="adminPlanTitle" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Price (₹ INR)</label>
+                <input type="number" id="adminPlanPrice" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Video / Folder Badge</label>
+                <input type="text" id="adminPlanTag" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Card Photo URL</label>
+              <input type="url" id="adminPlanImage" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Description</label>
+              <textarea id="adminPlanDesc" rows="2" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: UPI & Support -->
+        <div id="tabContent-payments" class="hidden space-y-4">
+          <h2 class="text-sm font-bold text-gray-100 border-b border-gray-800 pb-2">Payment Gateway & Support</h2>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">UPI ID (Receives Payments)</label>
+            <input type="text" id="adminUpiInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500" placeholder="example@okhdfcbank">
+            <span class="text-[10px] text-gray-500 mt-1 block">Tapping checkout triggers Google Pay, PhonePe, and Paytm to this UPI address.</span>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Telegram Support Link</label>
+            <input type="url" id="adminTelegramInput" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2.5 text-xs text-white outline-none focus:border-blue-500" placeholder="https://t.me/yourusername">
+          </div>
+        </div>
+
+        <!-- Global Save Button -->
+        <div class="mt-6 pt-4 border-t border-gray-800 flex justify-end">
+          <button id="saveConfigBtn" onclick="saveAllChanges()" class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center gap-2">
+            <i class="fas fa-save"></i> Save All Changes
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Client-Side Routing and Server API Integration -->
+  <script>
+    let appConfig = null;
+
+    async function fetchConfig() {
+      try {
+        const response = await fetch('/api/config');
+        if (!response.ok) throw new Error("Server response not ok");
+        appConfig = await response.json();
+      } catch (err) {
+        console.warn("Backend API not reachable. Using fallback memory state:", err);
+      }
+    }
+
+    function router() {
+      const pathname = window.location.pathname;
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      const hash = window.location.hash;
+
+      const isAdminSlug = pathname.includes("/panel") || tab !== null || hash === "#admin";
+
+      const storefrontEl = document.getElementById("storefrontView");
+      const adminEl = document.getElementById("adminView");
+
+      if (isAdminSlug) {
+        storefrontEl.classList.add("hidden");
+        adminEl.classList.remove("hidden");
+        const activeTab = tab || "theme";
+        switchAdminTab(activeTab);
+      } else {
+        adminEl.classList.add("hidden");
+        storefrontEl.classList.remove("hidden");
+        renderStorefront();
+      }
+    }
+
+    function navigateTo(urlPath) {
+      window.history.pushState({}, "", urlPath);
+      router();
+    }
+
+    window.addEventListener("popstate", router);
+
+    function switchAdminTab(tabName) {
+      const validTabs = ["theme", "plans", "payments"];
+      const current = validTabs.includes(tabName) ? tabName : "theme";
+
+      document.getElementById("currentSlugDisplay").textContent = `/panel/?tab=${current}`;
+
+      validTabs.forEach(t => {
+        const content = document.getElementById(`tabContent-${t}`);
+        const btn = document.getElementById(`tabBtn-${t}`);
+        if (t === current) {
+          content.classList.remove("hidden");
+          btn.className = "w-full text-left px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-3 bg-blue-600 text-white shadow-md shadow-blue-600/30";
+        } else {
+          content.classList.add("hidden");
+          btn.className = "w-full text-left px-4 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 text-gray-400 hover:bg-gray-800 hover:text-gray-200 transition";
+        }
+      });
+
+      populateAdminInputs();
+    }
+
+    function populateAdminInputs() {
+      if (!appConfig) return;
+
+      document.getElementById("adminBrandName").value = appConfig.brandName;
+      document.getElementById("adminLogoUrl").value = appConfig.logoUrl;
+      document.getElementById("adminLogoPreview").src = appConfig.logoUrl;
+
+      document.getElementById("adminUpiInput").value = appConfig.upiId;
+      document.getElementById("adminTelegramInput").value = appConfig.telegramUrl;
+
+      const selector = document.getElementById("adminPlanSelector");
+      const prevIdx = selector.value || 0;
+      selector.innerHTML = "";
+      appConfig.plans.forEach((plan, i) => {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = `Plan ${i + 1}: ${plan.title} (₹${plan.price})`;
+        selector.appendChild(opt);
+      });
+      selector.value = prevIdx < appConfig.plans.length ? prevIdx : 0;
+      loadPlanForm();
+    }
+
+    function loadPlanForm() {
+      if (!appConfig) return;
+      const idx = document.getElementById("adminPlanSelector").value;
+      const plan = appConfig.plans[idx];
+
+      document.getElementById("adminPlanTitle").value = plan.title;
+      document.getElementById("adminPlanPrice").value = plan.price;
+      document.getElementById("adminPlanTag").value = plan.tag;
+      document.getElementById("adminPlanImage").value = plan.image;
+      document.getElementById("adminPlanDesc").value = plan.desc;
+    }
+
+    async function saveAllChanges() {
+      const btn = document.getElementById("saveConfigBtn");
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Saving...`;
+
+      appConfig.brandName = document.getElementById("adminBrandName").value.trim();
+      appConfig.logoUrl = document.getElementById("adminLogoUrl").value.trim();
+      appConfig.upiId = document.getElementById("adminUpiInput").value.trim();
+      appConfig.telegramUrl = document.getElementById("adminTelegramInput").value.trim();
+
+      const idx = document.getElementById("adminPlanSelector").value;
+      appConfig.plans[idx].title = document.getElementById("adminPlanTitle").value.trim();
+      appConfig.plans[idx].price = Number(document.getElementById("adminPlanPrice").value);
+      appConfig.plans[idx].tag = document.getElementById("adminPlanTag").value.trim();
+      appConfig.plans[idx].image = document.getElementById("adminPlanImage").value.trim();
+      appConfig.plans[idx].desc = document.getElementById("adminPlanDesc").value.trim();
+
+      try {
+        const res = await fetch('/api/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(appConfig)
+        });
+        if (!res.ok) throw new Error("Save error");
+        alert("Changes saved and live globally on the server!");
+      } catch (err) {
+        alert("Failed to save changes to server: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-save"></i> Save All Changes`;
+        populateAdminInputs();
+      }
+    }
+
+    function renderStorefront() {
+      if (!appConfig) return;
+
+      document.getElementById("siteLogo").src = appConfig.logoUrl;
+      document.getElementById("siteBrandName").textContent = appConfig.brandName;
+      document.getElementById("navTelegramLink").href = appConfig.telegramUrl;
+      document.getElementById("floatingTelegramLink").href = appConfig.telegramUrl;
+
+      const container = document.getElementById("plansContainer");
+      container.innerHTML = "";
+
+      appConfig.plans.forEach((plan, index) => {
+        const isHighlight = index === appConfig.plans.length - 1;
+        const card = document.createElement("div");
+        card.className = `rounded-2xl overflow-hidden border transition-all duration-200 ${
+          isHighlight 
+            ? "bg-[#0f172a] border-blue-500/80 ring-1 ring-blue-500/30 shadow-xl shadow-blue-900/20" 
+            : "bg-[#111827] border-gray-800/80 hover:border-gray-700 shadow-lg"
+        }`;
+
+        card.innerHTML = `
+          <div class="relative h-44 w-full bg-gray-950 overflow-hidden">
+            <img src="${plan.image}" alt="${plan.title}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-black/50"></div>
+            
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
+              <span class="bg-black/75 backdrop-blur text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-amber-500/20 flex items-center gap-1">
+                <i class="fas fa-video text-[9px]"></i> ${plan.tag}
+              </span>
+              <span class="bg-blue-600/90 backdrop-blur text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow">
+                ${plan.badge}
+              </span>
+            </div>
+
+            <div class="absolute top-3 right-3 bg-black/70 backdrop-blur border border-emerald-500/40 text-emerald-400 font-extrabold px-2.5 py-0.5 rounded-md text-xs">
+              ₹${plan.price}
+            </div>
+          </div>
+
+          <div class="p-4 space-y-3">
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-gray-100 flex items-center gap-1.5">
+                <span class="text-blue-400">💎</span> ${plan.title}
+              </h3>
+              <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">${plan.desc}</p>
+            </div>
+
+            <button onclick="triggerUPI(${plan.price}, '${plan.title.replace(/'/g, "\\'")}')" 
+                    class="w-full py-2.5 px-4 ${
+                      isHighlight
+                        ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 hover:brightness-110 shadow-lg shadow-blue-500/30'
+                        : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-md shadow-blue-600/20'
+                    } text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition active:scale-[0.98]">
+              <i class="fas fa-lock-open text-[11px]"></i> Unlock Entire Collection (₹${plan.price})
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function triggerUPI(price, title) {
+      if (!appConfig) return;
+      const upiUrl = `upi://pay?pa=${encodeURIComponent(appConfig.upiId)}&pn=${encodeURIComponent(appConfig.brandName)}&tn=${encodeURIComponent(title)}&am=${price}&cu=INR`;
+      window.location.href = upiUrl;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await fetchConfig();
+      router();
+    });
+  </script>
+</body>
+</html>
