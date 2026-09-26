@@ -7,6 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data.json');
 
+// Admin Credentials (can also be set in Railway Environment Variables)
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 
 app.use(cors());
@@ -113,26 +115,26 @@ app.get('/api/user-access', (req, res) => {
   res.json({ unlocked });
 });
 
-// Admin: Login
+// Admin: Login (Verifies Username & Password)
 app.post('/api/login', (req, res) => {
-  const { password } = req.body;
-  if (password === ADMIN_PASSWORD) {
-    const token = 'auth_session_' + Buffer.from(ADMIN_PASSWORD).toString('base64');
-    return res.json({ success: true, token });
+  const { username, password } = req.body;
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    const token = 'auth_session_' + Buffer.from(`${ADMIN_USERNAME}:${ADMIN_PASSWORD}`).toString('base64');
+    return res.json({ success: true, token, username: ADMIN_USERNAME });
   }
-  return res.status(401).json({ success: false, error: 'Incorrect master password' });
+  return res.status(401).json({ success: false, error: 'Invalid username or password' });
 });
 
 function checkAdminAuth(req, res, next) {
   const authHeader = req.headers['authorization'];
-  const expectedToken = 'auth_session_' + Buffer.from(ADMIN_PASSWORD).toString('base64');
+  const expectedToken = 'auth_session_' + Buffer.from(`${ADMIN_USERNAME}:${ADMIN_PASSWORD}`).toString('base64');
   if (authHeader !== expectedToken) {
     return res.status(403).json({ error: 'Unauthorized request' });
   }
   next();
 }
 
-// Admin: Analytics & Overview Stats
+// Admin: Analytics & Overview Stats (For Insights Cards)
 app.get('/api/admin/stats', checkAdminAuth, (req, res) => {
   const data = readData();
   const submissions = data.submissions || [];
@@ -148,8 +150,30 @@ app.get('/api/admin/stats', checkAdminAuth, (req, res) => {
     premiumUsers: premiumDevices.size,
     paidOrders: approved.length,
     pendingOrders: pending.length,
-    totalRevenue: totalRevenue
+    openReports: 0,
+    totalRevenue: totalRevenue,
+    licenceDays: 1012
   });
+});
+
+// Admin: Get Users list
+app.get('/api/admin/users', checkAdminAuth, (req, res) => {
+  const data = readData();
+  const devices = data.devices || [];
+  const submissions = data.submissions || [];
+
+  const userList = devices.map(dev => {
+    const userSubs = submissions.filter(s => s.deviceToken === dev);
+    const approvedSubs = userSubs.filter(s => s.status === 'APPROVED');
+    return {
+      deviceToken: dev,
+      ordersCount: userSubs.length,
+      isPremium: approvedSubs.length > 0,
+      totalSpent: approvedSubs.reduce((sum, s) => sum + (Number(s.price) || 0), 0)
+    };
+  });
+
+  res.json({ users: userList });
 });
 
 // Admin: Save Configuration
@@ -171,7 +195,7 @@ app.get('/api/admin/utrs', checkAdminAuth, (req, res) => {
 
 // Admin: Manage UTR Status & Deletion
 app.post('/api/admin/utr-action', checkAdminAuth, (req, res) => {
-  const { utr, action } = req.body; // action: 'APPROVED' | 'PENDING' | 'REJECTED' | 'DELETE'
+  const { utr, action } = req.body;
   const data = readData();
 
   if (action === 'DELETE') {
@@ -194,5 +218,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server online on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
