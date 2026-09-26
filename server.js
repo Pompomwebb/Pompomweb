@@ -7,10 +7,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data.json');
 
-// Admin Credentials (can also be set in Railway Environment Variables)
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
@@ -21,9 +17,20 @@ function readData() {
     const data = JSON.parse(raw);
     if (!data.submissions) data.submissions = [];
     if (!data.devices) data.devices = [];
+    if (!data.admin) {
+      data.admin = {
+        username: process.env.ADMIN_USERNAME || 'admin',
+        password: process.env.ADMIN_PASSWORD || 'admin123'
+      };
+    }
     return data;
   } catch {
-    return { submissions: [], devices: [], plans: [] };
+    return {
+      admin: { username: 'admin', password: 'admin123' },
+      submissions: [],
+      devices: [],
+      plans: []
+    };
   }
 }
 
@@ -31,7 +38,7 @@ function writeData(data) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
 }
 
-// Public: Get Store Configuration
+// Public: Store Config
 app.get('/api/config', (req, res) => {
   const data = readData();
   const publicData = { ...data };
@@ -40,12 +47,13 @@ app.get('/api/config', (req, res) => {
     delete safePlan.vaultUrl;
     return safePlan;
   });
+  delete publicData.admin;
   delete publicData.submissions;
   delete publicData.devices;
   res.json(publicData);
 });
 
-// Public: Register Device Token
+// Public: Register Device
 app.post('/api/register-device', (req, res) => {
   const { deviceToken } = req.body;
   if (!deviceToken) return res.status(400).json({ error: 'Device token required' });
@@ -59,7 +67,7 @@ app.post('/api/register-device', (req, res) => {
   res.json({ success: true });
 });
 
-// Public: Submit 12-Digit UTR
+// Public: Submit UTR
 app.post('/api/submit-utr', (req, res) => {
   const { utr, planId, planTitle, price, deviceToken } = req.body;
 
@@ -115,26 +123,60 @@ app.get('/api/user-access', (req, res) => {
   res.json({ unlocked });
 });
 
-// Admin: Login (Verifies Username & Password)
+// Admin Login
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
-  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-    const token = 'auth_session_' + Buffer.from(`${ADMIN_USERNAME}:${ADMIN_PASSWORD}`).toString('base64');
-    return res.json({ success: true, token, username: ADMIN_USERNAME });
+  const data = readData();
+  const admin = data.admin || { username: 'admin', password: 'admin123' };
+
+  if (username === admin.username && password === admin.password) {
+    const token = 'auth_session_' + Buffer.from(`${admin.username}:${admin.password}`).toString('base64');
+    return res.json({ success: true, token, username: admin.username });
   }
   return res.status(401).json({ success: false, error: 'Invalid username or password' });
 });
 
 function checkAdminAuth(req, res, next) {
+  const data = readData();
+  const admin = data.admin || { username: 'admin', password: 'admin123' };
+  const expectedToken = 'auth_session_' + Buffer.from(`${admin.username}:${admin.password}`).toString('base64');
+
   const authHeader = req.headers['authorization'];
-  const expectedToken = 'auth_session_' + Buffer.from(`${ADMIN_USERNAME}:${ADMIN_PASSWORD}`).toString('base64');
   if (authHeader !== expectedToken) {
     return res.status(403).json({ error: 'Unauthorized request' });
   }
   next();
 }
 
-// Admin: Analytics & Overview Stats (For Insights Cards)
+// Admin: Manage Password & Username
+app.post('/api/admin/change-credentials', checkAdminAuth, (req, res) => {
+  const { currentPassword, newUsername, newPassword } = req.body;
+  const data = readData();
+  const admin = data.admin || { username: 'admin', password: 'admin123' };
+
+  if (currentPassword !== admin.password) {
+    return res.status(400).json({ error: 'Current password does not match.' });
+  }
+
+  if (newUsername && newUsername.trim()) {
+    admin.username = newUsername.trim();
+  }
+
+  if (newPassword && newPassword.trim()) {
+    if (newPassword.trim().length < 4) {
+      return res.status(400).json({ error: 'New password must be at least 4 characters long.' });
+    }
+    admin.password = newPassword.trim();
+  }
+
+  data.admin = admin;
+  writeData(data);
+
+  const newToken = 'auth_session_' + Buffer.from(`${admin.username}:${admin.password}`).toString('base64');
+  res.json({ success: true, message: 'Credentials updated successfully!', newToken, username: admin.username });
+});
+
+// Admin: Analytics & Overview Stats
 app.get('/api/admin/stats', checkAdminAuth, (req, res) => {
   const data = readData();
   const submissions = data.submissions || [];
@@ -150,13 +192,11 @@ app.get('/api/admin/stats', checkAdminAuth, (req, res) => {
     premiumUsers: premiumDevices.size,
     paidOrders: approved.length,
     pendingOrders: pending.length,
-    openReports: 0,
-    totalRevenue: totalRevenue,
-    licenceDays: 1012
+    totalRevenue: totalRevenue
   });
 });
 
-// Admin: Get Users list
+// Admin: Users List
 app.get('/api/admin/users', checkAdminAuth, (req, res) => {
   const data = readData();
   const devices = data.devices || [];
@@ -181,6 +221,7 @@ app.post('/api/config', checkAdminAuth, (req, res) => {
   const updatedData = req.body;
   const current = readData();
   
+  updatedData.admin = current.admin; // Preserve admin password & username
   updatedData.submissions = current.submissions;
   updatedData.devices = current.devices;
   writeData(updatedData);
@@ -193,7 +234,7 @@ app.get('/api/admin/utrs', checkAdminAuth, (req, res) => {
   res.json({ submissions: data.submissions || [] });
 });
 
-// Admin: Manage UTR Status & Deletion
+// Admin: UTR Actions
 app.post('/api/admin/utr-action', checkAdminAuth, (req, res) => {
   const { utr, action } = req.body;
   const data = readData();

@@ -7,31 +7,29 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Ambient glow background matching login screen */
+    /* GPU-Optimized Background: Removed background-attachment: fixed to completely eliminate scroll lag */
     body {
       background-color: #060813;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.22) 0px, transparent 50%),
-        radial-gradient(at 100% 25%, rgba(56, 189, 248, 0.14) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.18) 0px, transparent 50%);
-      background-attachment: fixed;
+        radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.16) 0%, transparent 40%),
+        radial-gradient(circle at 90% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.14) 0%, transparent 45%);
+      transform: translateZ(0); /* Hardware acceleration */
     }
     .glass-header {
-      background: linear-gradient(135deg, rgba(17, 22, 40, 0.85), rgba(11, 14, 28, 0.92));
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(17, 22, 40, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
+    /* Smooth, lag-free cards using optimized solid opacity instead of heavy 24px per-card blurs */
     .glass-card {
-      background: linear-gradient(145deg, rgba(16, 21, 38, 0.85), rgba(9, 12, 24, 0.92));
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: #0f1323;
       border: 1px solid rgba(255, 255, 255, 0.08);
+      contain: content; /* Improves browser rendering performance */
     }
     .glass-panel {
-      background: rgba(13, 17, 32, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: #0d1120;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .admin-active-item {
@@ -367,11 +365,11 @@
   </div>
 
 
-  <!-- ================= 4. POM WEB LOGIN VIEW (CLEAN PASSWORD & ROBOT ICON) ================= -->
+  <!-- ================= 4. POM WEB LOGIN VIEW (CLEAN PASSWORD INPUT) ================= -->
   <div id="adminLoginView" class="hidden min-h-screen flex items-center justify-center p-4">
     <div class="glass-card rounded-3xl p-7 sm:p-9 max-w-sm w-full space-y-6 shadow-2xl border border-purple-500/30">
       
-      <!-- Brand Header with Robot Icon & POM WEB -->
+      <!-- Robot Icon & POM WEB -->
       <div class="text-center space-y-2">
         <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/30">
           <i class="fas fa-robot text-white"></i>
@@ -383,7 +381,7 @@
         <p class="text-xs text-gray-400">Sign in to manage your online store & payments</p>
       </div>
 
-      <!-- Clean Login Form -->
+      <!-- Clean Login Form without default password hints -->
       <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-xs">
         <div>
           <label class="block text-gray-300 mb-1.5 font-semibold">Username</label>
@@ -391,7 +389,7 @@
             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400 pointer-events-none">
               <i class="fas fa-user text-xs"></i>
             </span>
-            <input type="text" id="adminUsernameInput" value="admin" class="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-3.5 py-3 text-white outline-none focus:border-blue-500 text-xs transition" placeholder="Username" required>
+            <input type="text" id="adminUsernameInput" class="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-3.5 py-3 text-white outline-none focus:border-blue-500 text-xs transition" placeholder="Enter username" required>
           </div>
         </div>
 
@@ -401,7 +399,6 @@
             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-400 pointer-events-none">
               <i class="fas fa-lock text-xs"></i>
             </span>
-            <!-- Clean Password Input without default credentials hint -->
             <input type="password" id="adminPasswordInput" class="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-10 py-3 text-white outline-none focus:border-blue-500 text-xs transition" placeholder="Enter password" required>
             <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-white">
               <i id="passwordEyeIcon" class="fas fa-eye text-xs"></i>
@@ -452,7 +449,7 @@
           <i class="fas fa-bell"></i>
           <span id="topNotificationDot" class="hidden absolute -top-1 -right-1 w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
         </button>
-        <!-- Avatar N -->
+        <!-- User Initial N -->
         <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 border border-white/20 flex items-center justify-center text-xs font-extrabold text-white shadow-md">
           N
         </div>
@@ -490,6 +487,11 @@
           <button onclick="switchAdminTab('settings')" id="sideBtn-settings" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
             <i class="fas fa-cog text-gray-400 text-sm"></i>
             <span>Store Settings</span>
+          </button>
+
+          <button onclick="switchAdminTab('security')" id="sideBtn-security" class="w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-xs flex items-center gap-3 transition">
+            <i class="fas fa-key text-amber-400 text-sm"></i>
+            <span>Manage Password</span>
           </button>
         </div>
 
@@ -710,6 +712,44 @@
           </div>
         </div>
 
+        <!-- ================= TAB 6: MANAGE PASSWORD & SECURITY ================= -->
+        <div id="tabContent-security" class="hidden space-y-4">
+          <div class="border-b border-white/10 pb-3">
+            <h2 class="text-lg font-black text-white">Security & Password Management</h2>
+            <p class="text-xs text-gray-400">Update your administrator username and master login password</p>
+          </div>
+
+          <div class="glass-card rounded-3xl p-6 space-y-4 text-xs border border-purple-500/20 shadow-2xl max-w-lg">
+            <form onsubmit="handlePasswordUpdate(event)" class="space-y-4">
+              <div>
+                <label class="block font-semibold text-gray-300 mb-1.5">Current Master Password</label>
+                <input type="password" id="currentPassInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Enter current password" required>
+              </div>
+
+              <div class="pt-2 border-t border-white/10">
+                <label class="block font-semibold text-gray-300 mb-1.5">New Username</label>
+                <input type="text" id="newUsernameInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Leave empty to keep current username">
+              </div>
+
+              <div>
+                <label class="block font-semibold text-gray-300 mb-1.5">New Password</label>
+                <input type="password" id="newPassInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Enter new password (min. 4 characters)" required>
+              </div>
+
+              <div>
+                <label class="block font-semibold text-gray-300 mb-1.5">Confirm New Password</label>
+                <input type="password" id="confirmPassInput" class="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white outline-none focus:border-blue-500" placeholder="Re-type new password" required>
+              </div>
+
+              <div class="flex justify-end pt-2">
+                <button type="submit" id="updateCredsBtn" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:brightness-110 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center gap-2 active:scale-95">
+                  <i class="fas fa-lock"></i> Update Password & Username
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
       </main>
     </div>
   </div>
@@ -899,7 +939,7 @@
       appConfig.plans.forEach((plan, index) => {
         const isHighlight = index === appConfig.plans.length - 1;
         const card = document.createElement("div");
-        card.className = `glass-card rounded-3xl overflow-hidden transition-all duration-300 ${
+        card.className = `glass-card rounded-3xl overflow-hidden transition-all duration-200 ${
           isHighlight 
             ? "border-purple-500/80 ring-1 ring-purple-500/30 shadow-2xl shadow-purple-900/30" 
             : "hover:border-purple-500/40 shadow-xl"
@@ -907,8 +947,8 @@
 
         card.innerHTML = `
           <div class="relative h-48 w-full bg-black/60 overflow-hidden">
-            <img src="${plan.image}" alt="${plan.title}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1020] via-transparent to-black/60"></div>
+            <img src="${plan.image}" alt="${plan.title}" loading="lazy" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0f1323] via-transparent to-black/60"></div>
             
             <div class="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
               <span class="bg-black/75 backdrop-blur text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-full border border-amber-500/30 flex items-center gap-1 shadow">
@@ -1097,7 +1137,7 @@
       }
     }
 
-    // ================= ADMIN AUTH (USERNAME + PASSWORD) =================
+    // ================= ADMIN AUTH =================
     async function handleAdminLogin(e) {
       e.preventDefault();
       const username = document.getElementById("adminUsernameInput").value.trim();
@@ -1140,9 +1180,58 @@
       navigateTo('/panel');
     }
 
+    // Handle Password & Username Update
+    async function handlePasswordUpdate(e) {
+      e.preventDefault();
+      const currentPassword = document.getElementById("currentPassInput").value;
+      const newUsername = document.getElementById("newUsernameInput").value.trim();
+      const newPassword = document.getElementById("newPassInput").value;
+      const confirmPassword = document.getElementById("confirmPassInput").value;
+      const btn = document.getElementById("updateCredsBtn");
+
+      if (newPassword !== confirmPassword) {
+        showToast("New passwords do not match!", "error");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Updating...`;
+
+      const token = sessionStorage.getItem("admin_session_token");
+
+      try {
+        const res = await fetch('/api/admin/change-credentials', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+          },
+          body: JSON.stringify({ currentPassword, newUsername, newPassword })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          sessionStorage.setItem("admin_session_token", data.newToken);
+          showToast("Credentials updated successfully!", "success");
+          document.getElementById("currentPassInput").value = "";
+          document.getElementById("newUsernameInput").value = "";
+          document.getElementById("newPassInput").value = "";
+          document.getElementById("confirmPassInput").value = "";
+        } else {
+          showToast(data.error || "Failed to update credentials", "error");
+        }
+      } catch (err) {
+        showToast("Update error: " + err.message, "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-lock"></i> Update Password & Username`;
+      }
+    }
+
     // Switch Tabs inside the POM WEB Console
     function switchAdminTab(tabName) {
-      const validTabs = ["dashboard", "plans", "utr", "users", "settings"];
+      const validTabs = ["dashboard", "plans", "utr", "users", "settings", "security"];
       const current = validTabs.includes(tabName) ? tabName : "dashboard";
 
       validTabs.forEach(t => {
